@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".TeamProfile">
 
+    <include
+        layout="@layout/tool_bar"
+        android:id="@+id/team_profile_toolbar"
+        />
+
 
     <ImageView
         android:id="@+id/team_profile_image"
@@ -38,6 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
+        android:textColor="@color/black"
         android:text="팔로우"
         android:textSize="20sp"
         android:textStyle="bold"
