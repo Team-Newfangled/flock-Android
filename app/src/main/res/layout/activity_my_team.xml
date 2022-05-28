@@ -6,10 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".MyTeam">
 
+    <include
+        layout="@layout/tool_bar"
+        android:id="@+id/my_team_toolbar"
+        />
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="팀원"
+        android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/team_member"
@@ -34,6 +41,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:text="팀 프로필"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -62,6 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="프로젝트"
+        android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/project"

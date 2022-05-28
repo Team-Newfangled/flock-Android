@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".TeamProfileChange">
 
+    <include
+        layout="@layout/tool_bar"
+        android:id="@+id/team_profile_change_toolbar"
+        />
+
     <ImageView
         android:id="@+id/team_profile_image_change"
         android:layout_width="wrap_content"
