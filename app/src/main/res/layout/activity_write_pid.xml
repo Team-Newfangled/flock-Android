@@ -8,37 +8,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TeamProfileChange">
+    tools:context=".WritePid">
 
     <include
         layout="@layout/tool_bar"
-        android:id="@+id/team_profile_change_toolbar"
+        android:id="@+id/write_pid_tool_bar"
         />
 
-    <ImageView
-        android:id="@+id/team_profile_image_change"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/write_pid_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/image"
-        app:layout_constraintBottom_toTopOf="@+id/team_profile_text_change"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.858"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.576" />
-
-
-    <EditText
-        android:id="@+id/team_profile_text_change"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/teamprofile_teamprofile"
+        android:background="@drawable/pid_title"
+        android:hint="제목"
+        android:paddingHorizontal="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.735" />
+        app:layout_constraintVertical_bias="0.126" />
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/write_pid_content"
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        android:background="@drawable/pid_content"
+        android:hint="내용"
+        android:paddingHorizontal="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/write_pid_title"
+        app:layout_constraintVertical_bias="0.04" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
