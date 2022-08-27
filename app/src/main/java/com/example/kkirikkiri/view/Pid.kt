@@ -16,5 +16,7 @@ class Pid : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pid)
 
+
+
     }
 }
