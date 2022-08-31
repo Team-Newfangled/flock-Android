@@ -1,6 +1,6 @@
 package com.example.kkirikkiri.module.service
 
-import com.example.kkirikkiri.module.dto.account.MessageResponse
+import com.example.kkirikkiri.module.dto.MessageResponse
 import com.example.kkirikkiri.module.dto.account.NameResponse
 import com.example.kkirikkiri.module.dto.account.response.FindUserPictureResponse
 import com.example.kkirikkiri.module.dto.account.response.GoogleLoginResponse
