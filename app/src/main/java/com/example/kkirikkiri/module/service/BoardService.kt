@@ -2,7 +2,7 @@ package com.example.kkirikkiri.module.service
 
 import com.example.kkirikkiri.module.dto.MessageResponse
 import com.example.kkirikkiri.module.dto.board.CommentResponse
-import com.example.kkirikkiri.module.dto.board.request.ContentRequest
+import com.example.kkirikkiri.module.dto.ContentRequest
 import com.example.kkirikkiri.module.dto.board.response.FindBoardPageResponse
 import com.example.kkirikkiri.module.dto.board.BoardResponse
 import com.example.kkirikkiri.module.dto.board.response.FindCommentsResponse
