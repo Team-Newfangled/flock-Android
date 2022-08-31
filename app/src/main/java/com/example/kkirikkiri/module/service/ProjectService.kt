@@ -2,7 +2,7 @@ package com.example.kkirikkiri.module.service
 
 import com.example.kkirikkiri.module.dto.ContentRequest
 import com.example.kkirikkiri.module.dto.MessageResponse
-import com.example.kkirikkiri.module.dto.project.request.NameRequest
+import com.example.kkirikkiri.module.dto.NameRequest
 import com.example.kkirikkiri.module.dto.project.response.FindProjectResponse
 import retrofit2.Call
 import retrofit2.http.DELETE
