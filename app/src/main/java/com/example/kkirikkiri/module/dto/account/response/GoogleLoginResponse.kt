@@ -1,4 +1,4 @@
-package com.example.kkirikkiri.module.dto.response
+package com.example.kkirikkiri.module.dto.account.response
 
 data class GoogleLoginResponse(var grant_type : String, var access_token : String, var refresh_token : String, var access_token_expires_in : Long)
 

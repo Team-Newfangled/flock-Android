@@ -2,13 +2,11 @@ package com.example.kkirikkiri.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.kkirikkiri.R
 import com.example.kkirikkiri.module.RetrofitImpl
-import com.example.kkirikkiri.module.dto.response.GoogleLoginResponse
+import com.example.kkirikkiri.module.dto.account.response.GoogleLoginResponse
 import com.example.kkirikkiri.module.google.GoogleResponse
 import com.example.kkirikkiri.module.google.GoogleRetrofitImpl
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import retrofit2.Call
@@ -16,7 +14,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginModel : ViewModel(){
-    private val service = RetrofitImpl.service
+    private val service = RetrofitImpl.accountService
     private val google = GoogleRetrofitImpl.service
 
     fun signInResult(task : Task<GoogleSignInAccount>) {
