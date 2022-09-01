@@ -1,6 +1,5 @@
-package com.example.kkirikkiri.view
+package com.example.kkirikkiri.view.project.pid
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil

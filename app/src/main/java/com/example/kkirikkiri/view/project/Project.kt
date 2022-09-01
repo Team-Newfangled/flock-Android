@@ -1,4 +1,4 @@
-package com.example.kkirikkiri.view
+package com.example.kkirikkiri.view.project
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityProjectBinding
+import com.example.kkirikkiri.view.project.pid.Pid
 
 class Project : AppCompatActivity() {
 

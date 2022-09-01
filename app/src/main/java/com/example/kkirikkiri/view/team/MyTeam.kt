@@ -1,4 +1,4 @@
-package com.example.kkirikkiri.view
+package com.example.kkirikkiri.view.team
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
