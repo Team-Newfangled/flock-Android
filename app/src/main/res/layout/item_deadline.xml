@@ -36,5 +36,16 @@
         app:layout_constraintTop_toTopOf="@+id/item_deadline_time"
         app:layout_constraintVertical_bias="0.0" />
 
+    <TextView
+        android:id="@+id/deadline_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/item_deadline_time"
+        app:layout_constraintEnd_toEndOf="@+id/item_deadline_time"
+        app:layout_constraintHorizontal_bias="0.866"
+        app:layout_constraintStart_toStartOf="@+id/item_deadline_time"
+        app:layout_constraintTop_toBottomOf="@+id/item_deadline_title"
+        app:layout_constraintVertical_bias="0.483" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
