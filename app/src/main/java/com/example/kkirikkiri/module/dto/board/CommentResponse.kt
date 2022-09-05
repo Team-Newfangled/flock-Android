@@ -1,4 +1,6 @@
 package com.example.kkirikkiri.module.dto.board
 
+import com.google.gson.annotations.SerializedName
 
-data class CommentResponse (var boardId: Int, var Comment : String, var id : Int, var writeId: Int)
+
+data class CommentResponse (@SerializedName("board-id") var boardId: Int, var comment : String, var id : Int,@SerializedName("write-id") var writeId: Int)

@@ -1,3 +1,5 @@
 package com.example.kkirikkiri.module.dto.team.response
 
-data class CreateTeamResponse (var teamId : Int, var teamName : String)
+import com.google.gson.annotations.SerializedName
+
+data class CreateTeamResponse (@SerializedName("team-id") var teamId : Int,@SerializedName("team-name") var teamName : String)
