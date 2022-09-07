@@ -34,7 +34,7 @@ class MyTeam : AppCompatActivity() {
 
         binding.teamMember.adapter = MyTeamAdapter(list)
         binding.teamMember.layoutManager = LinearLayoutManager(this)
-        binding.teamMember.addItemDecoration(RecyclerDecorationHeight(10))
+        binding.teamMember.addItemDecoration(RecyclerDecorationHeight(30))
 
         binding.teamProfile.setOnClickListener { startActivity(Intent(applicationContext, TeamProfile::class.java)) }
 

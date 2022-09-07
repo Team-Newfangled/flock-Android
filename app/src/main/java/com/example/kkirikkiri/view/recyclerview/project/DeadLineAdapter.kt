@@ -1,5 +1,6 @@
 package com.example.kkirikkiri.view.recyclerview.project
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -24,9 +25,10 @@ class DeadLineAdapter(val list : List<DeadLine>) : RecyclerView.Adapter<DeadLine
     }
 
     inner class Holder(var binding : ItemDeadlineBinding) : RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun setDeadLine(deadLine : DeadLine) {
             binding.deadlineId.text = deadLine.id.toString()
-            binding.itemDeadlineTime.text = deadLine.deadLineTime
+            binding.itemDeadlineTime.text = "D-${deadLine.deadLineTime}"
             binding.itemDeadlineTitle.text = deadLine.title
         }
     }
