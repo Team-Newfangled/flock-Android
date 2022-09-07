@@ -1,4 +1,4 @@
-package com.example.kkirikkiri.view.recyclerview.project
+package com.example.kkirikkiri.view.recyclerview.project.deadline
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

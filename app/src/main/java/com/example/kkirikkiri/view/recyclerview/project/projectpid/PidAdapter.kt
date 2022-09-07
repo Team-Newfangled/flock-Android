@@ -1,4 +1,4 @@
-package com.example.kkirikkiri.view.recyclerview.project
+package com.example.kkirikkiri.view.recyclerview.project.projectpid
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,6 +13,7 @@ class PidAdapter(var list : List<PidItem>) : RecyclerView.Adapter<PidAdapter.Hol
         fun setPid(item : PidItem) {
             binding.pidId.text = item.id.toString()
             binding.itemPidTitle.text = item.title
+
         }
     }
 

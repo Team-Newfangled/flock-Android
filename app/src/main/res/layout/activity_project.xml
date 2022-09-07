@@ -43,7 +43,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pid_recyclerview"
         android:layout_width="294dp"
-        android:layout_height="130dp"
+        android:layout_height="80dp"
         android:paddingHorizontal="12dp"
         android:paddingVertical="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/pid"

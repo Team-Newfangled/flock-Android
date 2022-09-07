@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityMyTeamBinding
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
-import com.example.kkirikkiri.view.recyclerview.myteam.MyTeamAdapter
-import com.example.kkirikkiri.view.recyclerview.myteam.MyTeamProjectAdapter
-import com.example.kkirikkiri.view.recyclerview.myteam.TeamMemberItem
-import com.example.kkirikkiri.view.recyclerview.myteam.TeamMemberProjectItem
+import com.example.kkirikkiri.view.recyclerview.myteam.team.MyTeamAdapter
+import com.example.kkirikkiri.view.recyclerview.myteam.team.MyTeamProjectAdapter
+import com.example.kkirikkiri.view.recyclerview.myteam.member.TeamMemberItem
+import com.example.kkirikkiri.view.recyclerview.myteam.member.TeamMemberProjectItem
 
 class MyTeam : AppCompatActivity() {
 
