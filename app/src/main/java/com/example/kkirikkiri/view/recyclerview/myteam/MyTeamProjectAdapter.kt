@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kkirikkiri.databinding.ItemProjectBinding
 import com.example.kkirikkiri.view.activity.project.Project
 
-class MyTeamProjectAdapter(private val list: List<TeamMemberProject>) : RecyclerView.Adapter<MyTeamProjectAdapter.Holder>() {
+class MyTeamProjectAdapter(private val list: List<TeamMemberProjectItem>) : RecyclerView.Adapter<MyTeamProjectAdapter.Holder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -30,7 +30,7 @@ class MyTeamProjectAdapter(private val list: List<TeamMemberProject>) : Recycler
 
     inner class Holder(var binding : ItemProjectBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun setProject(project : TeamMemberProject) {
+        fun setProject(project : TeamMemberProjectItem) {
             binding.itemProjectName.text = project.name
             binding.itemProjectPercent.text = "${project.percent}%"
             binding.projectId.text = project.id.toString()

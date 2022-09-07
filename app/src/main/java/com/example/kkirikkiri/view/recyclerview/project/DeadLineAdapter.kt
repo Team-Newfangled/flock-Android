@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kkirikkiri.databinding.ItemDeadlineBinding
 
-class DeadLineAdapter(val list : List<DeadLine>) : RecyclerView.Adapter<DeadLineAdapter.Holder>(){
+class DeadLineAdapter(val list : List<DeadLineItem>) : RecyclerView.Adapter<DeadLineAdapter.Holder>(){
 
     var deadlineList = list
 
@@ -26,7 +26,7 @@ class DeadLineAdapter(val list : List<DeadLine>) : RecyclerView.Adapter<DeadLine
 
     inner class Holder(var binding : ItemDeadlineBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun setDeadLine(deadLine : DeadLine) {
+        fun setDeadLine(deadLine : DeadLineItem) {
             binding.deadlineId.text = deadLine.id.toString()
             binding.itemDeadlineTime.text = "D-${deadLine.deadLineTime}"
             binding.itemDeadlineTitle.text = deadLine.title
