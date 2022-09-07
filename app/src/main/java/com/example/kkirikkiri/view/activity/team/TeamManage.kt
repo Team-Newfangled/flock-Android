@@ -8,7 +8,7 @@ import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityTeamManageBinding
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.myteam.team.MyTeamAdapter
-import com.example.kkirikkiri.view.recyclerview.myteam.member.TeamMemberItem
+import com.example.kkirikkiri.view.recyclerview.myteam.team.TeamMemberItem
 
 class TeamManage : AppCompatActivity() {
 

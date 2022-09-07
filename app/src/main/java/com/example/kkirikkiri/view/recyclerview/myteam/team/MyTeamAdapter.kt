@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kkirikkiri.databinding.ItemMemberBinding
-import com.example.kkirikkiri.view.recyclerview.myteam.member.TeamMemberItem
 
 class MyTeamAdapter(var listData : List<TeamMemberItem>) : RecyclerView.Adapter<MyTeamAdapter.TeamViewHolder>() {
 

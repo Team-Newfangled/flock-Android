@@ -1,4 +1,4 @@
-package com.example.kkirikkiri.view.recyclerview.myteam.team
+package com.example.kkirikkiri.view.recyclerview.myteam.member
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kkirikkiri.databinding.ItemProjectBinding
 import com.example.kkirikkiri.view.activity.project.Project
-import com.example.kkirikkiri.view.recyclerview.myteam.member.TeamMemberProjectItem
 
 class MyTeamProjectAdapter(private val list: List<TeamMemberProjectItem>) : RecyclerView.Adapter<MyTeamProjectAdapter.Holder>() {
 
