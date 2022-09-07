@@ -12,8 +12,8 @@ import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationWidth
 import com.example.kkirikkiri.view.recyclerview.project.deadline.DeadLineItem
 import com.example.kkirikkiri.view.recyclerview.project.deadline.DeadLineAdapter
-import com.example.kkirikkiri.view.recyclerview.project.projectpid.PidAdapter
-import com.example.kkirikkiri.view.recyclerview.project.projectpid.PidItem
+import com.example.kkirikkiri.view.recyclerview.project.projectpid.ProjectPidAdapter
+import com.example.kkirikkiri.view.recyclerview.project.projectpid.ProjectPidItem
 
 class Project : AppCompatActivity() {
 
@@ -42,13 +42,13 @@ class Project : AppCompatActivity() {
         binding.deadline.addItemDecoration(RecyclerDecorationWidth(30))
         binding.deadline.scrollToPosition(lise.size - 1)
 
-        val pid1 = PidItem("제목임", 1)
-        val pid2 = PidItem("제목", 2)
-        val pid3 = PidItem("제", 3)
-        val pid4 = PidItem("ㅈ", 4)
-        val pid5 = PidItem("ㅁ", 5)
+        val pid1 = ProjectPidItem("제목임", 1)
+        val pid2 = ProjectPidItem("제목", 2)
+        val pid3 = ProjectPidItem("제", 3)
+        val pid4 = ProjectPidItem("ㅈ", 4)
+        val pid5 = ProjectPidItem("ㅁ", 5)
         val list = listOf(pid1, pid2, pid3, pid4, pid5)
-        val pidAdapter = PidAdapter(list)
+        val pidAdapter = ProjectPidAdapter(list)
         binding.pidRecyclerview.adapter = pidAdapter
         binding.pidRecyclerview.layoutManager = LinearLayoutManager(this)
         binding.pidRecyclerview.addItemDecoration(RecyclerDecorationHeight(15))

@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kkirikkiri.databinding.ItemPidBinding
 
-class PidAdapter(var list : List<PidItem>) : RecyclerView.Adapter<PidAdapter.Holder>(){
+class ProjectPidAdapter(var list : List<ProjectPidItem>) : RecyclerView.Adapter<ProjectPidAdapter.Holder>(){
 
     val pids = list
 
     inner class Holder(var binding : ItemPidBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun setPid(item : PidItem) {
+        fun setPid(item : ProjectPidItem) {
             binding.pidId.text = item.id.toString()
             binding.itemPidTitle.text = item.title
 
