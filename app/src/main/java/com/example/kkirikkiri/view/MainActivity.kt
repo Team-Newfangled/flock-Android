@@ -7,7 +7,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityMainBinding
-import com.example.kkirikkiri.view.team.MyTeam
+import com.example.kkirikkiri.view.activity.team.MyTeam
 
 class MainActivity : AppCompatActivity() {
 

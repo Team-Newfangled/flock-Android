@@ -1,10 +1,12 @@
 package com.example.kkirikkiri.view.recyclerview.myteam
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kkirikkiri.databinding.ItemProjectBinding
+import com.example.kkirikkiri.view.activity.project.Project
 
 class MyTeamProjectAdapter(private val list: List<TeamMemberProject>) : RecyclerView.Adapter<MyTeamProjectAdapter.Holder>() {
 
@@ -32,6 +34,12 @@ class MyTeamProjectAdapter(private val list: List<TeamMemberProject>) : Recycler
             binding.itemProjectName.text = project.name
             binding.itemProjectPercent.text = "${project.percent}%"
             binding.projectId.text = project.id.toString()
+
+            itemView.setOnClickListener {
+                Intent(itemView.context, Project::class.java).run { itemView.context.startActivity(this) }
+            }
         }
+
+
     }
 }

@@ -1,4 +1,4 @@
-package com.example.kkirikkiri.view.project
+package com.example.kkirikkiri.view.activity.project
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

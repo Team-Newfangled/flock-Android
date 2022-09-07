@@ -8,7 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.project.Project">
+    tools:context=".view.activity.project.Project">
 
     <include
         layout="@layout/tool_bar"
