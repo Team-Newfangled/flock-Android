@@ -16,7 +16,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class TeamModel : ViewModel(){
+class TeamModel : ViewModel() {
+
     private val service = RetrofitImpl.teamService
 
     val teamMembers = MutableLiveData<List<FindMembersResponse.Results>>()
