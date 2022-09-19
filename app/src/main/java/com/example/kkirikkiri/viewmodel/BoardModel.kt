@@ -1,5 +1,6 @@
 package com.example.kkirikkiri.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.kkirikkiri.module.RetrofitImpl
 import com.example.kkirikkiri.module.dto.ContentRequest
@@ -26,7 +27,8 @@ class BoardModel : ViewModel() {
                     call: Call<FindCommentsResponse>,
                     response: Response<FindCommentsResponse>
                 ) {
-
+                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    else Log.e("실패", "접속은 했음")
                 }
 
                 override fun onFailure(call: Call<FindCommentsResponse>, t: Throwable) {
@@ -45,7 +47,8 @@ class BoardModel : ViewModel() {
                     call: Call<BoardResponse>,
                     response: Response<BoardResponse>
                 ) {
-
+                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    else Log.e("실패", "접속은 했음")
                 }
 
                 override fun onFailure(call: Call<BoardResponse>, t: Throwable) {
@@ -63,7 +66,8 @@ class BoardModel : ViewModel() {
                     call: Call<CommentResponse>,
                     response: Response<CommentResponse>
                 ) {
-
+                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    else Log.e("실패", "접속은 했음")
                 }
 
                 override fun onFailure(call: Call<CommentResponse>, t: Throwable) {
@@ -87,7 +91,8 @@ class BoardModel : ViewModel() {
                     call: Call<MessageResponse>,
                     response: Response<MessageResponse>
                 ) {
-
+                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    else Log.e("실패", "접속은 했음")
                 }
 
                 override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
@@ -105,7 +110,8 @@ class BoardModel : ViewModel() {
                     call: Call<MessageResponse>,
                     response: Response<MessageResponse>
                 ) {
-
+                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    else Log.e("실패", "접속은 했음")
                 }
 
                 override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
@@ -131,7 +137,8 @@ class BoardModel : ViewModel() {
                     call: Call<FindBoardPageResponse>,
                     response: Response<FindBoardPageResponse>
                 ) {
-
+                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    else Log.e("실패", "접속은 했음")
                 }
 
                 override fun onFailure(call: Call<FindBoardPageResponse>, t: Throwable) {
@@ -149,7 +156,8 @@ class BoardModel : ViewModel() {
                     call: Call<BoardResponse>,
                     response: Response<BoardResponse>
                 ) {
-
+                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    else Log.e("실패", "접속은 했음")
                 }
 
                 override fun onFailure(call: Call<BoardResponse>, t: Throwable) {

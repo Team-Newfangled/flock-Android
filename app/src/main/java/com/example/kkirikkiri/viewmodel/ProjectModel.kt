@@ -1,5 +1,6 @@
 package com.example.kkirikkiri.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.kkirikkiri.module.RetrofitImpl
 import com.example.kkirikkiri.module.dto.ContentRequest
@@ -25,7 +26,8 @@ class ProjectModel : ViewModel() {
                     call: Call<FindProjectResponse>,
                     response: Response<FindProjectResponse>
                 ) {
-
+                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    else Log.e("실패", "접속은 했음")
                 }
 
                 override fun onFailure(call: Call<FindProjectResponse>, t: Throwable) {
@@ -49,7 +51,8 @@ class ProjectModel : ViewModel() {
                     call: Call<MessageResponse>,
                     response: Response<MessageResponse>
                 ) {
-
+                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    else Log.e("실패", "접속은 했음")
                 }
 
                 override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
@@ -66,7 +69,8 @@ class ProjectModel : ViewModel() {
                 call: Call<MessageResponse>,
                 response: Response<MessageResponse>
             ) {
-
+                if (response.isSuccessful) Log.e("성공", response.body().toString())
+                else Log.e("실패", "접속은 했음")
             }
 
             override fun onFailure(call: Call<MessageResponse>, t: Throwable) {

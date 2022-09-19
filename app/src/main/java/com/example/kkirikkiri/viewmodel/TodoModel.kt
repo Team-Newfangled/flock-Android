@@ -1,5 +1,6 @@
 package com.example.kkirikkiri.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.kkirikkiri.module.RetrofitImpl
 import com.example.kkirikkiri.module.dto.ContentRequest
@@ -14,7 +15,6 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.coroutines.coroutineContext
 
 class TodoModel : ViewModel() {
 
@@ -27,11 +27,12 @@ class TodoModel : ViewModel() {
                     call: Call<FindDeadLineResponse>,
                     response: Response<FindDeadLineResponse>
                 ) {
-
+                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    else Log.e("실패", "접속은 했음")
                 }
 
                 override fun onFailure(call: Call<FindDeadLineResponse>, t: Throwable) {
-
+                    Log.e("실패", t.message.toString())
                 }
             })
         }
@@ -44,11 +45,12 @@ class TodoModel : ViewModel() {
                     call: Call<TodoResponse>,
                     response: Response<TodoResponse>
                 ) {
-
+                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    else Log.e("실패", "접속은 했음")
                 }
 
                 override fun onFailure(call: Call<TodoResponse>, t: Throwable) {
-
+                    Log.e("실패", t.message.toString())
                 }
 
             })
@@ -62,11 +64,12 @@ class TodoModel : ViewModel() {
                     call: Call<MessageResponse>,
                     response: Response<MessageResponse>
                 ) {
-
+                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    else Log.e("실패", "접속은 했음")
                 }
 
                 override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
-
+                    Log.e("실패", t.message.toString())
                 }
             })
         }
@@ -79,11 +82,12 @@ class TodoModel : ViewModel() {
                     call: Call<FindAllTodosResponse>,
                     response: Response<FindAllTodosResponse>
                 ) {
-
+                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    else Log.e("실패", "접속은 했음")
                 }
 
                 override fun onFailure(call: Call<FindAllTodosResponse>, t: Throwable) {
-
+                    Log.e("실패", t.message.toString())
                 }
 
             })
@@ -97,11 +101,12 @@ class TodoModel : ViewModel() {
                     call: Call<TodoResponse>,
                     response: Response<TodoResponse>
                 ) {
-
+                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    else Log.e("실패", "접속은 했음")
                 }
 
                 override fun onFailure(call: Call<TodoResponse>, t: Throwable) {
-
+                    Log.e("실패", t.message.toString())
                 }
 
             })
@@ -115,11 +120,12 @@ class TodoModel : ViewModel() {
                     call: Call<MessageResponse>,
                     response: Response<MessageResponse>
                 ) {
-
+                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    else Log.e("실패", "접속은 했음")
                 }
 
                 override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
-
+                    Log.e("실패", t.message.toString())
                 }
 
             })
@@ -139,11 +145,12 @@ class TodoModel : ViewModel() {
                     call: Call<MessageResponse>,
                     response: Response<MessageResponse>
                 ) {
-
+                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    else Log.e("실패", "접속은 했음")
                 }
 
                 override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
-
+                    Log.e("실패", t.message.toString())
                 }
 
             })
