@@ -15,7 +15,9 @@ interface AccountService {
     fun refreshToken(@Body refresh_token : String) : Call<TokenResponse>
 
     @GET("/auth/oauth?")
-    fun loginWithGoogle(@Query("code") code : String) : Call<GoogleLoginResponse>
+    fun loginWithGoogle(@Header("Accept") accept : String,
+                        @Header("Accept-Encoding") encoding : String,
+                        @Query("code") code : String) : Call<GoogleLoginResponse>
 
     @GET("/users/{user-id}")
     fun findUserPicture(@Path("user-id") userId: Int) : Call<FindUserPictureResponse>

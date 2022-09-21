@@ -26,17 +26,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-//        model5.createTeam(NameRequest("test"))
-//        model5.getProject(1,1)
-//        model5.getTeamMember(1,1)
-//        model5.addProject(1, NameRequest("1"))
-//        model5.deleteMember(1,1)
-//        model1.deleteBoard(1)
-//        model1.deleteComment(1)
-//        model1.findBoard(1)
-//        model1.findBoardPage(1,1)
-//        model1.findComment(1,1)
-//        model1.writeComment(1,"1")
+        model5.createTeam(NameRequest("test"))
+        model5.getProject(1,1)
+        model5.getTeamMember(1,1)
+        model5.addProject(1, NameRequest("1"))
+        model5.deleteMember(1,1)
+        model1.deleteBoard(1)
+        model1.deleteComment(1)
+        model1.findBoard(1)
+        model1.findBoardPage(1,1)
+        model1.findComment(1,1)
+        model1.writeComment(1,"1")
 
 
         binding.mainMyTeam.setOnClickListener{ startActivity(Intent(applicationContext, MyTeam::class.java)) }

@@ -20,22 +20,24 @@ class LoginModel : ViewModel(){
     private val service = RetrofitImpl.accountService
     private val google = GoogleRetrofitImpl.service
 
+
+     // code의 %2F는 /로 치완해줘야함
     fun signInResult() {
 //        val account = task.getResult(ApiException::class.java)
-        val code = "4%2F0ARtbsJotrvKd8YiORIecWk2a9QQ8bFtLtZkDVn-PTe8n5tl0xrxlLnI8rUKw-YxL3pTWDg"
+        val code = "4/0ARtbsJoSc_KwfJTa13zq50wW0qJOjNyn9GFxn7FPo0k9eYHlMenr-di2l9EwjfqX89FMDA"
             CoroutineScope(Dispatchers.IO).launch {
 
-            service.loginWithGoogle(code.toString()).enqueue(object : Callback<GoogleLoginResponse> {
+            service.loginWithGoogle("*/*", "gzip, deflate, br", code.toString()).enqueue(object : Callback<GoogleLoginResponse> {
                 override fun onResponse(
                     call: Call<GoogleLoginResponse>,
                     response: Response<GoogleLoginResponse>
                 ) {
                     if (response.isSuccessful) Log.e("성공", "성공함")
-                    else Log.e("실패", code.toString())
+                    else Log.e("실패", response.errorBody().toString() + code.toString() + "  ," + response.message() + ", " + response.code())
                 }
 
                 override fun onFailure(call: Call<GoogleLoginResponse>, t: Throwable) {
-                    Log.e("실패", "연결 실패" + code.toString())
+                    Log.e("실패", "연결 실패" + t.printStackTrace())
                 }
 
             })

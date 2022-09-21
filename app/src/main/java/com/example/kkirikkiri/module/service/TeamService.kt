@@ -1,5 +1,6 @@
 package com.example.kkirikkiri.module.service
 
+import com.example.kkirikkiri.module.dto.MessageResponse
 import com.example.kkirikkiri.module.dto.NameRequest
 import com.example.kkirikkiri.module.dto.team.response.AddProjectResponse
 import com.example.kkirikkiri.module.dto.team.response.CreateTeamResponse
@@ -13,7 +14,7 @@ interface TeamService {
     fun createTeam(@Body request : NameRequest) : Call<CreateTeamResponse>
 
     @DELETE("/teams/{id}/expulsion/{user-id}")
-    fun expulsionMember(@Path("id") id : Int, @Path("user-id") userId : Int)
+    fun expulsionMember(@Path("id") id : Int, @Path("user-id") userId : Int) : Call<MessageResponse>
 
     @GET("/teams/{id}/members?")
     fun findMembers(@Path("id") id : Int, @Query("page") page : Int) : Call<FindMembersResponse>

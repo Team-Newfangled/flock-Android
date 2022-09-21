@@ -21,7 +21,7 @@ interface BoardService {
     fun findBoard(@Path("id") id:Int) : Call<BoardResponse>
 
     @DELETE("/boards/{id}")
-    fun deleteBoard(@Path("id") id: Int)
+    fun deleteBoard(@Path("id") id: Int ) : Call<MessageResponse>
 
     @PATCH("/boards/{id}")
     fun modifyBoard(@Path("id") id: Int,@Body request: ContentRequest) : Call<MessageResponse>
@@ -30,10 +30,10 @@ interface BoardService {
     fun saveFile(@Path("id") id : Int, @Body request: ContentRequest) : Call<MessageResponse>
 
     @DELETE("/boards/{id}/files?")
-    fun deleteFile(@Path("id") id: Int, @Query("file_id") fileId : Int)
+    fun deleteFile(@Path("id") id: Int, @Query("file_id") fileId : Int) : Call<MessageResponse>
 
     @DELETE("/comments/{id}")
-    fun deleteComment(@Path("id") id: Int)
+    fun deleteComment(@Path("id") id: Int) : Call<MessageResponse>
 
     @GET("projects/{id}/boards?")
     fun findBoardPage(@Path("id") id : Int, @Query("page") page : Int) : Call<FindBoardPageResponse>
