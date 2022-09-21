@@ -9,8 +9,8 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface TeamService {
-    @POST("teams")
-    fun createTeam(request : NameRequest) : Call<CreateTeamResponse>
+    @POST("/teams")
+    fun createTeam(@Body request : NameRequest) : Call<CreateTeamResponse>
 
     @DELETE("/teams/{id}/expulsion/{user-id}")
     fun expulsionMember(@Path("id") id : Int, @Path("user-id") userId : Int)
@@ -22,7 +22,7 @@ interface TeamService {
     fun findProjects(@Path("id") id : Int, @Query("page") page: Int) : Call<FindProjectResponse>
 
     @POST("/teams/{id}/projects")
-    fun addProject(@Path("id") id : Int, request : NameRequest) : Call<AddProjectResponse>
+    fun addProject(@Path("id") id : Int, @Body request : NameRequest) : Call<AddProjectResponse>
 
 
 }

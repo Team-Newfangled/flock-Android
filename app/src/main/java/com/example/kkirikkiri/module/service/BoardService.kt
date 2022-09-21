@@ -15,7 +15,7 @@ interface BoardService {
     fun findComment(@Path("id") id:Int, @Query("page") page : Int) : Call<FindCommentsResponse>
 
     @POST("/board/{id}/comments")
-    fun writeComment(@Path("id") id:Int, content : String) : Call<CommentResponse>
+    fun writeComment(@Path("id") id:Int,@Body content : String) : Call<CommentResponse>
 
     @GET("/boards/{id}")
     fun findBoard(@Path("id") id:Int) : Call<BoardResponse>
@@ -24,10 +24,10 @@ interface BoardService {
     fun deleteBoard(@Path("id") id: Int)
 
     @PATCH("/boards/{id}")
-    fun modifyBoard(@Path("id") id: Int, request: ContentRequest) : Call<MessageResponse>
+    fun modifyBoard(@Path("id") id: Int,@Body request: ContentRequest) : Call<MessageResponse>
 
     @POST("/boards/{id}/files")
-    fun saveFile(@Path("id") id : Int, request: ContentRequest) : Call<MessageResponse>
+    fun saveFile(@Path("id") id : Int, @Body request: ContentRequest) : Call<MessageResponse>
 
     @DELETE("/boards/{id}/files?")
     fun deleteFile(@Path("id") id: Int, @Query("file_id") fileId : Int)
@@ -39,5 +39,5 @@ interface BoardService {
     fun findBoardPage(@Path("id") id : Int, @Query("page") page : Int) : Call<FindBoardPageResponse>
 
     @POST("/projects/{id}/boards")
-    fun saveBoard(@Path("id") id : Int, request : ContentRequest) : Call<BoardResponse>
+    fun saveBoard(@Path("id") id : Int, @Body request : ContentRequest) : Call<BoardResponse>
 }

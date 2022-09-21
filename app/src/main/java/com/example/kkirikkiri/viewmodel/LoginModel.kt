@@ -9,6 +9,9 @@ import com.example.kkirikkiri.module.google.GoogleRetrofitImpl
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,9 +20,10 @@ class LoginModel : ViewModel(){
     private val service = RetrofitImpl.accountService
     private val google = GoogleRetrofitImpl.service
 
-    fun signInResult(task : Task<GoogleSignInAccount>) {
-        val account = task.getResult(ApiException::class.java)
-        val code = account.serverAuthCode
+    fun signInResult() {
+//        val account = task.getResult(ApiException::class.java)
+        val code = "4%2F0ARtbsJotrvKd8YiORIecWk2a9QQ8bFtLtZkDVn-PTe8n5tl0xrxlLnI8rUKw-YxL3pTWDg"
+            CoroutineScope(Dispatchers.IO).launch {
 
             service.loginWithGoogle(code.toString()).enqueue(object : Callback<GoogleLoginResponse> {
                 override fun onResponse(
@@ -35,6 +39,7 @@ class LoginModel : ViewModel(){
                 }
 
             })
+            }
 
     }
 

@@ -12,7 +12,7 @@ import retrofit2.http.*
 interface AccountService {
 
     @POST("/auth/refresh")
-    fun refreshToken(refresh_token : String) : Call<TokenResponse>
+    fun refreshToken(@Body refresh_token : String) : Call<TokenResponse>
 
     @GET("/auth/oauth?")
     fun loginWithGoogle(@Query("code") code : String) : Call<GoogleLoginResponse>
@@ -27,12 +27,12 @@ interface AccountService {
     fun findOrganization(@Path("user-id") userId: Int) : Call<NameResponse>
 
     @PATCH("users/{user-id}/organization")
-    fun changeOrganization(@Path("user-id") userId: Int, name : String) : Call<MessageResponse>
+    fun changeOrganization(@Path("user-id") userId: Int, @Body name : String) : Call<MessageResponse>
 
     @PATCH("/users/{user-id}/picture")
-    fun changePicture(@Path("user-id") userId: Int, content : String) : Call<MessageResponse>
+    fun changePicture(@Path("user-id") userId: Int, @Body content : String) : Call<MessageResponse>
 
     @PATCH("/users/{user-id}/name")
-    fun changeName(@Path("user-id") userId: Int, name : String) : Call<NameResponse>
+    fun changeName(@Path("user-id") userId: Int,@Body name : String) : Call<NameResponse>
 
 }

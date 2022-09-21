@@ -14,10 +14,10 @@ interface TodoService {
     fun findDeadlines(@Path("id") id : Int,@Query("year") year : Int, @Query("month") month : Int) : Call<FindDeadLineResponse>
 
     @POST("/projects/{id}/todo")
-    fun createTodo(@Path("id") id : Int, request : ContentRequest) : Call<TodoResponse>
+    fun createTodo(@Path("id") id : Int,@Body request : ContentRequest) : Call<TodoResponse>
 
     @PATCH("/projects/{project-id}/deadline/{todo-id}")
-    fun modifyColor(@Path("project-id") projectId : Int, @Path("todo-id") todoId : Int, request: ContentRequest) : Call<MessageResponse>
+    fun modifyColor(@Path("project-id") projectId : Int, @Path("todo-id") todoId : Int,@Body request: ContentRequest) : Call<MessageResponse>
 
     @GET("/projects/{project-id}/team-member/{user-id}/todo?")
     fun findAllTodos(@Path("project-id") projectId: Int, @Path("user-id") userId: Int, @Query("page") page: Int) : Call<FindAllTodosResponse>
@@ -26,7 +26,7 @@ interface TodoService {
     fun findTodo(@Path("id") id : Int) : Call<TodoResponse>
 
     @PUT("/todo/{id}")
-    fun modifyTodo(@Path("id") id : Int, request: ModifyTodoRequest) : Call<MessageResponse>
+    fun modifyTodo(@Path("id") id : Int,@Body request: ModifyTodoRequest) : Call<MessageResponse>
 
     @DELETE("/todo/{id}")
     fun deleteTodo(@Path("id") id : Int)

@@ -5,10 +5,7 @@ import com.example.kkirikkiri.module.dto.MessageResponse
 import com.example.kkirikkiri.module.dto.NameRequest
 import com.example.kkirikkiri.module.dto.project.response.FindProjectResponse
 import retrofit2.Call
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.PATCH
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ProjectService {
     @GET("/projects/{id}")
@@ -18,8 +15,8 @@ interface ProjectService {
     fun deleteProject(@Path("id") id : Int)
 
     @PATCH("/projects/{id}")
-    fun modifyProjectName(@Path("id") id : Int, request : NameRequest) : Call<MessageResponse>
+    fun modifyProjectName(@Path("id") id : Int, @Body request : NameRequest) : Call<MessageResponse>
 
     @PATCH("/projects/{id}/image")
-    fun modifyProjectCoverImage(@Path("id") id : Int, request : ContentRequest) : Call<MessageResponse>
+    fun modifyProjectCoverImage(@Path("id") id : Int, @Body request : ContentRequest) : Call<MessageResponse>
 }

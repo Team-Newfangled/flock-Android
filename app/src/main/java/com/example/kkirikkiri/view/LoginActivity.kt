@@ -28,7 +28,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
-        binding.gitLogin.setOnClickListener { startActivity(Intent(applicationContext, MainActivity::class.java)) }
+        binding.gitLogin.setOnClickListener {
+            model.signInResult()
+            startActivity(Intent(applicationContext, MainActivity::class.java))
+        }
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestScopes(Scope(Scopes.DRIVE_APPFOLDER))
@@ -39,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
         { result ->
             if (result.resultCode == Activity.RESULT_OK){
                 val task : Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-                model.signInResult(task)
+//                model.signInResult(task)
             }else {
                 Log.e("asd", result.data!!.data.toString() + " " + result.resultCode + " " + result.toString())
             }
