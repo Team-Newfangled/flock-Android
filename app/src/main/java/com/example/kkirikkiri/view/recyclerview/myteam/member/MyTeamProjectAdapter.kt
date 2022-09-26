@@ -36,7 +36,7 @@ class MyTeamProjectAdapter(private val list: List<TeamMemberProjectItem>) : Recy
             binding.projectId.text = project.id.toString()
 
             itemView.setOnClickListener {
-                Intent(itemView.context, Project::class.java).run { itemView.context.startActivity(this) }
+                Intent(itemView.context, Project::class.java).putExtra("id", project.id).run { itemView.context.startActivity(this) }
             }
         }
 
