@@ -30,6 +30,7 @@ class MyTeam : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_team)
+        observe()
 
         val intent = intent
         val id = intent.getIntExtra("id", 0)
@@ -37,8 +38,9 @@ class MyTeam : AppCompatActivity() {
         model.getTeamMember(id, 10)
         model.getProject(id, 10)
 
-        binding.teamTeamManage.setOnClickListener { startActivity(Intent(applicationContext,
-            TeamManage::class.java)) }
+        binding.teamTeamManage.setOnClickListener {
+            startActivity(Intent(applicationContext, TeamManage::class.java).putExtra("id", id))
+        }
 
 
         binding.teamMember.adapter = MyTeamAdapter(list)
