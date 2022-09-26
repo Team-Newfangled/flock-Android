@@ -1,8 +1,12 @@
 package com.example.kkirikkiri.view
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import com.example.kkirikkiri.R
@@ -15,31 +19,34 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    val model1 = BoardModel()
-    val model2 = LoginModel()
-    val model3 = ProjectModel()
-    val model4 = TeamJoinModel()
-    val model5 = TeamModel()
-    val model6 = TodoModel()
+    private val model = TeamModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        model5.createTeam(NameRequest("test"))
-        model5.getProject(1,1)
-        model5.getTeamMember(1,1)
-        model5.addProject(1, NameRequest("1"))
-        model5.deleteMember(1,1)
-        model1.deleteBoard(1)
-        model1.deleteComment(1)
-        model1.findBoard(1)
-        model1.findBoardPage(1,1)
-        model1.findComment(1,1)
-        model1.writeComment(1,"1")
-
-
         binding.mainMyTeam.setOnClickListener{ startActivity(Intent(applicationContext, MyTeam::class.java)) }
+        binding.mainMakeTeam.setOnClickListener {
+            val dialog = Dialog(applicationContext)
+
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setContentView(R.layout.dialog_addteam)
+
+            dialog.show()
+
+            val text = findViewById<EditText>(R.id.editText)
+            val acp = findViewById<Button>(R.id.button)
+            val cancel = findViewById<Button>(R.id.button2)
+
+            acp.setOnClickListener {
+                model.createTeam(NameRequest(text.text.toString()))
+                dialog.dismiss()
+            }
+
+            cancel.setOnClickListener {
+                dialog.dismiss()
+            }
+        }
     }
 
 
