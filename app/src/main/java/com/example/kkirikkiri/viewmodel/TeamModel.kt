@@ -80,6 +80,8 @@ class TeamModel : ViewModel() {
         }
     }
 
+    val teamId = MutableLiveData<CreateTeamResponse>()
+
     fun createTeam(name : NameRequest) {
         CoroutineScope(Dispatchers.IO).launch{
             service.createTeam(name).enqueue(object : Callback<CreateTeamResponse>{
@@ -87,7 +89,10 @@ class TeamModel : ViewModel() {
                     call: Call<CreateTeamResponse>,
                     response: Response<CreateTeamResponse>
                 ) {
-                   if (response.isSuccessful) Log.e("팀", "팀 추가 성공")
+                   if (response.isSuccessful) {
+                       Log.e("팀", "팀 추가 성공")
+                       teamId.value = response.body()
+                   }
                    else Log.e("팀", "팀 추가 실패")
                 }
 

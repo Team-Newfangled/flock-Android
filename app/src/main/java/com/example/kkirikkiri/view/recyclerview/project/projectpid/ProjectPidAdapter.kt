@@ -13,7 +13,6 @@ class ProjectPidAdapter(var list : List<ProjectPidItem>) : RecyclerView.Adapter<
         fun setPid(item : ProjectPidItem) {
             binding.pidId.text = item.id.toString()
             binding.itemPidTitle.text = item.title
-
         }
     }
 

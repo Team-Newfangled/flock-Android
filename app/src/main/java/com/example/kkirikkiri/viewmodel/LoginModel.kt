@@ -1,9 +1,11 @@
 package com.example.kkirikkiri.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kkirikkiri.module.RetrofitImpl
 import com.example.kkirikkiri.module.dto.account.response.GoogleLoginResponse
+import com.example.kkirikkiri.module.dto.account.response.ResultResponse
 import com.example.kkirikkiri.module.google.GoogleResponse
 import com.example.kkirikkiri.module.google.GoogleRetrofitImpl
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -20,6 +22,7 @@ class LoginModel : ViewModel(){
     private val service = RetrofitImpl.accountService
     private val google = GoogleRetrofitImpl.service
 
+    var userid = MutableLiveData<GoogleLoginResponse?>()
 
      // code의 %2F는 /로 치완해줘야함
     fun signInResult() {
@@ -32,7 +35,10 @@ class LoginModel : ViewModel(){
                     call: Call<GoogleLoginResponse>,
                     response: Response<GoogleLoginResponse>
                 ) {
-                    if (response.isSuccessful) Log.e("성공", "성공함")
+                    if (response.isSuccessful) {
+                        Log.e("성공", "성공함")
+                        userid.value = response.body()
+                    }
                     else Log.e("실패", response.errorBody().toString() + code.toString() + "  ," + response.message() + ", " + response.code())
                 }
 
@@ -58,6 +64,27 @@ class LoginModel : ViewModel(){
 
             override fun onFailure(call: Call<GoogleResponse>, t: Throwable) {
                 Log.e("실패", "그냥 연결 실패함 ㅇㅇ" + t.message)
+            }
+
+        })
+    }
+
+
+    val teams = MutableLiveData<ResultResponse>()
+
+    fun getAllTeam(userId : Int) {
+        service.findAllTeams(userId).enqueue(object : Callback<ResultResponse>{
+            override fun onResponse(
+                call: Call<ResultResponse>,
+                response: Response<ResultResponse>
+            ) {
+                if (response.isSuccessful) {
+                    teams.value = response.body()
+                }
+            }
+
+            override fun onFailure(call: Call<ResultResponse>, t: Throwable) {
+
             }
 
         })

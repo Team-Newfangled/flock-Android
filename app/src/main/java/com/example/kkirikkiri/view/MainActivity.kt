@@ -9,10 +9,12 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityMainBinding
+import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.module.dto.NameRequest
-import com.example.kkirikkiri.view.activity.team.MyTeam
+import com.example.kkirikkiri.view.activity.team.SelectTeamActivity
 import com.example.kkirikkiri.viewmodel.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,12 +22,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val model = TeamModel()
+    private val userIdModel = LoginModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        observe()
 
-        binding.mainMyTeam.setOnClickListener{ startActivity(Intent(applicationContext, MyTeam::class.java)) }
+        binding.mainMyTeam.setOnClickListener{ startActivity(Intent(applicationContext, SelectTeamActivity::class.java)) }
         binding.mainMakeTeam.setOnClickListener {
             val dialog = Dialog(applicationContext)
 
@@ -53,5 +57,15 @@ class MainActivity : AppCompatActivity() {
     fun setToolBar(layout:Int) {
         val toolbar = findViewById<Toolbar>(layout)
         setSupportActionBar(toolbar)
+    }
+
+    fun observe() {
+        userIdModel.userid.observe(this, Observer {
+            UserInfo.userId = it?.id
+        })
+
+        model.teamId.observe(this, Observer {
+            UserInfo.teamId = it?.teamId
+        })
     }
 }
