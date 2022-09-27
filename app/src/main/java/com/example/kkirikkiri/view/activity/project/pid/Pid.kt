@@ -9,19 +9,37 @@ import com.example.kkirikkiri.databinding.ActivityPidBinding
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.pid.PidAdapter
 import com.example.kkirikkiri.view.recyclerview.pid.PidItem
+import com.example.kkirikkiri.viewmodel.BoardModel
+import java.util.ArrayList
 
 class Pid : AppCompatActivity() {
 
     private lateinit var binding: ActivityPidBinding
 
+    private val model = BoardModel()
+
+    private var list = ArrayList<PidItem>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pid)
+        observe()
 
+        val intent = intent.getIntExtra("id",0)
 
-        val adapter = PidAdapter(listOf(PidItem("힘드러....", 1)))
+        model.findBoardPage(intent,20)
+
+        val adapter = PidAdapter(list)
         binding.pidRecyclerview.adapter = adapter
         binding.pidRecyclerview.layoutManager = LinearLayoutManager(this)
         binding.pidRecyclerview.addItemDecoration(RecyclerDecorationHeight(30))
     }
+
+    fun observe() {
+        model.boardList.observe(this) {
+            for (i in it) {
+                list.add(PidItem(i.content, i.id, i.writerId))
+            }
+        }
+    }
+
 }

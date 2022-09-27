@@ -4,12 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityMyTeamBinding
-import com.example.kkirikkiri.module.dto.team.response.FindMembersResponse
-import com.example.kkirikkiri.module.dto.team.response.FindProjectResponse
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.myteam.team.MyTeamAdapter
 import com.example.kkirikkiri.view.recyclerview.myteam.member.MyTeamProjectAdapter
@@ -50,24 +47,24 @@ class MyTeam : AppCompatActivity() {
         binding.teamProfile.setOnClickListener { startActivity(Intent(applicationContext, TeamProfile::class.java)) }
 
         binding.project.adapter = MyTeamProjectAdapter(list1)
-        binding.project.layoutManager = LinearLayoutManager(this)
+         binding.project.layoutManager = LinearLayoutManager(this)
         binding.project.addItemDecoration(RecyclerDecorationHeight(30))
 
     }
 
-    fun observe() {
-        model.teamMembers.observe(this, Observer {
+    private fun observe() {
+        model.teamMembers.observe(this) {
             for (i in it) {
                 val entity = TeamMemberItem(i.name, i.id)
                 list.add(entity)
             }
-        })
+        }
 
-        model.projects.observe(this, Observer {
+        model.projects.observe(this) {
             for (i in it) {
                 val entity = TeamMemberProjectItem(i.name,1,i.id)
                 list1.add(entity)
             }
-        })
+        }
     }
 }

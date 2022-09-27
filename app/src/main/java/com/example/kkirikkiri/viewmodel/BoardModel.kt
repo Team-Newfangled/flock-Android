@@ -1,6 +1,7 @@
 package com.example.kkirikkiri.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kkirikkiri.module.RetrofitImpl
 import com.example.kkirikkiri.module.dto.ContentRequest
@@ -130,6 +131,9 @@ class BoardModel : ViewModel() {
         CoroutineScope(Dispatchers.IO).launch { service.deleteComment(commentsId) }
     }
 
+
+    val boardList = MutableLiveData<List<FindBoardPageResponse.Results>>()
+
     fun findBoardPage(projectsId : Int, page : Int) {
         CoroutineScope(Dispatchers.IO).launch {
             service.findBoardPage(projectsId, page).enqueue(object : Callback<FindBoardPageResponse>{
@@ -137,7 +141,10 @@ class BoardModel : ViewModel() {
                     call: Call<FindBoardPageResponse>,
                     response: Response<FindBoardPageResponse>
                 ) {
-                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    if (response.isSuccessful) {
+                        Log.e("성공", response.body().toString())
+                        boardList.value = response.body()!!.results
+                    }
                     else Log.e("실패", "접속은 했음")
                 }
 
