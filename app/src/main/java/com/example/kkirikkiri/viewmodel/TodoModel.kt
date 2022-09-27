@@ -1,6 +1,7 @@
 package com.example.kkirikkiri.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kkirikkiri.module.RetrofitImpl
 import com.example.kkirikkiri.module.dto.ContentRequest
@@ -15,19 +16,28 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDate
 
 class TodoModel : ViewModel() {
 
     val service = RetrofitImpl.todoService
 
-    fun findDeadLines(projectId : Int, year : Int, month : Int) {
+    val deadLineList = MutableLiveData<FindDeadLineResponse>()
+
+    fun findDeadLines(projectId : Int) {
+        val year = LocalDate.now().year
+        val month = LocalDate.now().month.toString()
+
         CoroutineScope(Dispatchers.IO).launch {
-            service.findDeadlines(projectId, year, month).enqueue(object : Callback<FindDeadLineResponse>{
+            service.findDeadlines(projectId, year, month.toInt()).enqueue(object : Callback<FindDeadLineResponse>{
                 override fun onResponse(
                     call: Call<FindDeadLineResponse>,
                     response: Response<FindDeadLineResponse>
                 ) {
-                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    if (response.isSuccessful) {
+                        Log.e("성공", response.body().toString())
+                        deadLineList.value = response.body()
+                    }
                     else Log.e("실패", "접속은 했음")
                 }
 
