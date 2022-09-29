@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityProjectBinding
 import com.example.kkirikkiri.module.dto.todo.response.FindDeadLineResponse
+import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.view.activity.project.pid.Pid
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationWidth
@@ -34,6 +35,8 @@ class Project : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_project)
+
+        UserInfo.projectId = intent.getIntExtra("id", 0)
 
         observe()
 
@@ -69,7 +72,7 @@ class Project : AppCompatActivity() {
         todoModel.deadLineList.observe(this) {
             for (i in it.results) {
                 deadLineList.add(DeadLineItem(i.endDate.toString(), i.content, i.id ))
-            }
+        }
         }
     }
 }

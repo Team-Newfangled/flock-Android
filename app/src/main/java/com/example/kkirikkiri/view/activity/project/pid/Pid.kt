@@ -1,5 +1,6 @@
 package com.example.kkirikkiri.view.activity.project.pid
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -32,6 +33,9 @@ class Pid : AppCompatActivity() {
         binding.pidRecyclerview.adapter = adapter
         binding.pidRecyclerview.layoutManager = LinearLayoutManager(this)
         binding.pidRecyclerview.addItemDecoration(RecyclerDecorationHeight(30))
+
+        binding.textView11.setOnClickListener { Intent(this, WritePid::class.java).run { startActivity(this) } }
+        binding.plus.setOnClickListener { Intent(this, WritePid::class.java).run { startActivity(this) } }
     }
 
     fun observe() {
