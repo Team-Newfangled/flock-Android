@@ -17,25 +17,28 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.activity.project.AddProjectActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activity.team.SelectTeamActivity"
             android:exported="false" />
         <activity
             android:name=".view.activity.team.TeamManage"
             android:exported="false" />
         <activity
-            android:name="com.example.kkirikkiri.view.activity.project.pid.PidView"
+            android:name=".view.activity.project.pid.PidView"
             android:exported="false" />
         <activity
-            android:name="com.example.kkirikkiri.view.activity.project.pid.WritePid"
+            android:name=".view.activity.project.pid.WritePid"
             android:exported="false" />
         <activity
-            android:name="com.example.kkirikkiri.view.activity.project.pid.Pid"
+            android:name=".view.activity.project.pid.Pid"
             android:exported="false" />
         <activity
-            android:name="com.example.kkirikkiri.view.activity.project.Progress"
+            android:name=".view.activity.project.Progress"
             android:exported="false" />
         <activity
-            android:name="com.example.kkirikkiri.view.activity.project.Project"
+            android:name=".view.activity.project.Project"
             android:exported="false" />
         <activity
             android:name=".view.activity.team.TeamProfileChange"

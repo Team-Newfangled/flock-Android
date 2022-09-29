@@ -127,6 +127,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
+        android:id="@+id/add_project_button"
         android:layout_width="60dp"
         android:layout_height="30dp"
         android:background="@drawable/addbtn"

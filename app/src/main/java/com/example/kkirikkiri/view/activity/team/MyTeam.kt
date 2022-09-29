@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityMyTeamBinding
+import com.example.kkirikkiri.view.activity.project.AddProjectActivity
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.myteam.team.MyTeamAdapter
 import com.example.kkirikkiri.view.recyclerview.myteam.member.MyTeamProjectAdapter
@@ -49,6 +50,10 @@ class MyTeam : AppCompatActivity() {
         binding.project.adapter = MyTeamProjectAdapter(list1)
          binding.project.layoutManager = LinearLayoutManager(this)
         binding.project.addItemDecoration(RecyclerDecorationHeight(30))
+
+        binding.addProjectButton.setOnClickListener {
+            Intent(this, AddProjectActivity::class.java).run { startActivity(this) }
+        }
 
     }
 
