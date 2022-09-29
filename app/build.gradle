@@ -35,6 +35,11 @@ android {
     buildFeatures {
         viewBinding true
     }
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
 }
 
 dependencies {
@@ -54,5 +59,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:20.2.0'
 
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.0"
+
+    testImplementation 'io.kotest:kotest-runner-junit5:4.3.2'
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.7.10"
 
 }

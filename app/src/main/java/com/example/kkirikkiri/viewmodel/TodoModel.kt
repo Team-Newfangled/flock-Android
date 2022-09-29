@@ -85,6 +85,8 @@ class TodoModel : ViewModel() {
         }
     }
 
+    val allTodos = MutableLiveData<FindAllTodosResponse>()
+
     fun findAllTodos(projectId: Int, userId : Int, page : Int) {
         CoroutineScope(Dispatchers.IO).launch {
             service.findAllTodos(projectId, userId, page).enqueue(object : Callback<FindAllTodosResponse>{
@@ -92,7 +94,10 @@ class TodoModel : ViewModel() {
                     call: Call<FindAllTodosResponse>,
                     response: Response<FindAllTodosResponse>
                 ) {
-                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    if (response.isSuccessful) {
+                        Log.e("성공", response.body().toString())
+                        allTodos.value = response.body()
+                    }
                     else Log.e("실패", "접속은 했음")
                 }
 
