@@ -17,26 +17,19 @@ class SelectTeamActivity : AppCompatActivity() {
 
     private val model = LoginModel()
 
-    private lateinit var list : List<ResultResponse.Result>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        model.getAllTeam(UserInfo.userId!!)
 
         observe()
 
-        model.getAllTeam(UserInfo.userId!!)
-        val adapter = SelectTeamRecyclerView(list)
-
-        binding.selectTeam.adapter = adapter
         binding.selectTeam.layoutManager = LinearLayoutManager(this)
-
-
     }
 
     fun observe() {
-        model.teams.observe(this, Observer {
-            list = it.result
+        model.teams.observe(this, Observer{
+            binding.selectTeam.adapter = SelectTeamRecyclerView(it.result)
         })
     }
 }

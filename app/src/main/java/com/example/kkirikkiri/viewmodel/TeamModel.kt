@@ -9,6 +9,7 @@ import com.example.kkirikkiri.module.dto.team.response.AddProjectResponse
 import com.example.kkirikkiri.module.dto.team.response.CreateTeamResponse
 import com.example.kkirikkiri.module.dto.team.response.FindMembersResponse
 import com.example.kkirikkiri.module.dto.team.response.FindProjectResponse
+import com.example.kkirikkiri.module.info.UserInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,7 +27,7 @@ class TeamModel : ViewModel() {
 
     fun getTeamMember(id : Int, page : Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.findMembers(id,page).enqueue(object : Callback<FindMembersResponse>{
+            service.findMembers(UserInfo.access_token, id,page).enqueue(object : Callback<FindMembersResponse>{
                 override fun onResponse(
                     call: Call<FindMembersResponse>,
                     response: Response<FindMembersResponse>
@@ -45,7 +46,7 @@ class TeamModel : ViewModel() {
 
     fun getProject(id : Int, page : Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.findProjects(id, page).enqueue(object : Callback<FindProjectResponse>{
+            service.findProjects(UserInfo.access_token, id, page).enqueue(object : Callback<FindProjectResponse>{
                 override fun onResponse(
                     call: Call<FindProjectResponse>,
                     response: Response<FindProjectResponse>
@@ -63,7 +64,7 @@ class TeamModel : ViewModel() {
 
     fun addProject(id : Int, name : NameRequest ) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.addProject(id, name).enqueue(object : Callback<AddProjectResponse>{
+            service.addProject(UserInfo.access_token, id, name).enqueue(object : Callback<AddProjectResponse>{
                 override fun onResponse(
                     call: Call<AddProjectResponse>,
                     response: Response<AddProjectResponse>
@@ -82,9 +83,9 @@ class TeamModel : ViewModel() {
 
     val teamId = MutableLiveData<CreateTeamResponse>()
 
-    fun createTeam(name : NameRequest) {
+    fun createTeam(name : String) {
         CoroutineScope(Dispatchers.IO).launch{
-            service.createTeam(name).enqueue(object : Callback<CreateTeamResponse>{
+            service.createTeam(name, UserInfo.access_token).enqueue(object : Callback<CreateTeamResponse>{
                 override fun onResponse(
                     call: Call<CreateTeamResponse>,
                     response: Response<CreateTeamResponse>
@@ -93,11 +94,11 @@ class TeamModel : ViewModel() {
                        Log.e("팀", "팀 추가 성공")
                        teamId.value = response.body()
                    }
-                   else Log.e("팀", "팀 추가 실패")
+                   else Log.e("팀", "팀 추가 실패 " + response.message() + ", " + response.code() + ", "+ response.errorBody())
                 }
 
                 override fun onFailure(call: Call<CreateTeamResponse>, t: Throwable) {
-                    Log.e("팀", "팀 추가 실패, " + t.message.toString())
+                    Log.e("팀2", "팀 추가 실패, " + t.message.toString())
                 }
             })
         }
@@ -105,7 +106,7 @@ class TeamModel : ViewModel() {
 
     fun deleteMember(id : Int, deleteUserId : Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.expulsionMember(id, deleteUserId)
+            service.expulsionMember(UserInfo.access_token, id, deleteUserId)
         }
     }
 

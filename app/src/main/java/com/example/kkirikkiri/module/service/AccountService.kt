@@ -23,18 +23,18 @@ interface AccountService {
     fun findUserPicture(@Path("user-id") userId: Int) : Call<FindUserPictureResponse>
 
     @GET("/users/{user-id}/team")
-    fun findAllTeams(@Path("user-id") userId: Int) : Call<ResultResponse>
+    fun findAllTeams(@Header("authorization") token : String, @Path("user-id") userId: Int) : Call<ResultResponse>
 
     @GET("/users/{user-id}/organization")
-    fun findOrganization(@Path("user-id") userId: Int) : Call<NameResponse>
+    fun findOrganization(@Header("authorization") token : String, @Path("user-id") userId: Int) : Call<NameResponse>
 
     @PATCH("users/{user-id}/organization")
-    fun changeOrganization(@Path("user-id") userId: Int, @Body name : String) : Call<MessageResponse>
+    fun changeOrganization(@Header("authorization") token : String, @Path("user-id") userId: Int, @Body name : String) : Call<MessageResponse>
 
     @PATCH("/users/{user-id}/picture")
-    fun changePicture(@Path("user-id") userId: Int, @Body content : String) : Call<MessageResponse>
+    fun changePicture(@Header("authorization") token : String, @Path("user-id") userId: Int, @Body content : String) : Call<MessageResponse>
 
     @PATCH("/users/{user-id}/name")
-    fun changeName(@Path("user-id") userId: Int,@Body name : String) : Call<NameResponse>
+    fun changeName(@Header("authorization") token : String, @Path("user-id") userId: Int,@Body name : String) : Call<NameResponse>
 
 }

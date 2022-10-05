@@ -41,8 +41,7 @@ class LoginActivity : AppCompatActivity() {
         val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
         { result ->
             if (result.resultCode == Activity.RESULT_OK){
-                val task : Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-//                model.signInResult(task)
+                Intent(this, MainActivity::class.java).run { startActivity(this) }
             }else {
                 Log.e("asd", result.data!!.data.toString() + " " + result.resultCode + " " + result.toString())
             }

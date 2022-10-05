@@ -41,9 +41,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/select_team"
-        android:layout_width="match_parent"
-        android:layout_height="640dp"
+        android:layout_width="341dp"
+        android:layout_height="643dp"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/include"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

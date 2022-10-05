@@ -6,24 +6,26 @@ import com.example.kkirikkiri.module.dto.team.response.AddProjectResponse
 import com.example.kkirikkiri.module.dto.team.response.CreateTeamResponse
 import com.example.kkirikkiri.module.dto.team.response.FindMembersResponse
 import com.example.kkirikkiri.module.dto.team.response.FindProjectResponse
+import com.example.kkirikkiri.module.info.UserInfo
 import retrofit2.Call
 import retrofit2.http.*
 
 interface TeamService {
     @POST("/teams")
-    fun createTeam(@Body request : NameRequest) : Call<CreateTeamResponse>
+    fun createTeam(@Body request : String,
+                    @Header("authorization") token : String) : Call<CreateTeamResponse>
 
     @DELETE("/teams/{id}/expulsion/{user-id}")
-    fun expulsionMember(@Path("id") id : Int, @Path("user-id") userId : Int) : Call<MessageResponse>
+    fun expulsionMember(@Header("authorization") token : String, @Path("id") id : Int, @Path("user-id") userId : Int) : Call<MessageResponse>
 
     @GET("/teams/{id}/members?")
-    fun findMembers(@Path("id") id : Int, @Query("page") page : Int) : Call<FindMembersResponse>
+    fun findMembers(@Header("authorization") token : String, @Path("id") id : Int, @Query("page") page : Int) : Call<FindMembersResponse>
 
     @GET("/teams/{id}/projects?")
-    fun findProjects(@Path("id") id : Int, @Query("page") page: Int) : Call<FindProjectResponse>
+    fun findProjects(@Header("authorization") token : String, @Path("id") id : Int, @Query("page") page: Int) : Call<FindProjectResponse>
 
     @POST("/teams/{id}/projects")
-    fun addProject(@Path("id") id : Int, @Body request : NameRequest) : Call<AddProjectResponse>
+    fun addProject(@Header("authorization") token : String, @Path("id") id : Int, @Body request : NameRequest) : Call<AddProjectResponse>
 
 
 }

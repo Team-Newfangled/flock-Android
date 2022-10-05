@@ -4,4 +4,7 @@ object UserInfo {
         var userId : Int? = null
         var teamId : Int? = null
         var projectId : Int? = null
+
+        var access_token : String = "Bearer "
+        var refresh_token : String = "Bearer "
 }

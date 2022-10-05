@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             val cancel = dialog.findViewById<Button>(R.id.button2)
 
             acp.setOnClickListener {
-                model.createTeam(NameRequest(text.text.toString()))
+                model.createTeam(text.text.toString())
                 dialog.dismiss()
             }
 
