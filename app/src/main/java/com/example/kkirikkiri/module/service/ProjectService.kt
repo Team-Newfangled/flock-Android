@@ -9,14 +9,14 @@ import retrofit2.http.*
 
 interface ProjectService {
     @GET("/projects/{id}")
-    fun findProject(@Path("id") id : Int) : Call<FindProjectResponse>
+    fun findProject(@Header("authorization") token : String, @Path("id") id : Int) : Call<FindProjectResponse>
 
     @DELETE("/projects/{id}")
-    fun deleteProject(@Path("id") id : Int)
+    fun deleteProject(@Header("authorization") token : String, @Path("id") id : Int)
 
     @PATCH("/projects/{id}")
-    fun modifyProjectName(@Path("id") id : Int, @Body request : NameRequest) : Call<MessageResponse>
+    fun modifyProjectName(@Header("authorization") token : String, @Path("id") id : Int, @Body request : NameRequest) : Call<MessageResponse>
 
     @PATCH("/projects/{id}/image")
-    fun modifyProjectCoverImage(@Path("id") id : Int, @Body request : ContentRequest) : Call<MessageResponse>
+    fun modifyProjectCoverImage(@Header("authorization") token : String, @Path("id") id : Int, @Body request : ContentRequest) : Call<MessageResponse>
 }

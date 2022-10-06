@@ -10,6 +10,7 @@ import com.example.kkirikkiri.module.dto.todo.TodoResponse
 import com.example.kkirikkiri.module.dto.todo.request.ModifyTodoRequest
 import com.example.kkirikkiri.module.dto.todo.response.FindAllTodosResponse
 import com.example.kkirikkiri.module.dto.todo.response.FindDeadLineResponse
+import com.example.kkirikkiri.module.info.UserInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,7 +30,7 @@ class TodoModel : ViewModel() {
         val month = LocalDate.now().month.toString()
 
         CoroutineScope(Dispatchers.IO).launch {
-            service.findDeadlines(projectId, year, month.toInt()).enqueue(object : Callback<FindDeadLineResponse>{
+            service.findDeadlines(UserInfo.access_token, projectId, year, month.toInt()).enqueue(object : Callback<FindDeadLineResponse>{
                 override fun onResponse(
                     call: Call<FindDeadLineResponse>,
                     response: Response<FindDeadLineResponse>
@@ -50,7 +51,7 @@ class TodoModel : ViewModel() {
 
     fun createTodo(projectId: Int, request: ContentRequest) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.createTodo(projectId, request).enqueue(object : Callback<TodoResponse>{
+            service.createTodo(UserInfo.access_token, projectId, request).enqueue(object : Callback<TodoResponse>{
                 override fun onResponse(
                     call: Call<TodoResponse>,
                     response: Response<TodoResponse>
@@ -69,7 +70,7 @@ class TodoModel : ViewModel() {
 
     fun modifyColor(projectId: Int, todoId : Int, request: ContentRequest) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.modifyColor(projectId, todoId, request).enqueue(object : Callback<MessageResponse>{
+            service.modifyColor(UserInfo.access_token, projectId, todoId, request).enqueue(object : Callback<MessageResponse>{
                 override fun onResponse(
                     call: Call<MessageResponse>,
                     response: Response<MessageResponse>
@@ -89,7 +90,7 @@ class TodoModel : ViewModel() {
 
     fun findAllTodos(projectId: Int, userId : Int, page : Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.findAllTodos(projectId, userId, page).enqueue(object : Callback<FindAllTodosResponse>{
+            service.findAllTodos(UserInfo.access_token, projectId, userId, page).enqueue(object : Callback<FindAllTodosResponse>{
                 override fun onResponse(
                     call: Call<FindAllTodosResponse>,
                     response: Response<FindAllTodosResponse>
@@ -111,7 +112,7 @@ class TodoModel : ViewModel() {
 
     fun findTodo(todoId: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.findTodo(todoId).enqueue(object : Callback<TodoResponse>{
+            service.findTodo(UserInfo.access_token, todoId).enqueue(object : Callback<TodoResponse>{
                 override fun onResponse(
                     call: Call<TodoResponse>,
                     response: Response<TodoResponse>
@@ -130,7 +131,7 @@ class TodoModel : ViewModel() {
 
     fun modifyTodo(todoId: Int, request: ModifyTodoRequest) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.modifyTodo(todoId, request).enqueue(object : Callback<MessageResponse>{
+            service.modifyTodo(UserInfo.access_token, todoId, request).enqueue(object : Callback<MessageResponse>{
                 override fun onResponse(
                     call: Call<MessageResponse>,
                     response: Response<MessageResponse>
@@ -149,13 +150,13 @@ class TodoModel : ViewModel() {
 
     fun deleteTodo(todoId: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.deleteTodo(todoId)
+            service.deleteTodo(UserInfo.access_token, todoId)
         }
     }
 
     fun completeTodo(todoId : Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.completeTodo(todoId).enqueue(object : Callback<MessageResponse>{
+            service.completeTodo(UserInfo.access_token, todoId).enqueue(object : Callback<MessageResponse>{
                 override fun onResponse(
                     call: Call<MessageResponse>,
                     response: Response<MessageResponse>

@@ -10,6 +10,7 @@ import com.example.kkirikkiri.module.dto.board.BoardResponse
 import com.example.kkirikkiri.module.dto.board.CommentResponse
 import com.example.kkirikkiri.module.dto.board.response.FindBoardPageResponse
 import com.example.kkirikkiri.module.dto.board.response.FindCommentsResponse
+import com.example.kkirikkiri.module.info.UserInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,7 +24,7 @@ class BoardModel : ViewModel() {
 
     fun findComment(boardId : Int, page : Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.findComment(boardId, page).enqueue(object : Callback<FindCommentsResponse>{
+            service.findComment(UserInfo.access_token, boardId, page).enqueue(object : Callback<FindCommentsResponse>{
                 override fun onResponse(
                     call: Call<FindCommentsResponse>,
                     response: Response<FindCommentsResponse>
@@ -43,7 +44,7 @@ class BoardModel : ViewModel() {
 
     fun findBoard(boardId : Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.findBoard(boardId).enqueue(object : Callback<BoardResponse>{
+            service.findBoard(UserInfo.access_token, boardId).enqueue(object : Callback<BoardResponse>{
                 override fun onResponse(
                     call: Call<BoardResponse>,
                     response: Response<BoardResponse>
@@ -62,7 +63,7 @@ class BoardModel : ViewModel() {
 
     fun writeComment(boardId: Int, content : String) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.writeComment(boardId, content).enqueue(object : Callback<CommentResponse>{
+            service.writeComment(UserInfo.access_token, boardId, content).enqueue(object : Callback<CommentResponse>{
                 override fun onResponse(
                     call: Call<CommentResponse>,
                     response: Response<CommentResponse>
@@ -81,13 +82,13 @@ class BoardModel : ViewModel() {
 
 
     fun deleteBoard(boardId: Int) {
-        CoroutineScope(Dispatchers.IO).launch { service.deleteBoard(boardId) }
+        CoroutineScope(Dispatchers.IO).launch { service.deleteBoard(UserInfo.access_token, boardId) }
     }
 
 
     fun modifyBoard(boardId: Int, request : ContentRequest) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.modifyBoard(boardId, request).enqueue(object : Callback<MessageResponse>{
+            service.modifyBoard(UserInfo.access_token, boardId, request).enqueue(object : Callback<MessageResponse>{
                 override fun onResponse(
                     call: Call<MessageResponse>,
                     response: Response<MessageResponse>
@@ -106,7 +107,7 @@ class BoardModel : ViewModel() {
 
     fun saveFile(boardId: Int, request : ContentRequest) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.saveFile(boardId, request).enqueue(object : Callback<MessageResponse>{
+            service.saveFile(UserInfo.access_token, boardId, request).enqueue(object : Callback<MessageResponse>{
                 override fun onResponse(
                     call: Call<MessageResponse>,
                     response: Response<MessageResponse>
@@ -124,11 +125,11 @@ class BoardModel : ViewModel() {
     }
 
     fun deleteFile(boardId: Int, fileId : Int) {
-        CoroutineScope(Dispatchers.IO).launch { service.deleteFile(boardId, fileId) }
+        CoroutineScope(Dispatchers.IO).launch { service.deleteFile(UserInfo.access_token, boardId, fileId) }
     }
 
     fun deleteComment(commentsId : Int) {
-        CoroutineScope(Dispatchers.IO).launch { service.deleteComment(commentsId) }
+        CoroutineScope(Dispatchers.IO).launch { service.deleteComment(UserInfo.access_token, commentsId) }
     }
 
 
@@ -136,7 +137,7 @@ class BoardModel : ViewModel() {
 
     fun findBoardPage(projectsId : Int, page : Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.findBoardPage(projectsId, page).enqueue(object : Callback<FindBoardPageResponse>{
+            service.findBoardPage(UserInfo.access_token, projectsId, page).enqueue(object : Callback<FindBoardPageResponse>{
                 override fun onResponse(
                     call: Call<FindBoardPageResponse>,
                     response: Response<FindBoardPageResponse>
@@ -158,7 +159,7 @@ class BoardModel : ViewModel() {
 
     fun saveBoard(projectsId : Int, request : ContentRequest) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.saveBoard(projectsId, request).enqueue(object : Callback<BoardResponse>{
+            service.saveBoard(UserInfo.access_token, projectsId, request).enqueue(object : Callback<BoardResponse>{
                 override fun onResponse(
                     call: Call<BoardResponse>,
                     response: Response<BoardResponse>

@@ -11,28 +11,28 @@ import retrofit2.http.*
 
 interface TodoService {
     @GET("/projects/{id}/deadline?&?")
-    fun findDeadlines(@Path("id") id : Int,@Query("year") year : Int, @Query("month") month : Int) : Call<FindDeadLineResponse>
+    fun findDeadlines(@Header("authorization") token : String, @Path("id") id : Int,@Query("year") year : Int, @Query("month") month : Int) : Call<FindDeadLineResponse>
 
     @POST("/projects/{id}/todo")
-    fun createTodo(@Path("id") id : Int,@Body request : ContentRequest) : Call<TodoResponse>
+    fun createTodo(@Header("authorization") token : String, @Path("id") id : Int,@Body request : ContentRequest) : Call<TodoResponse>
 
     @PATCH("/projects/{project-id}/deadline/{todo-id}")
-    fun modifyColor(@Path("project-id") projectId : Int, @Path("todo-id") todoId : Int,@Body request: ContentRequest) : Call<MessageResponse>
+    fun modifyColor(@Header("authorization") token : String, @Path("project-id") projectId : Int, @Path("todo-id") todoId : Int,@Body request: ContentRequest) : Call<MessageResponse>
 
     @GET("/projects/{project-id}/team-member/{user-id}/todo?")
-    fun findAllTodos(@Path("project-id") projectId: Int, @Path("user-id") userId: Int, @Query("page") page: Int) : Call<FindAllTodosResponse>
+    fun findAllTodos(@Header("authorization") token : String, @Path("project-id") projectId: Int, @Path("user-id") userId: Int, @Query("page") page: Int) : Call<FindAllTodosResponse>
 
     @GET("/todo/{id}")
-    fun findTodo(@Path("id") id : Int) : Call<TodoResponse>
+    fun findTodo(@Header("authorization") token : String, @Path("id") id : Int) : Call<TodoResponse>
 
     @PUT("/todo/{id}")
-    fun modifyTodo(@Path("id") id : Int,@Body request: ModifyTodoRequest) : Call<MessageResponse>
+    fun modifyTodo(@Header("authorization") token : String, @Path("id") id : Int,@Body request: ModifyTodoRequest) : Call<MessageResponse>
 
     @DELETE("/todo/{id}")
-    fun deleteTodo(@Path("id") id : Int)
+    fun deleteTodo(@Header("authorization") token : String, @Path("id") id : Int)
 
     @PATCH("/todo/{id}")
-    fun completeTodo(@Path("id") id : Int) : Call<MessageResponse>
+    fun completeTodo(@Header("authorization") token : String, @Path("id") id : Int) : Call<MessageResponse>
 
 
 }

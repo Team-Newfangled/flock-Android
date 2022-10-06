@@ -27,14 +27,10 @@ class LoginModel : ViewModel(){
     var userid = MutableLiveData<GoogleLoginResponse?>()
 
      // code의 %2F는 /로 치완해줘야함
-    fun signInResult() {
-
-
+    fun signInResult(code : String) {
 //        val account = task.getResult(ApiException::class.java)
-        val code = "4/0ARtbsJonSrBOUA3I4VvooYg6p3vOlvRsgk6DX2or9t_l4Cb1N0Sv2S6bag2pShbIDqlIeg"
-            CoroutineScope(Dispatchers.IO).launch {
-
-            service.loginWithGoogle("*/*", "gzip, deflate, br", code.toString()).enqueue(object : Callback<GoogleLoginResponse> {
+         CoroutineScope(Dispatchers.IO).launch {
+            service.loginWithGoogle("*/*", "gzip, deflate, br", code).enqueue(object : Callback<GoogleLoginResponse> {
                 override fun onResponse(
                     call: Call<GoogleLoginResponse>,
                     response: Response<GoogleLoginResponse>

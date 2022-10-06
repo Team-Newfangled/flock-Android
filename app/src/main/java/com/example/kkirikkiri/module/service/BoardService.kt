@@ -12,32 +12,32 @@ import retrofit2.http.*
 interface BoardService {
 
     @GET("/board/{id}/comments?")
-    fun findComment(@Path("id") id:Int, @Query("page") page : Int) : Call<FindCommentsResponse>
+    fun findComment(@Header("authorization") token : String, @Path("id") id:Int, @Query("page") page : Int) : Call<FindCommentsResponse>
 
     @POST("/board/{id}/comments")
-    fun writeComment(@Path("id") id:Int,@Body content : String) : Call<CommentResponse>
+    fun writeComment(@Header("authorization") token : String, @Path("id") id:Int,@Body content : String) : Call<CommentResponse>
 
     @GET("/boards/{id}")
-    fun findBoard(@Path("id") id:Int) : Call<BoardResponse>
+    fun findBoard(@Header("authorization") token : String, @Path("id") id:Int) : Call<BoardResponse>
 
     @DELETE("/boards/{id}")
-    fun deleteBoard(@Path("id") id: Int ) : Call<MessageResponse>
+    fun deleteBoard(@Header("authorization") token : String, @Path("id") id: Int ) : Call<MessageResponse>
 
     @PATCH("/boards/{id}")
-    fun modifyBoard(@Path("id") id: Int,@Body request: ContentRequest) : Call<MessageResponse>
+    fun modifyBoard(@Header("authorization") token : String, @Path("id") id: Int,@Body request: ContentRequest) : Call<MessageResponse>
 
     @POST("/boards/{id}/files")
-    fun saveFile(@Path("id") id : Int, @Body request: ContentRequest) : Call<MessageResponse>
+    fun saveFile(@Header("authorization") token : String, @Path("id") id : Int, @Body request: ContentRequest) : Call<MessageResponse>
 
     @DELETE("/boards/{id}/files?")
-    fun deleteFile(@Path("id") id: Int, @Query("file_id") fileId : Int) : Call<MessageResponse>
+    fun deleteFile(@Header("authorization") token : String, @Path("id") id: Int, @Query("file_id") fileId : Int) : Call<MessageResponse>
 
     @DELETE("/comments/{id}")
-    fun deleteComment(@Path("id") id: Int) : Call<MessageResponse>
+    fun deleteComment(@Header("authorization") token : String, @Path("id") id: Int) : Call<MessageResponse>
 
     @GET("projects/{id}/boards?")
-    fun findBoardPage(@Path("id") id : Int, @Query("page") page : Int) : Call<FindBoardPageResponse>
+    fun findBoardPage(@Header("authorization") token : String, @Path("id") id : Int, @Query("page") page : Int) : Call<FindBoardPageResponse>
 
     @POST("/projects/{id}/boards")
-    fun saveBoard(@Path("id") id : Int, @Body request : ContentRequest) : Call<BoardResponse>
+    fun saveBoard(@Header("authorization") token : String, @Path("id") id : Int, @Body request : ContentRequest) : Call<BoardResponse>
 }

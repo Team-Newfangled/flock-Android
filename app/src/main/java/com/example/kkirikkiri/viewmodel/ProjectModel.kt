@@ -7,6 +7,7 @@ import com.example.kkirikkiri.module.dto.ContentRequest
 import com.example.kkirikkiri.module.dto.MessageResponse
 import com.example.kkirikkiri.module.dto.NameRequest
 import com.example.kkirikkiri.module.dto.project.response.FindProjectResponse
+import com.example.kkirikkiri.module.info.UserInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
@@ -21,7 +22,7 @@ class ProjectModel : ViewModel() {
 
     fun findProject(projectId : Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.findProject(projectId).enqueue(object : Callback<FindProjectResponse>{
+            service.findProject(UserInfo.access_token, projectId).enqueue(object : Callback<FindProjectResponse>{
                 override fun onResponse(
                     call: Call<FindProjectResponse>,
                     response: Response<FindProjectResponse>
@@ -40,13 +41,13 @@ class ProjectModel : ViewModel() {
 
     fun deleteProject(projectId: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.deleteProject(projectId)
+            service.deleteProject(UserInfo.access_token, projectId)
         }
     }
 
     fun modifyProjectName(projectId: Int, request : NameRequest) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.modifyProjectName(projectId, request).enqueue(object : Callback<MessageResponse>{
+            service.modifyProjectName(UserInfo.access_token, projectId, request).enqueue(object : Callback<MessageResponse>{
                 override fun onResponse(
                     call: Call<MessageResponse>,
                     response: Response<MessageResponse>
@@ -64,7 +65,7 @@ class ProjectModel : ViewModel() {
     }
 
     fun modifyProjectCoverImage(projectId: Int, request: ContentRequest) {
-        service.modifyProjectCoverImage(projectId, request).enqueue(object : Callback<MessageResponse> {
+        service.modifyProjectCoverImage(UserInfo.access_token, projectId, request).enqueue(object : Callback<MessageResponse> {
             override fun onResponse(
                 call: Call<MessageResponse>,
                 response: Response<MessageResponse>
