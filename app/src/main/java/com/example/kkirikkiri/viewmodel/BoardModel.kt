@@ -1,6 +1,7 @@
 package com.example.kkirikkiri.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kkirikkiri.module.RetrofitImpl
@@ -22,6 +23,8 @@ class BoardModel : ViewModel() {
 
     private val service = RetrofitImpl.boardService
 
+
+    val findCommentData = MutableLiveData<List<CommentResponse>>()
     fun findComment(boardId : Int, page : Int) {
         CoroutineScope(Dispatchers.IO).launch {
             service.findComment(UserInfo.access_token, boardId, page).enqueue(object : Callback<FindCommentsResponse>{
@@ -29,7 +32,10 @@ class BoardModel : ViewModel() {
                     call: Call<FindCommentsResponse>,
                     response: Response<FindCommentsResponse>
                 ) {
-                    if (response.isSuccessful) Log.e("성공", response.body().toString())
+                    if (response.isSuccessful) {
+                        Log.e("성공", response.body().toString())
+                        findCommentData.value = response.body()?.results
+                    }
                     else Log.e("실패", "접속은 했음")
                 }
 
@@ -40,7 +46,6 @@ class BoardModel : ViewModel() {
             })
         }
     }
-
 
     fun findBoard(boardId : Int) {
         CoroutineScope(Dispatchers.IO).launch {

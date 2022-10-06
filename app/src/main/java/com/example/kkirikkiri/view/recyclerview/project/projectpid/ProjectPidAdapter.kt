@@ -1,9 +1,11 @@
 package com.example.kkirikkiri.view.recyclerview.project.projectpid
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kkirikkiri.databinding.ItemPidBinding
+import com.example.kkirikkiri.view.activity.project.pid.PidView
 import com.example.kkirikkiri.view.recyclerview.pid.PidItem
 
 class ProjectPidAdapter(var list : List<PidItem>) : RecyclerView.Adapter<ProjectPidAdapter.Holder>(){
@@ -14,6 +16,14 @@ class ProjectPidAdapter(var list : List<PidItem>) : RecyclerView.Adapter<Project
         fun setPid(item : PidItem) {
             binding.pidId.text = item.id.toString()
             binding.itemPidTitle.text = item.title
+
+            itemView.setOnClickListener {
+                Intent(itemView.context, PidView::class.java)
+                    .putExtra("title", item.title)
+                    .putExtra("id", item.id)
+                    .putExtra("writeId", item.writeId)
+                    .run { itemView.context.startActivity(this) }
+            }
         }
     }
 

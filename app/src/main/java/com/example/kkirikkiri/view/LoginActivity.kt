@@ -43,6 +43,7 @@ class LoginActivity: AppCompatActivity() {
 
         binding.gitLogin.setOnClickListener {
             startActivity(Intent(applicationContext, MainActivity::class.java))
+            model.signInResult()
         }
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

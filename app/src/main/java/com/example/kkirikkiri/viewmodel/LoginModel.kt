@@ -27,7 +27,8 @@ class LoginModel : ViewModel(){
     var userid = MutableLiveData<GoogleLoginResponse?>()
 
      // code의 %2F는 /로 치완해줘야함
-    fun signInResult(code : String) {
+    fun signInResult() {
+         val code = ""
 //        val account = task.getResult(ApiException::class.java)
          CoroutineScope(Dispatchers.IO).launch {
             service.loginWithGoogle("*/*", "gzip, deflate, br", code).enqueue(object : Callback<GoogleLoginResponse> {
@@ -42,7 +43,7 @@ class LoginModel : ViewModel(){
                         UserInfo.refresh_token += response.body()!!.refresh_token
                         UserInfo.userId = response.body()!!.id
                     }
-                    else Log.e("실패", response.errorBody().toString() + code.toString() + "  ," + response.message() + ", " + response.code())
+                    else Log.e("실패", response.errorBody().toString() + code+ "  ," + response.message() + ", " + response.code())
                 }
 
                 override fun onFailure(call: Call<GoogleLoginResponse>, t: Throwable) {
@@ -76,7 +77,7 @@ class LoginModel : ViewModel(){
     val teams = MutableLiveData<ResultResponse>()
 
     fun getAllTeam(userId : Int) {
-        service.findAllTeams(UserInfo.access_token!! ,userId).enqueue(object : Callback<ResultResponse>{
+        service.findAllTeams(UserInfo.access_token,userId).enqueue(object : Callback<ResultResponse>{
             override fun onResponse(
                 call: Call<ResultResponse>,
                 response: Response<ResultResponse>
