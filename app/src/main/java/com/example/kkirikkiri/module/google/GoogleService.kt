@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface GoogleService {
-    @GET("auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&access_type=offline&include_granted_scopes=true&response_type=code&?&?&?")
+    @GET("https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email&client_id=1065774488617-bqqnvgv8fi2ghqgq17pk3tshpmdalur9.apps.googleusercontent.com&response_type=code&redirect_uri=http://localhost:3000/redirect&access_type=offline")
     fun getCode(@Query("state") state:String,
                 @Query("redirect_uri") redirect_uri:String,
                 @Query("client_id") client_id:String) : Call<GoogleResponse>
