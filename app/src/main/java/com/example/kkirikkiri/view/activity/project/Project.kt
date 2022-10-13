@@ -41,12 +41,11 @@ class Project : AppCompatActivity() {
         observe()
 
         todoModel.findDeadLines(intent.getIntExtra("id",0))
-        model.findBoardPage(intent.getIntExtra("id",0), 20)
+        model.findBoardPage(intent.getIntExtra("id",0), 0)
 
         binding.pid.setOnClickListener{ startActivity(Intent(applicationContext, Pid::class.java)) }
-
-
         binding.progress.setOnClickListener{ startActivity(Intent(applicationContext, Progress::class.java))}
+        binding.deadline.setOnClickListener { startActivity(Intent(applicationContext, Progress::class.java)) }
 
         val adapter = DeadLineAdapter(deadLineList)
 
@@ -62,17 +61,19 @@ class Project : AppCompatActivity() {
         binding.pidRecyclerview.addItemDecoration(RecyclerDecorationHeight(15))
     }
 
-    fun observe() {
+    private fun observe() {
         model.boardList.observe(this) {
             for (i in it) {
                 pidList.add(PidItem(i.content, i.id, i.writerId))
+                binding.pidRecyclerview.adapter = ProjectPidAdapter(pidList)
             }
         }
 
         todoModel.deadLineList.observe(this) {
             for (i in it.results) {
                 deadLineList.add(DeadLineItem(i.endDate.toString(), i.content, i.id ))
-        }
+                binding.deadline.adapter = DeadLineAdapter(deadLineList)
+            }
         }
     }
 }

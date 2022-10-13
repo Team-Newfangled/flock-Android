@@ -42,7 +42,8 @@ class Progress : AppCompatActivity() {
     private fun observe() {
         model.allTodos.observe(this) {
             for (i in it.results) {
-                list.add(TeamMemberProjectItem(i.content, 20, i.id))
+                list.add(TeamMemberProjectItem(i.content, 0, i.id))
+                binding.progressPartRecyclerview.adapter = PartProgressAdapter(list)
             }
         }
 

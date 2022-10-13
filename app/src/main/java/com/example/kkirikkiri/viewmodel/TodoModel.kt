@@ -27,10 +27,10 @@ class TodoModel : ViewModel() {
 
     fun findDeadLines(projectId : Int) {
         val year = LocalDate.now().year
-        val month = LocalDate.now().month.toString()
+        val month = LocalDate.now().month.value
 
         CoroutineScope(Dispatchers.IO).launch {
-            service.findDeadlines(UserInfo.access_token, projectId, year, month.toInt()).enqueue(object : Callback<FindDeadLineResponse>{
+            service.findDeadlines(UserInfo.access_token, projectId, year, month).enqueue(object : Callback<FindDeadLineResponse>{
                 override fun onResponse(
                     call: Call<FindDeadLineResponse>,
                     response: Response<FindDeadLineResponse>

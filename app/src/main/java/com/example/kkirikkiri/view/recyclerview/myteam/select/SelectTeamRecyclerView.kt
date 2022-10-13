@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kkirikkiri.databinding.ItemSelectTeamBinding
 import com.example.kkirikkiri.module.dto.account.response.ResultResponse
+import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.view.activity.team.MyTeam
 
 class SelectTeamRecyclerView(var list : List<ResultResponse.Result>) : RecyclerView.Adapter<SelectTeamRecyclerView.Holder>(){
@@ -16,6 +17,7 @@ class SelectTeamRecyclerView(var list : List<ResultResponse.Result>) : RecyclerV
             binding.teamName.text = item.teamName
 
             itemView.setOnClickListener {
+                UserInfo.teamId = item.teamId
                 val intent = Intent(itemView.context, MyTeam::class.java)
                 intent.putExtra("id", item.teamId)
                 intent.run { itemView.context.startActivity(intent) }

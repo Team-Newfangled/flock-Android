@@ -35,6 +35,7 @@ class LoginActivity: AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         binding.gitLogin.setOnClickListener {
+            model.signInResult("4/0ARtbsJozqyMYJ-9oXKpevJimdwUBu2M9RjIsGwVtvI4VOP3uWBLe60NCqHKNoLbjib7c4g")
             startActivity(Intent(applicationContext, MainActivity::class.java))
         }
 
@@ -44,9 +45,7 @@ class LoginActivity: AppCompatActivity() {
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        mGoogleSignInClient!!.silentSignIn().addOnCompleteListener {
-            handleSignInResult(it)
-        }
+
 
         val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
         { result ->
@@ -57,6 +56,9 @@ class LoginActivity: AppCompatActivity() {
                 model.signInResult(code)
                 Intent(this, MainActivity::class.java).run { startActivity(this) }
             }else {
+                mGoogleSignInClient!!.silentSignIn().addOnCompleteListener {
+                    handleSignInResult(it)
+                }
                 Log.e("asd", result.data!!.data.toString() + " " + result.resultCode + " " + result.toString())
             }
         }
@@ -64,6 +66,7 @@ class LoginActivity: AppCompatActivity() {
         binding.googleLogin.setOnClickListener {
             val signInIntent: Intent = mGoogleSignInClient!!.signInIntent
             launcher.launch(signInIntent)
+//            model.signInResult("4/0ARtbsJovbjY_VUMzAuQdA2SmBYYZaFZZ2u0h6Ezn9rq3V0jxQ4yxrod-gP2-IWGcSXo9Cw")
         }
 
     }
