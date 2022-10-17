@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityMyTeamBinding
+import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.view.activity.project.AddProjectActivity
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.myteam.team.MyTeamAdapter
@@ -28,13 +29,12 @@ class MyTeam : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_team)
-        observe()
-
         val intent = intent
         val id = intent.getIntExtra("id", 0)
+        model.getTeamMember(UserInfo.teamId!!, 0)
+        model.getProject(UserInfo.teamId!!, 0)
 
-        model.getTeamMember(id, 0)
-        model.getProject(id, 0)
+        observe()
 
         binding.teamTeamManage.setOnClickListener {
             startActivity(Intent(applicationContext, TeamManage::class.java).putExtra("id", id))

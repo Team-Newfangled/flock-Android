@@ -26,10 +26,10 @@ class Progress : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_progress)
+
+        model.findAllTodos(UserInfo.projectId!!, UserInfo.userId!!, 0)
+
         observe()
-
-        model.findAllTodos(UserInfo.projectId!!, UserInfo.userId!!, 10)
-
         val adapter = PartProgressAdapter(list)
 
         binding.progressPartRecyclerview.layoutManager = LinearLayoutManager(this)

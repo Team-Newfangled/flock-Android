@@ -25,14 +25,15 @@ class TeamModel : ViewModel() {
     val teamMembers = MutableLiveData<List<FindMembersResponse.Results>>()
     val projects = MutableLiveData<List<FindProjectResponse.Results>>()
 
-    fun getTeamMember(id : Int, page : Int) {
+    fun getTeamMember(team_id : Int, page : Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.findMembers(UserInfo.access_token, id,page).enqueue(object : Callback<FindMembersResponse>{
+            service.findMembers(UserInfo.access_token, team_id,page).enqueue(object : Callback<FindMembersResponse>{
                 override fun onResponse(
                     call: Call<FindMembersResponse>,
                     response: Response<FindMembersResponse>
                 ) {
                     if(response.isSuccessful) teamMembers.value = response.body()!!.results
+                    else Log.e("Fail", response.message() + " " + response.code())
                 }
 
                 override fun onFailure(call: Call<FindMembersResponse>, t: Throwable) {

@@ -25,9 +25,9 @@ class MyTeamAdapter(var listData : List<TeamMemberItem>) : RecyclerView.Adapter<
     inner class TeamViewHolder(val binding : ItemMemberBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun setMember(member : TeamMemberItem) {
+            binding.itemMemberName.text = member.name
             binding.temaMemberId.text = member.id.toString()
             binding.itemMemberDelete.visibility = View.INVISIBLE
-            binding.itemMemberName.text = member.name
         }
 
     }

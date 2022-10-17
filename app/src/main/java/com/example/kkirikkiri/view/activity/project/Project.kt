@@ -38,10 +38,11 @@ class Project : AppCompatActivity() {
 
         UserInfo.projectId = intent.getIntExtra("id", 0)
 
-        observe()
 
         todoModel.findDeadLines(intent.getIntExtra("id",0))
         model.findBoardPage(intent.getIntExtra("id",0), 0)
+
+        observe()
 
         binding.pid.setOnClickListener{ startActivity(Intent(applicationContext, Pid::class.java)) }
         binding.progress.setOnClickListener{ startActivity(Intent(applicationContext, Progress::class.java))}
@@ -59,6 +60,11 @@ class Project : AppCompatActivity() {
         binding.pidRecyclerview.adapter = pidAdapter
         binding.pidRecyclerview.layoutManager = LinearLayoutManager(this)
         binding.pidRecyclerview.addItemDecoration(RecyclerDecorationHeight(15))
+    }
+
+    override fun onResume() {
+        super.onResume()
+        observe()
     }
 
     private fun observe() {

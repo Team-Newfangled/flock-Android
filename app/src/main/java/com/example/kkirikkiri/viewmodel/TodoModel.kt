@@ -39,7 +39,7 @@ class TodoModel : ViewModel() {
                         Log.e("성공", response.body().toString())
                         deadLineList.value = response.body()
                     }
-                    else Log.e("실패", "접속은 했음")
+                    else Log.e("실패", "접속은 했음, ${response.code()}, ${response.message()}, ${response.raw()}")
                 }
 
                 override fun onFailure(call: Call<FindDeadLineResponse>, t: Throwable) {
@@ -57,7 +57,7 @@ class TodoModel : ViewModel() {
                     response: Response<TodoResponse>
                 ) {
                     if (response.isSuccessful) Log.e("성공", response.body().toString())
-                    else Log.e("실패", "접속은 했음")
+                    else Log.e("실패", "접속은 했음, ${response.code()}, ${response.message()}")
                 }
 
                 override fun onFailure(call: Call<TodoResponse>, t: Throwable) {

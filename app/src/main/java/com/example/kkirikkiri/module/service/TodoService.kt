@@ -10,7 +10,7 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface TodoService {
-    @GET("/projects/{id}/deadline?&?")
+    @GET("/projects/{id}/deadline?")
     fun findDeadlines(@Header("authorization") token : String, @Path("id") id : Int,@Query("year") year : Int, @Query("month") month : Int) : Call<FindDeadLineResponse>
 
     @POST("/projects/{id}/todo")

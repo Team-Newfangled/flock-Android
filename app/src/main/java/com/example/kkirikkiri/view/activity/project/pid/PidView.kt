@@ -19,12 +19,12 @@ class PidView : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pid_view)
 
-        observe()
 
         val intent = intent
         val id = intent.getIntExtra("id", 0)
 
-        model.findComment(id, 20)
+        model.findComment(id, 0)
+        observe()
         val title = intent.getStringExtra("title")
         val writer = intent.getStringExtra("writeId")
 

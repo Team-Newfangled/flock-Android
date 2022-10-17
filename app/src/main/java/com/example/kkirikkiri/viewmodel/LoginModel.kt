@@ -23,7 +23,7 @@ class LoginModel : ViewModel(){
     private val service = RetrofitImpl.accountService
     private val google = GoogleRetrofitImpl.service
 
-    // https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=1065774488617-bqqnvgv8fi2ghqgq17pk3tshpmdalur9.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fredirect&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&flowName=GeneralOAuthFlow
+
     var userid = MutableLiveData<GoogleLoginResponse?>()
 
      // code의 %2F는 /로 치완해줘야함
@@ -41,6 +41,7 @@ class LoginModel : ViewModel(){
                         UserInfo.access_token += response.body()!!.access_token
                         UserInfo.refresh_token += response.body()!!.refresh_token
                         UserInfo.userId = response.body()!!.id
+                        Log.e("token", response.body()!!.access_token)
                     }
                     else Log.e("실패", response.errorBody().toString() + code+ "  ," + response.message() + ", " + response.code())
                 }

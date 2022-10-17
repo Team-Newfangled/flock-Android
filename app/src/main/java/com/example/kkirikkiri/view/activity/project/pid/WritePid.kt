@@ -24,7 +24,7 @@ class WritePid : AppCompatActivity() {
 
         binding.writePid.setOnClickListener {
             model.saveBoard(UserInfo.projectId!!, ContentRequest(binding.pidWriteContent.text.toString()))
-            Intent(this, Project::class.java).run { startActivity(this) }
+            Intent(this, Pid::class.java).run { startActivity(this) }
             finish()
         }
     }

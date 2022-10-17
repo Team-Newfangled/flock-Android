@@ -35,38 +35,43 @@ class LoginActivity: AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         binding.gitLogin.setOnClickListener {
-            model.signInResult("4/0ARtbsJozqyMYJ-9oXKpevJimdwUBu2M9RjIsGwVtvI4VOP3uWBLe60NCqHKNoLbjib7c4g")
+            // https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=1065774488617-bqqnvgv8fi2ghqgq17pk3tshpmdalur9.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fredirect&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&flowName=GeneralOAuthFlow
+            model.signInResult("4/0ARtbsJpLMORivhhw9pf7XdlBpCNFilXhLOhTAk0hYDWUZAdIcryx7FxATYze60dDiju_Gw")
             startActivity(Intent(applicationContext, MainActivity::class.java))
         }
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN)
-            .requestServerAuthCode(getString(R.string.server_client_id))
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestServerAuthCode(getString(R.string.web_client_id))
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
 
 
-        val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-        { result ->
-            if (result.resultCode == Activity.RESULT_OK){
-                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-                val code = task.result.serverAuthCode
-                code!!.replace("%2F", "/")
-                model.signInResult(code)
-                Intent(this, MainActivity::class.java).run { startActivity(this) }
-            }else {
-                mGoogleSignInClient!!.silentSignIn().addOnCompleteListener {
-                    handleSignInResult(it)
-                }
-                Log.e("asd", result.data!!.data.toString() + " " + result.resultCode + " " + result.toString())
-            }
-        }
+
+
+//        val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+//        { result ->
+//            if (result.resultCode == Activity.RESULT_OK){
+//                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+//                val code = task.result.serverAuthCode
+//                code!!.replace("%2F", "/")
+//                model.signInResult(code)
+//                Intent(this, MainActivity::class.java).run { startActivity(this) }
+//            }else {
+//                mGoogleSignInClient!!.silentSignIn().addOnCompleteListener {
+//                    handleSignInResult(it)
+//                }
+//                Log.e("asd", result.data!!.data.toString() + " " + result.resultCode + " " + result.toString())
+//            }
+//        }
 
         binding.googleLogin.setOnClickListener {
-            val signInIntent: Intent = mGoogleSignInClient!!.signInIntent
-            launcher.launch(signInIntent)
-//            model.signInResult("4/0ARtbsJovbjY_VUMzAuQdA2SmBYYZaFZZ2u0h6Ezn9rq3V0jxQ4yxrod-gP2-IWGcSXo9Cw")
+//            val signInIntent: Intent = mGoogleSignInClient!!.signInIntent
+//            launcher.launch(signInIntent)
+            mGoogleSignInClient!!.silentSignIn().addOnCompleteListener {
+                handleSignInResult(it)
+            }
         }
 
     }
@@ -74,8 +79,8 @@ class LoginActivity: AppCompatActivity() {
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            val idToken = account.serverAuthCode
+            val idToken = account?.serverAuthCode
             Log.e("id", idToken.toString())
-        } catch (e: ApiException) { Log.w("exception", "handleSignInResult:error, " + e.printStackTrace()); }
+        } catch (e: ApiException) { Log.w("exception", "handleSignInResult:error, " + e.printStackTrace() + ", " + e.message + ", " + e.cause); }
     }
 }

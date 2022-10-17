@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityPidBinding
+import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.pid.PidAdapter
 import com.example.kkirikkiri.view.recyclerview.pid.PidItem
@@ -23,25 +24,30 @@ class Pid : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pid)
+        model.findBoardPage(UserInfo.projectId!!,0)
+
         observe()
-
-        val intent = intent.getIntExtra("id",0)
-
-        model.findBoardPage(intent,20)
 
         val adapter = PidAdapter(list)
         binding.pidRecyclerview.adapter = adapter
         binding.pidRecyclerview.layoutManager = LinearLayoutManager(this)
         binding.pidRecyclerview.addItemDecoration(RecyclerDecorationHeight(30))
 
-        binding.textView11.setOnClickListener { Intent(this, WritePid::class.java).run { startActivity(this) } }
-        binding.plus.setOnClickListener { Intent(this, WritePid::class.java).run { startActivity(this) } }
+        binding.textView11.setOnClickListener {
+            Intent(this, WritePid::class.java).run { startActivity(this) }
+            finish()
+        }
+        binding.plus.setOnClickListener {
+            Intent(this, WritePid::class.java).run { startActivity(this) }
+            finish()
+        }
     }
 
-    fun observe() {
+    private fun observe() {
         model.boardList.observe(this) {
             for (i in it) {
                 list.add(PidItem(i.content, i.id, i.writerId))
+                binding.pidRecyclerview.adapter = PidAdapter(list)
             }
         }
     }
