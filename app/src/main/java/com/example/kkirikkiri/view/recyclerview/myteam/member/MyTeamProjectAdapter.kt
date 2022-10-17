@@ -32,7 +32,7 @@ class MyTeamProjectAdapter(private val list: List<TeamMemberProjectItem>) : Recy
         @SuppressLint("SetTextI18n")
         fun setProject(project : TeamMemberProjectItem) {
             binding.itemProjectName.text = project.name
-            binding.itemProjectPercent.text = "${project.percent}%"
+            binding.itemProjectPercent.text = ""
             binding.projectId.text = project.id.toString()
 
             itemView.setOnClickListener {

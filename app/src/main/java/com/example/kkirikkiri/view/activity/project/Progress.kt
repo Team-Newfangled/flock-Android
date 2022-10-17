@@ -33,10 +33,13 @@ class Progress : AppCompatActivity() {
         val adapter = PartProgressAdapter(list)
 
         binding.progressPartRecyclerview.layoutManager = LinearLayoutManager(this)
-        binding.progressPartRecyclerview.addItemDecoration(RecyclerDecorationHeight(300))
+        binding.progressPartRecyclerview.addItemDecoration(RecyclerDecorationHeight(30))
         binding.progressPartRecyclerview.adapter = adapter
 
-        binding.progressAddPart.setOnClickListener { Intent(this, AddProgressActivity::class.java).run { startActivity(this) } }
+        binding.progressAddPart.setOnClickListener {
+            Intent(this, AddProgressActivity::class.java).run { startActivity(this) }
+            finish()
+        }
     }
 
     private fun observe() {

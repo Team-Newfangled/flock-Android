@@ -36,25 +36,23 @@ class LoginActivity: AppCompatActivity() {
 
         binding.gitLogin.setOnClickListener {
             // https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=1065774488617-bqqnvgv8fi2ghqgq17pk3tshpmdalur9.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fredirect&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&flowName=GeneralOAuthFlow
-            model.signInResult("4/0ARtbsJpLMORivhhw9pf7XdlBpCNFilXhLOhTAk0hYDWUZAdIcryx7FxATYze60dDiju_Gw")
+            model.signInResult("4/0ARtbsJqe2G78_s3PjENQaFgxBO1qPt0J84HDO8Ad8rGCMHZSNnFkoWsFiCZQ-sjzs5_3NQ")
             startActivity(Intent(applicationContext, MainActivity::class.java))
         }
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestServerAuthCode(getString(R.string.web_client_id))
+            .requestServerAuthCode(getString(R.string.server_client_id))
             .requestEmail()
             .build()
+
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
-
-
 
 
 //        val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
 //        { result ->
 //            if (result.resultCode == Activity.RESULT_OK){
 //                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-//                val code = task.result.serverAuthCode
+//                val code = task.result?.serverAuthCode
 //                code!!.replace("%2F", "/")
 //                model.signInResult(code)
 //                Intent(this, MainActivity::class.java).run { startActivity(this) }

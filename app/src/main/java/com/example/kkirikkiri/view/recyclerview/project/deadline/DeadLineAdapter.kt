@@ -28,7 +28,7 @@ class DeadLineAdapter(val list : List<DeadLineItem>) : RecyclerView.Adapter<Dead
         @SuppressLint("SetTextI18n")
         fun setDeadLine(deadLine : DeadLineItem) {
             binding.deadlineId.text = deadLine.id.toString()
-            binding.itemDeadlineTime.text = "D-${deadLine.deadLineTime}"
+            binding.itemDeadlineTime.text = deadLine.deadLineTime
             binding.itemDeadlineTitle.text = deadLine.title
         }
     }
