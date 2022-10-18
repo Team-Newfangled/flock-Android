@@ -39,7 +39,6 @@ class MyTeamProjectAdapter(private val list: List<TeamMemberProjectItem>) : Recy
                 Intent(itemView.context, Project::class.java).putExtra("id", project.id).run { itemView.context.startActivity(this) }
             }
         }
-
-
     }
+
 }
