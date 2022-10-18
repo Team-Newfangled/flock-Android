@@ -49,13 +49,13 @@
         android:id="@+id/team_manage_recyclerbiew"
         android:layout_width="300dp"
         android:layout_height="500dp"
-        android:paddingVertical="23dp"
-        android:paddingHorizontal="15dp"
         android:background="@drawable/team_manage"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="23dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/team_manage_toolbat" />
 
     <Button
         android:id="@+id/add_team_button"

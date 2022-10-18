@@ -36,7 +36,7 @@ class LoginActivity: AppCompatActivity() {
 
         binding.gitLogin.setOnClickListener {
             // https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=1065774488617-bqqnvgv8fi2ghqgq17pk3tshpmdalur9.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fredirect&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&flowName=GeneralOAuthFlow
-            model.signInResult("4/0ARtbsJqe2G78_s3PjENQaFgxBO1qPt0J84HDO8Ad8rGCMHZSNnFkoWsFiCZQ-sjzs5_3NQ")
+            model.signInResult("4/0ARtbsJrdfrXvI8lEgpYIacqWenoCX2MrpLm7K75VPOOnkTWNScdJfLGSKZOg_kK-0HVXwg")
             startActivity(Intent(applicationContext, MainActivity::class.java))
         }
 

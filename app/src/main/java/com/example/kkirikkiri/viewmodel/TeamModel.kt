@@ -105,9 +105,9 @@ class TeamModel : ViewModel() {
         }
     }
 
-    fun deleteMember(id : Int, deleteUserId : Int) {
+    fun deleteMember(teamId : Int, deleteUserId : Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.expulsionMember(UserInfo.access_token, id, deleteUserId)
+            service.expulsionMember(UserInfo.access_token, teamId, deleteUserId)
         }
     }
 

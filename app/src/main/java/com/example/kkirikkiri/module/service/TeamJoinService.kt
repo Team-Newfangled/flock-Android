@@ -1,5 +1,7 @@
 package com.example.kkirikkiri.module.service
 
+import com.example.kkirikkiri.module.dto.Default
+import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -19,5 +21,5 @@ interface TeamJoinService {
     fun joinMember(@Path("id") id : Int, @Body memberId : Int)
 
     @POST("/teams/{id}/join-mail")
-    fun sendJoinMail(@Path("id") id : Int, @Body email : String)
+    fun sendJoinMail(@Path("id") id : Int, @Body email : String) : Call<Default>
 }

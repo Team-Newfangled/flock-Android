@@ -2,9 +2,13 @@ package com.example.kkirikkiri.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.kkirikkiri.module.RetrofitImpl
+import com.example.kkirikkiri.module.dto.Default
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class TeamJoinModel : ViewModel(){
 
@@ -36,7 +40,14 @@ class TeamJoinModel : ViewModel(){
 
     fun sendJoinMain(teamId : Int, email : String) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.sendJoinMail(teamId, email)
+            service.sendJoinMail(teamId, email).enqueue(object : Callback<Default>{
+                override fun onResponse(call: Call<Default>, response: Response<Default>) {
+                }
+
+                override fun onFailure(call: Call<Default>, t: Throwable) {
+                }
+
+            })
         }
     }
 }
