@@ -26,9 +26,7 @@ class LoginActivity: AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         binding.gitLogin.setOnClickListener {
-            // https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=1065774488617-bqqnvgv8fi2ghqgq17pk3tshpmdalur9.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fredirect&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&flowName=GeneralOAuthFlow
-            model.signInResult("4/0ARtbsJpptYK8jl-NvJKSLhSyczoCBlXtq8W3Uxg-mxnm7p2k80Pm-Gnjmi8PQoX_m-AO4w")
-            startActivity(Intent(applicationContext, MainActivity::class.java))
+
         }
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

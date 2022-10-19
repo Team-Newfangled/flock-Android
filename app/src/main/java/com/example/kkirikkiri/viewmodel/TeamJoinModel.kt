@@ -15,7 +15,4 @@ class TeamJoinModel : ViewModel(){
     private val service = RetrofitImpl.teamJoinService
 
 
-    fun join(teamId : Int) {
-
-    }
 }
