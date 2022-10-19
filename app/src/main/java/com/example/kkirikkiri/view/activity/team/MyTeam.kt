@@ -19,7 +19,7 @@ import java.util.ArrayList
 
 class MyTeam : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMyTeamBinding
+    private val binding by lazy { ActivityMyTeamBinding.inflate(layoutInflater) }
 
     private val model = TeamModel()
 
@@ -28,7 +28,7 @@ class MyTeam : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_my_team)
+        setContentView(binding.root)
         val intent = intent
         val id = intent.getIntExtra("id", 0)
         model.getTeamMember(UserInfo.teamId!!, 0)

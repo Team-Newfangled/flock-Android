@@ -20,14 +20,14 @@ import com.example.kkirikkiri.viewmodel.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     private val model = TeamModel()
     private val userIdModel = LoginModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        setContentView(binding.root)
         observe()
 
         binding.mainMyTeam.setOnClickListener{ startActivity(Intent(applicationContext, SelectTeamActivity::class.java)) }

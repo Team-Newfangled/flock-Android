@@ -17,7 +17,7 @@ import java.util.ArrayList
 
 class Progress : AppCompatActivity() {
 
-    private lateinit var binding: ActivityProgressBinding
+    private val binding by lazy { ActivityProgressBinding.inflate(layoutInflater) }
 
     private val model = TodoModel()
 
@@ -25,7 +25,7 @@ class Progress : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_progress)
+        setContentView(binding.root)
 
         model.findAllTodos(UserInfo.projectId!!, UserInfo.userId!!, 0)
 

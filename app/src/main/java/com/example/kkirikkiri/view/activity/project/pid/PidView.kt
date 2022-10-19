@@ -11,14 +11,13 @@ import com.example.kkirikkiri.viewmodel.TodoModel
 
 class PidView : AppCompatActivity() {
 
-    private lateinit var binding:ActivityPidViewBinding
+    private val binding by lazy { ActivityPidViewBinding.inflate(layoutInflater) }
 
     private val model = BoardModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_pid_view)
-
+        setContentView(binding.root)
 
         val intent = intent
         val id = intent.getIntExtra("id", 0)

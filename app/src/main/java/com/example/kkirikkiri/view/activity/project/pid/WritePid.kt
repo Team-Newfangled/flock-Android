@@ -14,13 +14,13 @@ import com.example.kkirikkiri.viewmodel.ProjectModel
 
 class WritePid : AppCompatActivity() {
 
-    private lateinit var binding:ActivityWritePidBinding
+    private val binding by lazy { ActivityWritePidBinding.inflate(layoutInflater) }
 
     private val model = BoardModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_write_pid)
+        setContentView(binding.root)
 
         binding.writePid.setOnClickListener {
             model.saveBoard(UserInfo.projectId!!, ContentRequest(binding.pidWriteContent.text.toString()))

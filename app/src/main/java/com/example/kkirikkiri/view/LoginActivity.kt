@@ -17,13 +17,13 @@ import com.google.android.gms.tasks.Task
 
 class LoginActivity: AppCompatActivity() {
 
-    private lateinit var binding:ActivityLoginBinding
+    private val binding by lazy{ ActivityLoginBinding.inflate(layoutInflater) }
     private var mGoogleSignInClient : GoogleSignInClient? = null
     private val model = LoginModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        setContentView(binding.root)
 
         binding.gitLogin.setOnClickListener {
 

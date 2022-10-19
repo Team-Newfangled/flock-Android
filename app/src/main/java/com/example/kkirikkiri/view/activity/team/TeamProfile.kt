@@ -8,10 +8,10 @@ import com.example.kkirikkiri.databinding.ActivityTeamProfileBinding
 
 class TeamProfile : AppCompatActivity() {
 
-    private lateinit var binding: ActivityTeamProfileBinding
+    private val binding by lazy { ActivityTeamProfileBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_team_profile)
+        setContentView(binding.root)
     }
 }

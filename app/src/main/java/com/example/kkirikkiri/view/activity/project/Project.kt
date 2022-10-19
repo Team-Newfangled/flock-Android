@@ -24,7 +24,7 @@ import java.util.ArrayList
 
 class Project : AppCompatActivity() {
 
-    private lateinit var binding: ActivityProjectBinding
+    private val binding by lazy { ActivityProjectBinding.inflate(layoutInflater) }
 
     private val deadLineList = ArrayList<DeadLineItem>()
     private val pidList = ArrayList<PidItem>()
@@ -34,7 +34,7 @@ class Project : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_project)
+        setContentView(binding.root)
 
         UserInfo.projectId = intent.getIntExtra("id", 0)
 

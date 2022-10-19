@@ -16,14 +16,14 @@ import java.util.ArrayList
 
 class Pid : AppCompatActivity() {
 
-    private lateinit var binding: ActivityPidBinding
+    private val binding by lazy { ActivityPidBinding.inflate(layoutInflater) }
 
     private val model = BoardModel()
 
     private var list = ArrayList<PidItem>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_pid)
+        setContentView(binding.root)
         model.findBoardPage(UserInfo.projectId!!,0)
 
         observe()
