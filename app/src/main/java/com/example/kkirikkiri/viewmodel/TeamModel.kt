@@ -1,6 +1,7 @@
 package com.example.kkirikkiri.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kkirikkiri.module.RetrofitImpl
@@ -118,5 +119,22 @@ class TeamModel : ViewModel() {
         }
     }
 
+    val waitingMember = MutableLiveData<List<FindMembersResponse.Results>>()
+    fun getWaitingMember(teamId: Int, page: Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            service.findWaitingMember(UserInfo.access_token, teamId, page).enqueue(object : Callback<FindMembersResponse>{
+                override fun onResponse(
+                    call: Call<FindMembersResponse>,
+                    response: Response<FindMembersResponse>
+                ) {
+                    waitingMember.value = response.body()!!.results
+                }
+
+                override fun onFailure(call: Call<FindMembersResponse>, t: Throwable) {
+                }
+
+            })
+        }
+    }
 
 }

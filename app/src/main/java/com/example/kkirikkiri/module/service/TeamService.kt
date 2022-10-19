@@ -31,4 +31,6 @@ interface TeamService {
     @PATCH("/teams/{id}/join")
     fun approveJoinMember(@Header("authorization") token : String, @Path("id") id : Int, @Body request : ApproveRequest) : Call<MessageResponse>
 
+    @GET("/teams/{id}/waiting")
+    fun findWaitingMember(@Header("authorization") token : String, @Path("id") id : Int, @Query("page") page : Int) : Call<FindMembersResponse>
 }

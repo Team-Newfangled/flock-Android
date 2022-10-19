@@ -41,6 +41,10 @@ class MyTeamAdapter(var listData : List<TeamMemberItem>) : RecyclerView.Adapter<
                     binding.itemMemberDelete.setOnClickListener { model.deleteMember(UserInfo.teamId!!, member.id) }
                 }
             } else {
+                if (!member.access) {
+                    itemSetting(binding,member)
+                    binding.isNotAccept.visibility = View.VISIBLE
+                }
                 itemSetting(binding, member)
             }
         }

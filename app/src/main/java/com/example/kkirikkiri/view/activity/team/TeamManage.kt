@@ -42,6 +42,7 @@ class TeamManage : AppCompatActivity() {
         val joinLink = "http://141.164.59.254:8080/teams/${id}/join"
 
         model.getTeamMember(id, 0)
+        model.getWaitingMember(id, 0)
 
         observe()
         binding.teamManageRecyclerbiew.adapter = MyTeamAdapter(list)
@@ -89,6 +90,14 @@ class TeamManage : AppCompatActivity() {
                 binding.teamManageRecyclerbiew.adapter = MyTeamAdapter(list)
             }
         })
+
+        model.waitingMember.observe(this) {
+            for (i in it) {
+                val entity = TeamMemberItem(i.name, i.id, i.role, i.approved)
+                list.add(entity)
+                binding.teamManageRecyclerbiew.adapter = MyTeamAdapter(list)
+            }
+        }
     }
 
     private fun createClip(link : String) {
