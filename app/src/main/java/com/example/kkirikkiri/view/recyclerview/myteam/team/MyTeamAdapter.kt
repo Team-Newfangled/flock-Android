@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kkirikkiri.Category
 import com.example.kkirikkiri.databinding.ItemMemberBinding
 import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.viewmodel.TeamJoinModel
@@ -29,12 +30,29 @@ class MyTeamAdapter(var listData : List<TeamMemberItem>) : RecyclerView.Adapter<
     inner class TeamViewHolder(val binding : ItemMemberBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun setMember(member : TeamMemberItem) {
-            binding.itemMemberName.text = member.name
-            binding.temaMemberId.text = member.id.toString()
-            binding.itemMemberDelete.visibility = View.INVISIBLE
-            binding.itemMemberDelete.setOnClickListener { model.deleteMember(UserInfo.teamId!!, member.id) }
+            if (UserInfo.rule == Category.LEADER) {
+                if (!member.access) {
+                    itemSetting(binding, member)
+                    binding.isNotAccept.visibility = View.VISIBLE
+                    binding.itemMemberDelete.setOnClickListener { model.deleteMember(UserInfo.teamId!!, member.id) }
+                    itemView.setOnClickListener { model.approveMember(UserInfo.teamId!!, member.id) }
+                } else {
+                    itemSetting(binding, member)
+                    binding.itemMemberDelete.setOnClickListener { model.deleteMember(UserInfo.teamId!!, member.id) }
+                }
+            } else {
+                itemSetting(binding, member)
+            }
         }
 
+    }
+
+    private fun itemSetting(binding: ItemMemberBinding, member : TeamMemberItem) {
+        binding.itemMemberName.text = member.name
+        binding.temaMemberId.text = member.id.toString()
+        if (member.category == Category.LEADER) binding.itemMemberDelete.visibility = View.INVISIBLE
+        else if (UserInfo.rule == Category.LEADER) binding.itemMemberDelete.visibility = View.VISIBLE
+        else binding.itemMemberDelete.visibility = View.INVISIBLE
     }
 }
 

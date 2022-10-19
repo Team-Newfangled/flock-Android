@@ -1,5 +1,6 @@
 package com.example.kkirikkiri.module.service
 
+import com.example.kkirikkiri.module.dto.ApproveRequest
 import com.example.kkirikkiri.module.dto.MessageResponse
 import com.example.kkirikkiri.module.dto.NameRequest
 import com.example.kkirikkiri.module.dto.team.response.AddProjectResponse
@@ -27,5 +28,7 @@ interface TeamService {
     @POST("/teams/{id}/projects")
     fun addProject(@Header("authorization") token : String, @Path("id") id : Int, @Body request : NameRequest) : Call<AddProjectResponse>
 
+    @PATCH("/teams/{id}/join")
+    fun approveJoinMember(@Header("authorization") token : String, @Path("id") id : Int, @Body request : ApproveRequest) : Call<MessageResponse>
 
 }

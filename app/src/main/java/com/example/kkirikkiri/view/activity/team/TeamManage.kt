@@ -84,7 +84,7 @@ class TeamManage : AppCompatActivity() {
     private fun observe() {
         model.teamMembers.observe(this, Observer {
             for (i in it) {
-                val entity = TeamMemberItem(i.name, i.id)
+                val entity = TeamMemberItem(i.name, i.id, i.role, i.approved)
                 list.add(entity)
                 binding.teamManageRecyclerbiew.adapter = MyTeamAdapter(list)
             }

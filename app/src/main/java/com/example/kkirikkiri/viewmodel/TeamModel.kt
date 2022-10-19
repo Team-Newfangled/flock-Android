@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kkirikkiri.module.RetrofitImpl
+import com.example.kkirikkiri.module.dto.ApproveRequest
 import com.example.kkirikkiri.module.dto.NameRequest
 import com.example.kkirikkiri.module.dto.team.response.AddProjectResponse
 import com.example.kkirikkiri.module.dto.team.response.CreateTeamResponse
@@ -108,6 +109,12 @@ class TeamModel : ViewModel() {
     fun deleteMember(teamId : Int, deleteUserId : Int) {
         CoroutineScope(Dispatchers.IO).launch {
             service.expulsionMember(UserInfo.access_token, teamId, deleteUserId)
+        }
+    }
+
+    fun approveMember(teamId : Int, memberId : Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            service.approveJoinMember(UserInfo.access_token, teamId, ApproveRequest(memberId))
         }
     }
 

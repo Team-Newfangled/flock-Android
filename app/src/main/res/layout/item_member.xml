@@ -41,4 +41,17 @@
         app:layout_constraintStart_toStartOf="@+id/item_member_name"
         app:layout_constraintTop_toTopOf="@+id/item_member_name" />
 
+    <TextView
+        android:id="@+id/isNotAccept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아직 승인되지 않았습니다!"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/item_member_name"
+        app:layout_constraintStart_toStartOf="@+id/item_member_name"
+        app:layout_constraintTop_toTopOf="@+id/item_member_name" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
