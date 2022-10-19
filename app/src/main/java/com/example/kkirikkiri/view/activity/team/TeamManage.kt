@@ -1,15 +1,16 @@
 package com.example.kkirikkiri.view.activity.team
 
 import android.app.Dialog
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.view.Window
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,7 +29,6 @@ class TeamManage : AppCompatActivity() {
     private lateinit var binding: ActivityTeamManageBinding
 
     private val model = TeamModel()
-    private val joinModel = TeamJoinModel()
 
     private var list = ArrayList<TeamMemberItem>()
 
@@ -38,6 +38,8 @@ class TeamManage : AppCompatActivity() {
 
         val intent = intent
         val id = intent.getIntExtra("id", 0)
+
+        val joinLink = "http://141.164.59.254:8080/teams/${id}/join"
 
         model.getTeamMember(id, 0)
 
@@ -55,15 +57,22 @@ class TeamManage : AppCompatActivity() {
 
             dialog.show()
 
-            val text = dialog.findViewById<EditText>(R.id.member_name)
+            val copy = dialog.findViewById<ImageView>(R.id.imageView2)
             val acp = dialog.findViewById<Button>(R.id.member_acp)
             val cancel = dialog.findViewById<Button>(R.id.member_cancel)
+            val text = dialog.findViewById<TextView>(R.id.link)
+
+            text.text = joinLink
+
+            copy.setOnClickListener {
+                createClip(joinLink)
+            }
 
             acp.setOnClickListener {
-                if (Patterns.EMAIL_ADDRESS.matcher(text.text.toString()).matches()) {
-                    joinModel.sendJoinMain(id, text.text.toString())
-                    dialog.dismiss()
-                } else Toast.makeText(this, "이메일 형식이 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
+                val link = Intent(Intent.ACTION_SEND)
+                link.type = "text/plain"
+                link.putExtra(Intent.EXTRA_TEXT, joinLink)
+                startActivity(Intent.createChooser(link, "팀 초대 링크 공유하기"))
             }
 
             cancel.setOnClickListener {
@@ -80,5 +89,13 @@ class TeamManage : AppCompatActivity() {
                 binding.teamManageRecyclerbiew.adapter = MyTeamAdapter(list)
             }
         })
+    }
+
+    private fun createClip(link : String) {
+        val clipManager = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("Invite", link)
+
+        clipManager.setPrimaryClip(clip)
+        Toast.makeText(this, "복사 완료!", Toast.LENGTH_SHORT).show()
     }
 }

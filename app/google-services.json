@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1065774488617",
+    "project_id": "flock-349109",
+    "storage_bucket": "flock-349109.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1065774488617:android:fd48173e8e575323b51038",
+        "android_client_info": {
+          "package_name": "com.example.kkirikkiri"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1065774488617-t5rludlgfaun4bjd21m3jeid6ooba0sc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kkirikkiri",
+            "certificate_hash": "fb23ed0e155484d3de8184fcf24c3fe73f3296bb"
+          }
+        },
+        {
+          "client_id": "1065774488617-bqqnvgv8fi2ghqgq17pk3tshpmdalur9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtumTFGJGcIggDzTeOwgO6b9aV-w6iGe4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1065774488617-bqqnvgv8fi2ghqgq17pk3tshpmdalur9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
