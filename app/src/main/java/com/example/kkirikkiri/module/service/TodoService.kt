@@ -29,7 +29,7 @@ interface TodoService {
     fun modifyTodo(@Header("authorization") token : String, @Path("id") id : Int,@Body request: ModifyTodoRequest) : Call<MessageResponse>
 
     @DELETE("/todo/{id}")
-    fun deleteTodo(@Header("authorization") token : String, @Path("id") id : Int)
+    fun deleteTodo(@Header("authorization") token : String, @Path("id") id : Int) : Call<Void>
 
     @PATCH("/todo/{id}")
     fun completeTodo(@Header("authorization") token : String, @Path("id") id : Int) : Call<MessageResponse>

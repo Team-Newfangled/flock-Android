@@ -12,7 +12,7 @@ interface ProjectService {
     fun findProject(@Header("authorization") token : String, @Path("id") id : Int) : Call<FindProjectResponse>
 
     @DELETE("/projects/{id}")
-    fun deleteProject(@Header("authorization") token : String, @Path("id") id : Int)
+    fun deleteProject(@Header("authorization") token : String, @Path("id") id : Int) : Call<Void>
 
     @PATCH("/projects/{id}")
     fun modifyProjectName(@Header("authorization") token : String, @Path("id") id : Int, @Body request : NameRequest) : Call<MessageResponse>

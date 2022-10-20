@@ -34,8 +34,9 @@ class MyTeamAdapter(var listData : List<TeamMemberItem>) : RecyclerView.Adapter<
                 if (!member.access) {
                     itemSetting(binding, member)
                     binding.isNotAccept.visibility = View.VISIBLE
-                    binding.itemMemberDelete.setOnClickListener { model.deleteMember(UserInfo.teamId!!, member.id) }
                     itemView.setOnClickListener { model.approveMember(UserInfo.teamId!!, member.id) }
+                    binding.itemMemberName.setOnClickListener { model.approveMember(UserInfo.teamId!!, member.id) }
+                    binding.isNotAccept.setOnClickListener { model.approveMember(UserInfo.teamId!!, member.id) }
                 } else {
                     itemSetting(binding, member)
                     binding.itemMemberDelete.setOnClickListener { model.deleteMember(UserInfo.teamId!!, member.id) }
@@ -57,6 +58,7 @@ class MyTeamAdapter(var listData : List<TeamMemberItem>) : RecyclerView.Adapter<
         if (member.category == Category.LEADER) binding.itemMemberDelete.visibility = View.INVISIBLE
         else if (UserInfo.rule == Category.LEADER) binding.itemMemberDelete.visibility = View.VISIBLE
         else binding.itemMemberDelete.visibility = View.INVISIBLE
+        binding.itemMemberDelete.setOnClickListener { model.deleteMember(UserInfo.teamId!!, member.id) }
     }
 }
 

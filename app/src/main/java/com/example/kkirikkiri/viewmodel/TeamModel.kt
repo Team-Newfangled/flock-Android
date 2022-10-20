@@ -111,6 +111,7 @@ class TeamModel : ViewModel() {
         CoroutineScope(Dispatchers.IO).launch {
             service.expulsionMember(UserInfo.access_token, teamId, deleteUserId).enqueue(object : Callback<Void>{
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    Log.e("나가라", "나가라고 ${response.code()}")
                 }
 
                 override fun onFailure(call: Call<Void>, t: Throwable) {
@@ -122,7 +123,16 @@ class TeamModel : ViewModel() {
 
     fun approveMember(teamId : Int, memberId : Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.approveJoinMember(UserInfo.access_token, teamId, ApproveRequest(memberId))
+            service.approveJoinMember(UserInfo.access_token, teamId, ApproveRequest(memberId)).enqueue(object : Callback<Void>{
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                        Log.e("승인", "완료")
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+
+                }
+
+            })
         }
     }
 

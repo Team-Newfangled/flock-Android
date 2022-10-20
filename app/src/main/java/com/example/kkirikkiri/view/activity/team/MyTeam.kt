@@ -30,6 +30,9 @@ class MyTeam : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        list.clear()
+
+
         val intent = intent
         val id = intent.getIntExtra("id", 0)
         model.getTeamMember(UserInfo.teamId!!, 0)
@@ -59,7 +62,6 @@ class MyTeam : AppCompatActivity() {
         model.teamMembers.observe(this) {
             for (i in it) {
                 val entity = TeamMemberItem(i.name, i.id, i.role, i.approved)
-                Log.e("role", i.role)
                 list.add(entity)
                 binding.teamMember.adapter = MyTeamAdapter(list)
             }

@@ -35,6 +35,7 @@ class TeamManage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        list.clear()
 
         val intent = intent
         val id = intent.getIntExtra("id", 0)
