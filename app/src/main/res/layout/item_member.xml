@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/item_member_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@drawable/teamrec"
         android:gravity="center_vertical"
         android:paddingHorizontal="13dp"
@@ -22,8 +22,8 @@
 
     <Button
         android:id="@+id/item_member_delete"
-        android:layout_width="45dp"
-        android:layout_height="30dp"
+        android:layout_width="65dp"
+        android:layout_height="48dp"
         android:background="@drawable/deletebtn"
         app:layout_constraintBottom_toBottomOf="@+id/item_member_name"
         app:layout_constraintEnd_toEndOf="@+id/item_member_name"

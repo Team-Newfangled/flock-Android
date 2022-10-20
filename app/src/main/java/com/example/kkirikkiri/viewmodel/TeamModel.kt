@@ -109,7 +109,14 @@ class TeamModel : ViewModel() {
 
     fun deleteMember(teamId : Int, deleteUserId : Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.expulsionMember(UserInfo.access_token, teamId, deleteUserId)
+            service.expulsionMember(UserInfo.access_token, teamId, deleteUserId).enqueue(object : Callback<Void>{
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                }
+
+            })
         }
     }
 

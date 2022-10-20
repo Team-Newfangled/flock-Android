@@ -17,7 +17,7 @@ interface TeamService {
                     @Header("authorization") token : String) : Call<CreateTeamResponse>
 
     @DELETE("/teams/{id}/expulsion/{user-id}")
-    fun expulsionMember(@Header("authorization") token : String, @Path("id") id : Int, @Path("user-id") userId : Int) : Call<MessageResponse>
+    fun expulsionMember(@Header("authorization") token : String, @Path("id") id : Int, @Path("user-id") userId : Int) : Call<Void>
 
     @GET("/teams/{id}/members?")
     fun findMembers(@Header("authorization") token : String, @Path("id") id : Int, @Query("page") page : Int) : Call<FindMembersResponse>
@@ -29,8 +29,10 @@ interface TeamService {
     fun addProject(@Header("authorization") token : String, @Path("id") id : Int, @Body request : NameRequest) : Call<AddProjectResponse>
 
     @PATCH("/teams/{id}/join")
-    fun approveJoinMember(@Header("authorization") token : String, @Path("id") id : Int, @Body request : ApproveRequest) : Call<MessageResponse>
+    fun approveJoinMember(@Header("authorization") token : String, @Path("id") id : Int, @Body request : ApproveRequest) : Call<Void>
 
     @GET("/teams/{id}/waiting")
     fun findWaitingMember(@Header("authorization") token : String, @Path("id") id : Int, @Query("page") page : Int) : Call<FindMembersResponse>
+
+
 }
