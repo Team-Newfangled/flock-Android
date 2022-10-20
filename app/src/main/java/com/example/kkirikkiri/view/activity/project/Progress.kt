@@ -26,6 +26,7 @@ class Progress : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        list.clear()
 
         model.findAllTodos(UserInfo.projectId!!, UserInfo.userId!!, 0)
 

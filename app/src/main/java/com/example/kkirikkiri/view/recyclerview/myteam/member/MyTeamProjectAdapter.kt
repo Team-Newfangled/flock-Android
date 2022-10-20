@@ -1,8 +1,10 @@
 package com.example.kkirikkiri.view.recyclerview.myteam.member
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -20,12 +22,12 @@ import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.view.activity.project.Project
 import com.example.kkirikkiri.viewmodel.ProjectModel
 
-class MyTeamProjectAdapter(private val list: List<TeamMemberProjectItem>) : RecyclerView.Adapter<MyTeamProjectAdapter.Holder>() {
+class MyTeamProjectAdapter(private val list: List<TeamMemberProjectItem>, private val intent: Intent, private val activity: Activity) : RecyclerView.Adapter<MyTeamProjectAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemProjectBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return Holder(binding)
+        return Holder(binding, intent, activity)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
@@ -39,12 +41,13 @@ class MyTeamProjectAdapter(private val list: List<TeamMemberProjectItem>) : Recy
     }
 
 
-    inner class Holder(var binding : ItemProjectBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class Holder(var binding : ItemProjectBinding, intent: Intent, activity: Activity) : RecyclerView.ViewHolder(binding.root) {
         private val arrayItem = arrayOf("수정", "삭제")
         private val model = ProjectModel()
 
         @SuppressLint("SetTextI18n")
         fun setProject(project : TeamMemberProjectItem) {
+
             binding.itemProjectName.text = project.name
             binding.itemProjectPercent.text = ""
             binding.projectId.text = project.id.toString()
@@ -71,13 +74,14 @@ class MyTeamProjectAdapter(private val list: List<TeamMemberProjectItem>) : Recy
                             text.hint = "프로젝트 이름"
                             acp.setOnClickListener {
                                 model.modifyProjectName(project.id, NameRequest(text.text.toString()))
+                                refresh()
                                 d.dismiss()
                             }
                             cancel.setOnClickListener { d.dismiss() }
                         }
                         1 -> {
                             model.deleteProject(project.id)
-
+                            refresh()
                             dialog.dismiss()
                         }
                     }
@@ -89,6 +93,13 @@ class MyTeamProjectAdapter(private val list: List<TeamMemberProjectItem>) : Recy
                 Intent(itemView.context, Project::class.java).putExtra("id", project.id).run { itemView.context.startActivity(this) }
             }
 
+        }
+
+        private fun refresh() {
+            activity.finish()
+            activity.overridePendingTransition(0,0)
+            activity.startActivity(intent)
+            activity.overridePendingTransition(0,0)
         }
     }
 

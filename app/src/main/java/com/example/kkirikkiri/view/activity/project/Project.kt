@@ -35,6 +35,8 @@ class Project : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        deadLineList.clear()
+        pidList.clear()
 
         UserInfo.projectId = intent.getIntExtra("id", 0)
 
