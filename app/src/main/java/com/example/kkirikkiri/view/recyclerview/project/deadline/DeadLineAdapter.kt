@@ -1,6 +1,7 @@
 package com.example.kkirikkiri.view.recyclerview.project.deadline
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -25,11 +26,28 @@ class DeadLineAdapter(val list : List<DeadLineItem>) : RecyclerView.Adapter<Dead
     }
 
     inner class Holder(var binding : ItemDeadlineBinding) : RecyclerView.ViewHolder(binding.root) {
+        private val arrayItem = arrayOf("수정", "삭제")
+
         @SuppressLint("SetTextI18n")
         fun setDeadLine(deadLine : DeadLineItem) {
             binding.deadlineId.text = deadLine.id.toString()
             binding.itemDeadlineTime.text = deadLine.deadLineTime
             binding.itemDeadlineTitle.text = deadLine.title
+
+            itemView.setOnLongClickListener {
+                val dialog = AlertDialog.Builder(itemView.context)
+                dialog.setItems(arrayItem) {dialog, pos ->
+                    when (pos) {
+                        0 -> {
+                            dialog.dismiss()
+                        }
+                        1 -> {
+                            dialog.dismiss()
+                        }
+                    }
+                }.show()
+                false
+            }
         }
     }
 

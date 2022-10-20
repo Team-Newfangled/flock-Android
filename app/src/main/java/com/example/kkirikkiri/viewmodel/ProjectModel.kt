@@ -41,7 +41,16 @@ class ProjectModel : ViewModel() {
 
     fun deleteProject(projectId: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.deleteProject(UserInfo.access_token, projectId)
+            service.deleteProject(UserInfo.access_token, projectId).enqueue(object : Callback<Void>{
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    Log.e("프로젝트", "삭-제 ${response.code()}")
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    Log.e("프로젝트", t.printStackTrace().toString())
+                }
+
+            })
         }
     }
 
