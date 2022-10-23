@@ -7,10 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.kkirikkiri.module.RetrofitImpl
 import com.example.kkirikkiri.module.dto.ApproveRequest
 import com.example.kkirikkiri.module.dto.NameRequest
-import com.example.kkirikkiri.module.dto.team.response.AddProjectResponse
-import com.example.kkirikkiri.module.dto.team.response.CreateTeamResponse
-import com.example.kkirikkiri.module.dto.team.response.FindMembersResponse
-import com.example.kkirikkiri.module.dto.team.response.FindProjectResponse
+import com.example.kkirikkiri.module.dto.team.response.*
 import com.example.kkirikkiri.module.info.UserInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -148,6 +145,25 @@ class TeamModel : ViewModel() {
                 }
 
                 override fun onFailure(call: Call<FindMembersResponse>, t: Throwable) {
+                }
+
+            })
+        }
+    }
+
+    fun getRole(teamId: Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            service.findRoleById(UserInfo.access_token, teamId).enqueue(object : Callback<RoleResponse>{
+                override fun onResponse(
+                    call: Call<RoleResponse>,
+                    response: Response<RoleResponse>
+                ) {
+                   if (response.isSuccessful) UserInfo.rule = response.body()?.role.toString()
+                    Log.e("role", "${response.code()}")
+                }
+
+                override fun onFailure(call: Call<RoleResponse>, t: Throwable) {
+
                 }
 
             })

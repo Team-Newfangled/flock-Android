@@ -1,5 +1,6 @@
 package com.example.kkirikkiri.view.recyclerview.project.projectpid
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
@@ -17,13 +18,15 @@ import com.example.kkirikkiri.databinding.ItemPidBinding
 import com.example.kkirikkiri.module.dto.NameRequest
 import com.example.kkirikkiri.view.activity.project.pid.PidView
 import com.example.kkirikkiri.view.recyclerview.pid.PidItem
+import com.example.kkirikkiri.viewmodel.BoardModel
 
-class ProjectPidAdapter(var list : List<PidItem>) : RecyclerView.Adapter<ProjectPidAdapter.Holder>(){
+class ProjectPidAdapter(var list : List<PidItem>, private val intent: Intent, private val activity: Activity) : RecyclerView.Adapter<ProjectPidAdapter.Holder>(){
 
-    val pids = list
+    private val pids = list
 
-    inner class Holder(var binding : ItemPidBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class Holder(var binding : ItemPidBinding, intent: Intent, activity: Activity) : RecyclerView.ViewHolder(binding.root) {
         private val arrayItem = arrayOf("수정", "삭제")
+        private val model = BoardModel()
 
         fun setPid(item : PidItem) {
             binding.pidId.text = item.id.toString()
@@ -45,6 +48,8 @@ class ProjectPidAdapter(var list : List<PidItem>) : RecyclerView.Adapter<Project
                             dialog.dismiss()
                         }
                         1 -> {
+                            model.deleteBoard(item.id)
+                            refresh()
                             dialog.dismiss()
                         }
                     }
@@ -52,12 +57,19 @@ class ProjectPidAdapter(var list : List<PidItem>) : RecyclerView.Adapter<Project
                 false
             }
         }
+
+        private fun refresh() {
+            activity.finish()
+            activity.overridePendingTransition(0,0)
+            activity.startActivity(intent)
+            activity.overridePendingTransition(0,0)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemPidBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return Holder(binding)
+        return Holder(binding, intent, activity)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {

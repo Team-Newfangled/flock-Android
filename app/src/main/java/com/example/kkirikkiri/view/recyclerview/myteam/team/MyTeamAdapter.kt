@@ -1,5 +1,7 @@
 package com.example.kkirikkiri.view.recyclerview.myteam.team
 
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +12,14 @@ import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.viewmodel.TeamJoinModel
 import com.example.kkirikkiri.viewmodel.TeamModel
 
-class MyTeamAdapter(var listData : List<TeamMemberItem>) : RecyclerView.Adapter<MyTeamAdapter.TeamViewHolder>() {
+class MyTeamAdapter(var listData : List<TeamMemberItem>, private val intent: Intent, private val activity: Activity) : RecyclerView.Adapter<MyTeamAdapter.TeamViewHolder>() {
 
     private val model = TeamModel()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
         val binding = ItemMemberBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return TeamViewHolder(binding)
+        return TeamViewHolder(binding, intent, activity)
     }
 
     override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
@@ -27,7 +29,7 @@ class MyTeamAdapter(var listData : List<TeamMemberItem>) : RecyclerView.Adapter<
 
     override fun getItemCount(): Int = listData.size
 
-    inner class TeamViewHolder(val binding : ItemMemberBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TeamViewHolder(val binding : ItemMemberBinding, intent: Intent, activity: Activity) : RecyclerView.ViewHolder(binding.root) {
 
         fun setMember(member : TeamMemberItem) {
             if (UserInfo.rule == Category.LEADER) {

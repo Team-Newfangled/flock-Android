@@ -1,17 +1,21 @@
 package com.example.kkirikkiri.view.recyclerview.progress
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kkirikkiri.databinding.ItemProjectBinding
 import com.example.kkirikkiri.view.recyclerview.myteam.member.TeamMemberProjectItem
+import com.example.kkirikkiri.viewmodel.TodoModel
 
-class PartProgressAdapter(val list : List<TeamMemberProjectItem>) : RecyclerView.Adapter<PartProgressAdapter.Holder>() {
+class PartProgressAdapter(val list : List<TeamMemberProjectItem>, val intent: Intent, val activity: Activity) : RecyclerView.Adapter<PartProgressAdapter.Holder>() {
 
-    inner class Holder(val binding : ItemProjectBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class Holder(val binding : ItemProjectBinding, val intent: Intent, val activity: Activity) : RecyclerView.ViewHolder(binding.root) {
         private val arrayItem = arrayOf("수정", "삭제")
+        private val model =  TodoModel()
 
         @SuppressLint("SetTextI18n")
         fun setPartProgress(item : TeamMemberProjectItem) {
@@ -27,6 +31,8 @@ class PartProgressAdapter(val list : List<TeamMemberProjectItem>) : RecyclerView
                             dialog.dismiss()
                         }
                         1 -> {
+                            model.deleteTodo(item.id)
+                            refresh()
                             dialog.dismiss()
                         }
                     }
@@ -34,11 +40,18 @@ class PartProgressAdapter(val list : List<TeamMemberProjectItem>) : RecyclerView
                 false
             }
         }
+
+        private fun refresh() {
+            activity.finish()
+            activity.overridePendingTransition(0,0)
+            activity.startActivity(intent)
+            activity.overridePendingTransition(0,0)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemProjectBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return Holder(binding)
+        return Holder(binding, intent, activity)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {

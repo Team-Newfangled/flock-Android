@@ -34,8 +34,9 @@ class MyTeam : AppCompatActivity() {
 
         val intent = intent
         val id = intent.getIntExtra("id", 0)
-        model.getTeamMember(UserInfo.teamId!!, 0)
-        model.getProject(UserInfo.teamId!!, 0)
+        model.getRole(id)
+        model.getTeamMember(id, 0)
+        model.getProject(id, 0)
 
         observe()
 
@@ -62,7 +63,7 @@ class MyTeam : AppCompatActivity() {
             for (i in it) {
                 val entity = TeamMemberItem(i.name, i.id, i.role, i.approved)
                 list.add(entity)
-                binding.teamMember.adapter = MyTeamAdapter(list)
+                binding.teamMember.adapter = MyTeamAdapter(list, intent, this)
             }
         }
 

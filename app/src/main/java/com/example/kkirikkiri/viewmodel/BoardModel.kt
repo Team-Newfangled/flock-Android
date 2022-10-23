@@ -87,7 +87,17 @@ class BoardModel : ViewModel() {
 
 
     fun deleteBoard(boardId: Int) {
-        CoroutineScope(Dispatchers.IO).launch { service.deleteBoard(UserInfo.access_token, boardId) }
+        CoroutineScope(Dispatchers.IO).launch {
+            service.deleteBoard(UserInfo.access_token, boardId).enqueue(object : Callback<Void>{
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    Log.e("code", "${response.code()}")
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+
+                }
+            })
+        }
     }
 
 

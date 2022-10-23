@@ -3,10 +3,7 @@ package com.example.kkirikkiri.module.service
 import com.example.kkirikkiri.module.dto.ApproveRequest
 import com.example.kkirikkiri.module.dto.MessageResponse
 import com.example.kkirikkiri.module.dto.NameRequest
-import com.example.kkirikkiri.module.dto.team.response.AddProjectResponse
-import com.example.kkirikkiri.module.dto.team.response.CreateTeamResponse
-import com.example.kkirikkiri.module.dto.team.response.FindMembersResponse
-import com.example.kkirikkiri.module.dto.team.response.FindProjectResponse
+import com.example.kkirikkiri.module.dto.team.response.*
 import com.example.kkirikkiri.module.info.UserInfo
 import retrofit2.Call
 import retrofit2.http.*
@@ -34,5 +31,7 @@ interface TeamService {
     @GET("/teams/{id}/waiting")
     fun findWaitingMember(@Header("authorization") token : String, @Path("id") id : Int, @Query("page") page : Int) : Call<FindMembersResponse>
 
+    @GET("/team/{id}")
+    fun findRoleById(@Header("authorization") token : String, @Path("id") id : Int) : Call<RoleResponse>
 
 }

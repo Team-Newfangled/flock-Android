@@ -31,11 +31,9 @@ class Progress : AppCompatActivity() {
         model.findAllTodos(UserInfo.projectId!!, UserInfo.userId!!, 0)
 
         observe()
-        val adapter = PartProgressAdapter(list)
 
         binding.progressPartRecyclerview.layoutManager = LinearLayoutManager(this)
         binding.progressPartRecyclerview.addItemDecoration(RecyclerDecorationHeight(30))
-        binding.progressPartRecyclerview.adapter = adapter
 
         binding.progressAddPart.setOnClickListener {
             Intent(this, AddProgressActivity::class.java).run { startActivity(this) }
@@ -47,9 +45,8 @@ class Progress : AppCompatActivity() {
         model.allTodos.observe(this) {
             for (i in it.results) {
                 list.add(TeamMemberProjectItem(i.content, 0, i.id))
-                binding.progressPartRecyclerview.adapter = PartProgressAdapter(list)
+                binding.progressPartRecyclerview.adapter = PartProgressAdapter(list, intent, this)
             }
         }
-
     }
 }

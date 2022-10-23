@@ -46,7 +46,6 @@ class TeamManage : AppCompatActivity() {
         model.getWaitingMember(id, 0)
 
         observe()
-        binding.teamManageRecyclerbiew.adapter = MyTeamAdapter(list)
         binding.teamManageRecyclerbiew.layoutManager = LinearLayoutManager(this)
         binding.teamManageRecyclerbiew.addItemDecoration(RecyclerDecorationHeight(30))
 
@@ -88,7 +87,7 @@ class TeamManage : AppCompatActivity() {
             for (i in it) {
                 val entity = TeamMemberItem(i.name, i.id, i.role, i.approved)
                 list.add(entity)
-                binding.teamManageRecyclerbiew.adapter = MyTeamAdapter(list)
+                binding.teamManageRecyclerbiew.adapter = MyTeamAdapter(list, intent, this)
             }
         })
 
@@ -96,7 +95,7 @@ class TeamManage : AppCompatActivity() {
             for (i in it) {
                 val entity = TeamMemberItem(i.name, i.id, i.role, i.approved)
                 list.add(entity)
-                binding.teamManageRecyclerbiew.adapter = MyTeamAdapter(list)
+                binding.teamManageRecyclerbiew.adapter = MyTeamAdapter(list, intent, this)
             }
         }
     }

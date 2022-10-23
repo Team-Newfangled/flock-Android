@@ -1,13 +1,16 @@
 package com.example.kkirikkiri.view.recyclerview.project.deadline
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kkirikkiri.databinding.ItemDeadlineBinding
+import com.example.kkirikkiri.view.activity.project.Progress
 
-class DeadLineAdapter(val list : List<DeadLineItem>) : RecyclerView.Adapter<DeadLineAdapter.Holder>(){
+class DeadLineAdapter(val list : List<DeadLineItem>, private val activity: Activity) : RecyclerView.Adapter<DeadLineAdapter.Holder>(){
 
     var deadlineList = list
 
@@ -34,21 +37,11 @@ class DeadLineAdapter(val list : List<DeadLineItem>) : RecyclerView.Adapter<Dead
             binding.itemDeadlineTime.text = deadLine.deadLineTime
             binding.itemDeadlineTitle.text = deadLine.title
 
-            itemView.setOnLongClickListener {
-                val dialog = AlertDialog.Builder(itemView.context)
-                dialog.setItems(arrayItem) {dialog, pos ->
-                    when (pos) {
-                        0 -> {
-                            dialog.dismiss()
-                        }
-                        1 -> {
-                            dialog.dismiss()
-                        }
-                    }
-                }.show()
-                false
-            }
+           itemView.setOnClickListener {
+               activity.startActivity(Intent(itemView.context, Progress::class.java))
+           }
         }
+
     }
 
 }

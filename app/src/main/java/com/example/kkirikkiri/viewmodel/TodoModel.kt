@@ -150,7 +150,15 @@ class TodoModel : ViewModel() {
 
     fun deleteTodo(todoId: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.deleteTodo(UserInfo.access_token, todoId)
+            service.deleteTodo(UserInfo.access_token, todoId).enqueue(object : Callback<Void>{
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    Log.e("code", "${response.code()}")
+                }
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+
+                }
+
+            })
         }
     }
 
