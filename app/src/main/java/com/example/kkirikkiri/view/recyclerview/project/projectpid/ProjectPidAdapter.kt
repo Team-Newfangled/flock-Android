@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ItemPidBinding
 import com.example.kkirikkiri.module.dto.NameRequest
+import com.example.kkirikkiri.view.activity.project.pid.ChangePid
 import com.example.kkirikkiri.view.activity.project.pid.PidView
 import com.example.kkirikkiri.view.recyclerview.pid.PidItem
 import com.example.kkirikkiri.viewmodel.BoardModel
@@ -45,6 +46,9 @@ class ProjectPidAdapter(var list : List<PidItem>, private val intent: Intent, pr
                 dialog.setItems(arrayItem) {dialog, pos ->
                     when (pos) {
                         0 -> {
+                            Intent(itemView.context, ChangePid::class.java)
+                                .putExtra("id", item.id)
+                                .run { itemView.context.startActivity(this) }
                             dialog.dismiss()
                         }
                         1 -> {

@@ -28,8 +28,6 @@ class Pid : AppCompatActivity() {
 
         observe()
 
-        val adapter = PidAdapter(list)
-        binding.pidRecyclerview.adapter = adapter
         binding.pidRecyclerview.layoutManager = LinearLayoutManager(this)
         binding.pidRecyclerview.addItemDecoration(RecyclerDecorationHeight(30))
 
@@ -47,7 +45,7 @@ class Pid : AppCompatActivity() {
         model.boardList.observe(this) {
             for (i in it) {
                 list.add(PidItem(i.content, i.id, i.writerId))
-                binding.pidRecyclerview.adapter = PidAdapter(list)
+                binding.pidRecyclerview.adapter = PidAdapter(list, this, intent)
             }
         }
     }
