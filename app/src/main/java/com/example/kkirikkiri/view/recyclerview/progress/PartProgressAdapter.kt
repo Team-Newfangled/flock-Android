@@ -28,6 +28,7 @@ class PartProgressAdapter(val list : List<TeamMemberProjectItem>, val intent: In
                 dialog.setItems(arrayItem) {dialog, pos ->
                     when (pos) {
                         0 -> {
+
                             dialog.dismiss()
                         }
                         1 -> {

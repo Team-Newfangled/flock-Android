@@ -10,6 +10,7 @@
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/drawable/line.xml" value="0.199" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/drawable/progress.xml" value="0.2275" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/drawable/progressbar.xml" value="0.1525" />
+        <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/drawable/rectangle.xml" value="0.1325" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/activity_add_progress.xml" value="0.13229166666666667" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/activity_add_project.xml" value="0.22" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/activity_login.xml" value="0.25" />
@@ -24,6 +25,7 @@
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/activity_team_profile.xml" value="0.29030797101449274" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/activity_team_profile_change.xml" value="0.29030797101449274" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/activity_write_pid.xml" value="0.33" />
+        <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/change_todo_activity.xml" value="0.16" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/dialog.xml" value="0.33" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/dialog_addmember.xml" value="0.29739583333333336" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/dialog_addteam.xml" value="0.25" />
