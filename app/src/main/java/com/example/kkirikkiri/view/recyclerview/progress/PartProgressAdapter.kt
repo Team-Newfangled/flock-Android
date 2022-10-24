@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kkirikkiri.databinding.ItemProjectBinding
+import com.example.kkirikkiri.view.activity.project.ChangeTodo
 import com.example.kkirikkiri.view.recyclerview.myteam.member.TeamMemberProjectItem
 import com.example.kkirikkiri.viewmodel.TodoModel
 
@@ -28,7 +29,9 @@ class PartProgressAdapter(val list : List<TeamMemberProjectItem>, val intent: In
                 dialog.setItems(arrayItem) {dialog, pos ->
                     when (pos) {
                         0 -> {
-
+                            Intent(itemView.context, ChangeTodo::class.java)
+                                .putExtra("id", item.id)
+                                .run { itemView.context.startActivity(this) }
                             dialog.dismiss()
                         }
                         1 -> {

@@ -58,6 +58,11 @@ class MyTeam : AppCompatActivity() {
 
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        refresh()
+    }
+
     private fun observe() {
         model.teamMembers.observe(this) {
             for (i in it) {
@@ -74,5 +79,12 @@ class MyTeam : AppCompatActivity() {
                 binding.project.adapter = MyTeamProjectAdapter(list1, intent, this)
             }
         }
+    }
+
+    private fun refresh() {
+        finish()
+        overridePendingTransition(0,0)
+        startActivity(intent)
+        overridePendingTransition(0,0)
     }
 }

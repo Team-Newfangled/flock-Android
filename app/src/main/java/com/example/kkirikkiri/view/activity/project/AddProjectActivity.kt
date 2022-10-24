@@ -21,7 +21,6 @@ class AddProjectActivity : AppCompatActivity() {
 
         binding.saveProject.setOnClickListener {
             model.addProject(UserInfo.teamId!!, NameRequest(binding.projectName.text.toString()))
-            Intent(this, MyTeam::class.java).run { startActivity(this) }
             finish()
         }
     }

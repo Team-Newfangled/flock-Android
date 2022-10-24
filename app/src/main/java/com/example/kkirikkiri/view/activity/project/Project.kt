@@ -3,6 +3,7 @@ package com.example.kkirikkiri.view.activity.project
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kkirikkiri.databinding.ActivityProjectBinding
 import com.example.kkirikkiri.module.info.UserInfo
@@ -40,7 +41,7 @@ class Project : AppCompatActivity() {
         model.findBoardPage(intent.getIntExtra("id",0), 0)
 
         observe()
-
+        refresh()
         binding.pid.setOnClickListener{ startActivity(Intent(applicationContext, Pid::class.java)) }
         binding.progress.setOnClickListener{ startActivity(Intent(applicationContext, Progress::class.java))}
         binding.deadline.setOnClickListener { startActivity(Intent(applicationContext, Progress::class.java)) }
@@ -55,7 +56,21 @@ class Project : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        Log.e("resume", "onresume")
+        refresh()
         observe()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.e("restart", "restart")
+        refresh()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.e("pause", "pause")
+        refresh()
     }
 
     private fun observe() {
@@ -72,5 +87,12 @@ class Project : AppCompatActivity() {
                 binding.deadline.adapter = DeadLineAdapter(deadLineList, this)
             }
         }
+    }
+
+    private fun refresh() {
+        finish()
+        overridePendingTransition(0,0)
+        startActivity(intent)
+        overridePendingTransition(0,0)
     }
 }

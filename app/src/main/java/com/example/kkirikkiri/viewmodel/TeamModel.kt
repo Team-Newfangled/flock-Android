@@ -141,7 +141,7 @@ class TeamModel : ViewModel() {
                     call: Call<FindMembersResponse>,
                     response: Response<FindMembersResponse>
                 ) {
-                    waitingMember.value = response.body()?.results
+                    if (response.isSuccessful) waitingMember.value = response.body()?.results
                 }
 
                 override fun onFailure(call: Call<FindMembersResponse>, t: Throwable) {
