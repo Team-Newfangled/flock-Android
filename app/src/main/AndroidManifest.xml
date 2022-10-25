@@ -53,6 +53,10 @@
         <activity
             android:name=".view.activity.team.MyTeam"
             android:exported="false" />
+        <activity android:name=".view.activity.project.ChangeTodo"
+            android:exported="false"/>
+        <activity android:name=".view.activity.project.pid.ChangePid"
+            android:exported="false"/>
         <activity
             android:name=".view.LoginActivity"
             android:exported="true">

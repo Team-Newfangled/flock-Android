@@ -16,7 +16,8 @@ import com.example.kkirikkiri.view.recyclerview.project.deadline.DeadLineAdapter
 import com.example.kkirikkiri.view.recyclerview.project.projectpid.ProjectPidAdapter
 import com.example.kkirikkiri.viewmodel.BoardModel
 import com.example.kkirikkiri.viewmodel.TodoModel
-import java.util.ArrayList
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Project : AppCompatActivity() {
 
@@ -41,9 +42,9 @@ class Project : AppCompatActivity() {
         model.findBoardPage(intent.getIntExtra("id",0), 0)
 
         observe()
-        refresh()
         binding.pid.setOnClickListener{ startActivity(Intent(applicationContext, Pid::class.java)) }
-        binding.progress.setOnClickListener{ startActivity(Intent(applicationContext, Progress::class.java))}
+        binding.textView10.setOnClickListener{ startActivity(Intent(applicationContext, Progress::class.java)) }
+        binding.textView4.setOnClickListener{ startActivity(Intent(applicationContext, Progress::class.java)) }
         binding.deadline.setOnClickListener { startActivity(Intent(applicationContext, Progress::class.java)) }
 
         binding.deadline.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true)
@@ -54,22 +55,9 @@ class Project : AppCompatActivity() {
         binding.pidRecyclerview.addItemDecoration(RecyclerDecorationHeight(15))
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.e("resume", "onresume")
-        refresh()
-        observe()
-    }
-
     override fun onRestart() {
         super.onRestart()
         Log.e("restart", "restart")
-        refresh()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.e("pause", "pause")
         refresh()
     }
 
@@ -81,9 +69,21 @@ class Project : AppCompatActivity() {
             }
         }
 
+        val today = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }.time.time
+
+        val dateFormat = SimpleDateFormat("yyyyMMdd")
+
         todoModel.deadLineList.observe(this) {
             for (i in it.results) {
-                deadLineList.add(DeadLineItem(i.endDate.toString(), i.content, i.id ))
+                val replace = i.endDate.replace("-","")
+                val end = dateFormat.parse(replace)?.time
+
+                deadLineList.add(DeadLineItem(((end?.minus(today))?.div((24 * 60 * 60 * 1000))).toString(), i.content, i.id ))
                 binding.deadline.adapter = DeadLineAdapter(deadLineList, this)
             }
         }

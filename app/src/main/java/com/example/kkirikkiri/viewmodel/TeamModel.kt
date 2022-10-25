@@ -159,7 +159,7 @@ class TeamModel : ViewModel() {
                     response: Response<RoleResponse>
                 ) {
                    if (response.isSuccessful) UserInfo.rule = response.body()?.role.toString()
-                    Log.e("role", "${response.code()}")
+                    Log.e("role", "${response.code()}, ${response.raw()}")
                 }
 
                 override fun onFailure(call: Call<RoleResponse>, t: Throwable) {

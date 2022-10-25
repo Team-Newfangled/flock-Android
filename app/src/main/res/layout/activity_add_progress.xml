@@ -12,24 +12,22 @@
         tools:layout_editor_absoluteX="-31dp"
         tools:layout_editor_absoluteY="16dp" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="부분 할 일 추가"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/add_progress_back"
+        layout="@layout/backbutton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/include2"
+        app:layout_constraintStart_toStartOf="@+id/include2"
+        app:layout_constraintTop_toTopOf="@+id/include2" />
 
     <EditText
         android:id="@+id/todo_name"
         android:layout_width="380dp"
         android:layout_height="60dp"
-        android:background="@drawable/dialog_white"
+        android:background="@drawable/select_team_rectangle"
         android:elevation="5dp"
         android:hint="할 일의 이름을 입력하세요"
         android:inputType="none"
@@ -38,7 +36,7 @@
         app:layout_constraintEnd_toEndOf="@+id/include2"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/include2"
         app:layout_constraintVertical_bias="0.08" />
 
     <TextView
@@ -47,10 +45,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="저장"
-        android:textColor="@color/black"
+        android:text="작성"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,12 +29,11 @@ class DeadLineAdapter(val list : List<DeadLineItem>, private val activity: Activ
     }
 
     inner class Holder(var binding : ItemDeadlineBinding) : RecyclerView.ViewHolder(binding.root) {
-        private val arrayItem = arrayOf("수정", "삭제")
 
         @SuppressLint("SetTextI18n")
         fun setDeadLine(deadLine : DeadLineItem) {
             binding.deadlineId.text = deadLine.id.toString()
-            binding.itemDeadlineTime.text = deadLine.deadLineTime
+            binding.itemDeadlineTime.text = "D-${deadLine.deadLineTime}"
             binding.itemDeadlineTitle.text = deadLine.title
 
            itemView.setOnClickListener {

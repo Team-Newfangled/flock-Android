@@ -25,7 +25,7 @@ interface TodoService {
     @GET("/todo/{id}")
     fun findTodo(@Header("authorization") token : String, @Path("id") id : Int) : Call<TodoResponse>
 
-    @PUT("/todo/{id}")
+    @PATCH("/todo/{id}")
     fun modifyTodo(@Header("authorization") token : String, @Path("id") id : Int,@Body request: ModifyTodoRequest) : Call<MessageResponse>
 
     @DELETE("/todo/{id}")

@@ -4,76 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_gradient"
     tools:context=".view.MainActivity">
-
-    <include
-        android:id="@+id/main_toolbar"
-        layout="@layout/tool_bar" />
-
-    <TextView
-        android:id="@+id/toolbar_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="끼리끼리"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
 
 
     <TextView
         android:id="@+id/main_my_team"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:background="@drawable/main_colum"
-        android:backgroundTint="#E8F1FC"
+        android:layout_width="154dp"
+        android:layout_height="154dp"
+        android:layout_marginEnd="44dp"
+        android:background="@drawable/dialog_background"
         android:paddingVertical="10dp"
         android:paddingStart="12dp"
         android:text="내 팀"
+        android:elevation="5dp"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/main_make_team"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.188" />
+        app:layout_constraintVertical_bias="0.74" />
 
     <TextView
         android:id="@+id/main_make_team"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/main_colum"
-        android:backgroundTint="#E8F1FC"
+        android:layout_width="154dp"
+        android:layout_height="154dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="84dp"
+        android:background="@drawable/dialog_background"
         android:paddingVertical="10dp"
         android:paddingStart="12dp"
+        android:elevation="5dp"
         android:text="팀 만들기"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.741"
-        app:layout_constraintStart_toEndOf="@+id/main_my_team"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.189" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/oh"
+        android:layout_width="357dp"
+        android:layout_height="221dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/main_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="184dp"
+        android:layout_height="340dp"
+        android:background="@drawable/main_image"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/main_toolbar"
-        app:layout_constraintStart_toStartOf="@+id/main_toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintEnd_toStartOf="@+id/main_make_team"
+        app:layout_constraintHorizontal_bias="0.406"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.358" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

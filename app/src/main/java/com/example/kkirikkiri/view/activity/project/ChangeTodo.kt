@@ -33,7 +33,10 @@ class ChangeTodo : AppCompatActivity() {
         startDate.setOnClickListener {
             val cal = Calendar.getInstance()
             val startDateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, day ->
-                startDate.text = "${year}-${month}-${day}"
+                if (day < 10 && month + 1 < 10) startDate.text = "${year}-0${month + 1}-0${day}"
+                else if (month + 1 < 10) startDate.text = "${year}-0${month + 1}-${day}"
+                else if (day < 10) startDate.text = "${year}-${month + 1}-0${day}"
+                else startDate.text = "${year}-${month + 1}-${day}"
             }
 
             DatePickerDialog(this, startDateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
@@ -42,7 +45,10 @@ class ChangeTodo : AppCompatActivity() {
         endDate.setOnClickListener {
             val cal = Calendar.getInstance()
             val endDateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, day ->
-                endDate.text = "${year}-${month}-${day}"
+                if (day < 10 && month + 1 < 10) endDate.text = "${year}-0${month + 1}-0${day}"
+                else if (month + 1 < 10) endDate.text = "${year}-0${month + 1}-${day}"
+                else if (day < 10) endDate.text = "${year}-${month + 1}-0${day}"
+                else endDate.text = "${year}-${month + 1}-${day}"
             }
 
             DatePickerDialog(this, endDateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()

@@ -16,8 +16,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="내 팀"
-        android:textColor="@color/black"
+        android:text="나의 팀"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,6 +27,7 @@
         app:layout_constraintVertical_bias="0.022" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="팀원"
@@ -40,66 +41,56 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <View
-        android:id="@+id/team_profile"
-        android:layout_width="86dp"
-        android:layout_height="39dp"
-        android:background="@drawable/teamprofile"
+<!--    <View-->
+<!--        android:id="@+id/team_profile"-->
+<!--        android:layout_width="86dp"-->
+<!--        android:layout_height="39dp"-->
+<!--        android:background="@drawable/teamprofile"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/team_member"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.876"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.737" />-->
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:text="팀 프로필"-->
+<!--        android:textSize="15sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/team_profile"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/team_profile"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/team_profile"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/team_profile" />-->
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="40dp"
+        android:text="팀관리"
+        android:textColor="@color/white"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:elevation="5dp"
+        android:background="@drawable/button_rectangle"
         app:layout_constraintBottom_toTopOf="@+id/team_member"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.876"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.737" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="팀 프로필"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/team_profile"
-        app:layout_constraintEnd_toEndOf="@+id/team_profile"
-        app:layout_constraintStart_toStartOf="@+id/team_profile"
-        app:layout_constraintTop_toTopOf="@+id/team_profile" />
-
-
-    <View
-        android:id="@+id/team_team_manage"
-        android:layout_width="86dp"
-        android:layout_height="39dp"
-        android:background="@drawable/teamprofile"
-        app:layout_constraintBottom_toTopOf="@+id/team_member"
-        app:layout_constraintEnd_toStartOf="@+id/team_profile"
-        app:layout_constraintHorizontal_bias="0.929"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.737" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="팀관리"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/team_team_manage"
-        app:layout_constraintEnd_toEndOf="@+id/team_team_manage"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="@+id/team_team_manage"
-        app:layout_constraintTop_toTopOf="@+id/team_team_manage"
-        app:layout_constraintVertical_bias="0.473" />
+        app:layout_constraintHorizontal_bias="0.723"
+        app:layout_constraintStart_toEndOf="@+id/toolbar_title"
+        app:layout_constraintTop_toBottomOf="@+id/my_team_toolbar"
+        app:layout_constraintVertical_bias="0.35" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/team_member"
         android:layout_width="300dp"
         android:layout_height="158dp"
-        android:background="@drawable/manage_team"
+        android:background="@drawable/select_team_rectangle"
+        android:elevation="5dp"
         android:paddingHorizontal="16dp"
         android:paddingVertical="12dp"
-
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -126,7 +117,12 @@
         android:id="@+id/add_project_button"
         android:layout_width="60dp"
         android:layout_height="30dp"
-        android:background="@drawable/addbtn"
+        android:text="추가"
+        android:elevation="5dp"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:background="@drawable/button_rectangle"
         app:layout_constraintBottom_toTopOf="@+id/project"
         app:layout_constraintEnd_toEndOf="@+id/my_team_toolbar"
         app:layout_constraintHorizontal_bias="0.725"
@@ -138,9 +134,10 @@
         android:id="@+id/project"
         android:layout_width="300dp"
         android:layout_height="230dp"
-        android:background="@drawable/project"
+        android:background="@drawable/select_team_rectangle"
         android:paddingHorizontal="16dp"
         android:paddingVertical="12dp"
+        android:elevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

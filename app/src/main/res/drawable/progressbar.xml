@@ -3,7 +3,7 @@
     <item android:id="@android:id/background">
         <shape>
             <corners android:radius="6dp"/>
-            <solid android:color="#D5D5D5"/>
+            <solid android:color="#ffffff"/>
         </shape>
     </item>
     <item android:id="@android:id/secondaryProgress">
@@ -18,7 +18,7 @@
         <clip>
             <shape>
                 <corners android:radius="6dp"/>
-                <solid android:color="#6799FF"/>
+                <solid android:color="@color/kkirikkiri"/>
             </shape>
         </clip>
     </item>

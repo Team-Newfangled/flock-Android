@@ -31,7 +31,7 @@ interface TeamService {
     @GET("/teams/{id}/waiting")
     fun findWaitingMember(@Header("authorization") token : String, @Path("id") id : Int, @Query("page") page : Int) : Call<FindMembersResponse>
 
-    @GET("/team/{id}")
+    @GET("/teams/{id}")
     fun findRoleById(@Header("authorization") token : String, @Path("id") id : Int) : Call<RoleResponse>
 
 }

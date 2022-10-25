@@ -41,6 +41,18 @@ class Progress : AppCompatActivity() {
         }
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        refresh()
+    }
+
+    private fun refresh() {
+        finish()
+        overridePendingTransition(0,0)
+        startActivity(intent)
+        overridePendingTransition(0,0)
+    }
+
     private fun observe() {
         model.allTodos.observe(this) {
             for (i in it.results) {

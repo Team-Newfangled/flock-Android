@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/dialog_white"
+    android:background="@drawable/dialog_background"
     >
 
     <TextView
@@ -33,9 +33,9 @@
 
     <Button
         android:id="@+id/member_acp"
-        android:layout_width="205dp"
+        android:layout_width="206dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/acp"
+        android:background="@drawable/dialog_accept"
         android:layout_marginTop="40dp"
         android:text="초대하기"
         android:textColor="@color/black"
@@ -49,7 +49,7 @@
         android:id="@+id/member_cancel"
         android:layout_width="205dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/cancel"
+        android:background="@drawable/dialog_cancel"
         android:text="취소"
         android:textColor="@color/black"
         android:textStyle="bold"

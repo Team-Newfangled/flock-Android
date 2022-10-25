@@ -25,16 +25,12 @@ class LoginActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.gitLogin.setOnClickListener {
-
-        }
-
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestServerAuthCode(getString(R.string.test))
             .build()
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
+        mGoogleSignInClient?.signOut()
 
         val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
         { result ->
@@ -60,6 +56,11 @@ class LoginActivity: AppCompatActivity() {
 //            }
         }
 
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        mGoogleSignInClient?.signOut()
     }
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
