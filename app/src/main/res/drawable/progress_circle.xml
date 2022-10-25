@@ -7,7 +7,7 @@
             android:shape="ring"
             android:useLevel="false"
             android:type="sweep">
-            <solid android:color="#9E9E9E" />
+            <solid android:color="#ACCAEE" />
         </shape>
     </item>
 
@@ -16,8 +16,8 @@
             android:fromDegrees="270"
             android:toDegrees="270">
             <shape
-                android:innerRadiusRatio="2"
-                android:thicknessRatio="4"
+                android:innerRadiusRatio="3"
+                android:thicknessRatio="6"
                 android:shape="ring"
                 android:angle="0"
                 android:type="sweep">
