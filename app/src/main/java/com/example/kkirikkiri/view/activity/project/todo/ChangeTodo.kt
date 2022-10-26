@@ -1,4 +1,4 @@
-package com.example.kkirikkiri.view.activity.project
+package com.example.kkirikkiri.view.activity.project.todo
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog

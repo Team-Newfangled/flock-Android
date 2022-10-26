@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kkirikkiri.databinding.ItemProjectBinding
-import com.example.kkirikkiri.view.activity.project.ChangeTodo
+import com.example.kkirikkiri.view.activity.project.todo.ChangeTodo
 import com.example.kkirikkiri.view.recyclerview.myteam.member.TeamMemberProjectItem
 import com.example.kkirikkiri.viewmodel.TodoModel
 
