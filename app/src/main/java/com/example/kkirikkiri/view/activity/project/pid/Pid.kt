@@ -31,10 +31,6 @@ class Pid : AppCompatActivity() {
         binding.pidRecyclerview.layoutManager = LinearLayoutManager(this)
         binding.pidRecyclerview.addItemDecoration(RecyclerDecorationHeight(30))
 
-        binding.textView11.setOnClickListener {
-            Intent(this, WritePid::class.java).run { startActivity(this) }
-            finish()
-        }
         binding.plus.setOnClickListener {
             Intent(this, WritePid::class.java).run { startActivity(this) }
             finish()

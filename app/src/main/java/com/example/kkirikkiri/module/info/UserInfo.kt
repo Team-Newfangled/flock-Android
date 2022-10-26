@@ -6,6 +6,6 @@ object UserInfo {
         var projectId : Int? = null
         var rule : String = "Leader"
 
-        var access_token : String = "Bearer "
-        var refresh_token : String = "Bearer "
+        var access_token : String = ""
+        var refresh_token : String = ""
 }

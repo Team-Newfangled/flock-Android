@@ -41,6 +41,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/select_team_rectangle"
             android:paddingVertical="10dp"
+            android:paddingHorizontal="10dp"
             android:text="내용"
             android:textColor="@color/black"
             android:textSize="15sp"

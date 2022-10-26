@@ -38,10 +38,11 @@ class LoginModel : ViewModel(){
                     if (response.isSuccessful) {
                         Log.e("성공", "성공함")
                         userid.value = response.body()
-                        UserInfo.access_token += response.body()!!.access_token
-                        UserInfo.refresh_token += response.body()!!.refresh_token
+                        UserInfo.access_token = "Bearer " + response.body()!!.access_token
+                        UserInfo.refresh_token = "Bearer " + response.body()!!.refresh_token
                         UserInfo.userId = response.body()!!.id
                         Log.e("token", response.body()!!.access_token)
+                        Log.e("token", UserInfo.access_token)
                     }
                     else Log.e("실패", response.errorBody().toString() + code+ "  ," + response.message() + ", " + response.code())
                 }
@@ -85,7 +86,7 @@ class LoginModel : ViewModel(){
                 if (response.isSuccessful) {
                     teams.value = response.body()
                 } else {
-                    Log.e("팀 실패", response.message() + " " + response.code())
+                    Log.e("팀 실패", response.raw().toString())
                 }
             }
 

@@ -21,14 +21,12 @@ class PidView : AppCompatActivity() {
 
         val intent = intent
         val id = intent.getIntExtra("id", 0)
-
         model.findComment(id, 0)
         observe()
         val title = intent.getStringExtra("title")
         val writer = intent.getStringExtra("writeId")
 
         binding.pidViewContent.text = title
-        binding.pidViewWriter.text = writer
     }
 
     private fun observe() {

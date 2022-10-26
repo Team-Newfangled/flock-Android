@@ -8,6 +8,7 @@ import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivitySelectTeamBinding
 import com.example.kkirikkiri.module.dto.account.response.ResultResponse
 import com.example.kkirikkiri.module.info.UserInfo
+import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.myteam.select.SelectTeamRecyclerView
 import com.example.kkirikkiri.viewmodel.LoginModel
 
@@ -25,6 +26,7 @@ class SelectTeamActivity : AppCompatActivity() {
         observe()
 
         binding.selectTeam.layoutManager = LinearLayoutManager(this)
+        binding.selectTeam.addItemDecoration(RecyclerDecorationHeight(30))
     }
 
     fun observe() {

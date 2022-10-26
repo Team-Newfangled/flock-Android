@@ -41,7 +41,7 @@
         android:id="@+id/select_team"
         android:layout_width="341dp"
         android:layout_height="640dp"
-        android:paddingHorizontal="30dp"
+        android:paddingHorizontal="10dp"
         android:paddingVertical="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/include"
         app:layout_constraintEnd_toEndOf="parent"

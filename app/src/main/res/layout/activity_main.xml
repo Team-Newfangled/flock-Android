@@ -14,47 +14,48 @@
         android:layout_height="154dp"
         android:layout_marginEnd="44dp"
         android:background="@drawable/dialog_background"
+        android:elevation="5dp"
         android:paddingVertical="10dp"
         android:paddingStart="12dp"
         android:text="내 팀"
-        android:elevation="5dp"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/main_make_team"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.74" />
+        app:layout_constraintVertical_bias="0.873" />
 
     <TextView
         android:id="@+id/main_make_team"
         android:layout_width="154dp"
         android:layout_height="154dp"
         android:layout_marginEnd="44dp"
-        android:layout_marginBottom="84dp"
         android:background="@drawable/dialog_background"
+        android:elevation="5dp"
         android:paddingVertical="10dp"
         android:paddingStart="12dp"
-        android:elevation="5dp"
         android:text="팀 만들기"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.908" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="357dp"
         android:layout_height="221dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/main_logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/imageView3"
         android:layout_width="184dp"
         android:layout_height="340dp"
         android:background="@drawable/main_image"

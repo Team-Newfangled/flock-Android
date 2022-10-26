@@ -94,7 +94,7 @@ class TeamModel : ViewModel() {
                        Log.e("팀", "팀 추가 성공")
                        teamId.value = response.body()
                    }
-                   else Log.e("팀", "팀 추가 실패 " + response.message() + ", " + response.code() + ", "+ response.errorBody())
+                   else Log.e("팀", "팀 추가 실패 " + response.raw().toString())
                 }
 
                 override fun onFailure(call: Call<CreateTeamResponse>, t: Throwable) {
