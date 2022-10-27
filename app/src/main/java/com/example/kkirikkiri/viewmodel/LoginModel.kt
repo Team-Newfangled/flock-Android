@@ -3,15 +3,13 @@ package com.example.kkirikkiri.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.kkirikkiri.module.RetrofitImpl
-import com.example.kkirikkiri.module.dto.account.response.GoogleLoginResponse
-import com.example.kkirikkiri.module.dto.account.response.ResultResponse
+import com.example.kkirikkiri.module.network.RetrofitImpl
+import com.example.kkirikkiri.module.network.dto.account.response.FindUserPictureResponse
+import com.example.kkirikkiri.module.network.dto.account.response.GoogleLoginResponse
+import com.example.kkirikkiri.module.network.dto.account.response.ResultResponse
 import com.example.kkirikkiri.module.google.GoogleResponse
 import com.example.kkirikkiri.module.google.GoogleRetrofitImpl
 import com.example.kkirikkiri.module.info.UserInfo
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -41,6 +39,8 @@ class LoginModel : ViewModel(){
                         UserInfo.access_token = "Bearer " + response.body()!!.access_token
                         UserInfo.refresh_token = "Bearer " + response.body()!!.refresh_token
                         UserInfo.userId = response.body()!!.id
+                        findName("Bearer " + response.body()!!.access_token, response.body()!!.id)
+
                         Log.e("token", response.body()!!.access_token)
                         Log.e("token", UserInfo.access_token)
                     }
@@ -97,6 +97,20 @@ class LoginModel : ViewModel(){
         })
     }
 
+    private fun findName(token : String, userId: Int) {
+        service.findUserPicture(token , userId).enqueue(object : Callback<FindUserPictureResponse>{
+            override fun onResponse(
+                call: Call<FindUserPictureResponse>,
+                response: Response<FindUserPictureResponse>
+            ) {
+                if (response.isSuccessful) UserInfo.UserName = response.body()!!.nickname
+                else Log.e("실패", response.raw().toString())
+            }
 
+            override fun onFailure(call: Call<FindUserPictureResponse>, t: Throwable) {
+                Log.e("실패", t.printStackTrace().toString())
+            }
 
+        })
+    }
 }

@@ -53,6 +53,7 @@ class Project : AppCompatActivity() {
 
         binding.pidRecyclerview.layoutManager = LinearLayoutManager(this)
         binding.pidRecyclerview.addItemDecoration(RecyclerDecorationHeight(15))
+        binding.pidRecyclerview.setOnClickListener { startActivity(Intent(applicationContext, Progress::class.java)) }
     }
 
     override fun onRestart() {

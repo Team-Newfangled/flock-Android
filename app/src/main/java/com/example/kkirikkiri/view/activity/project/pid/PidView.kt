@@ -8,9 +8,12 @@ import android.os.Bundle
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityPidViewBinding
+import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.pid.comment.CommentAdapter
 import com.example.kkirikkiri.viewmodel.BoardModel
 import com.example.kkirikkiri.viewmodel.TodoModel
@@ -31,10 +34,10 @@ class PidView : AppCompatActivity() {
         model.findComment(id, 0)
         observe()
         val title = intent.getStringExtra("title")
-        val writer = intent.getStringExtra("writeId")
-
 
         binding.pidViewContent.text = title
+        binding.pidViewComment.layoutManager = LinearLayoutManager(this)
+        binding.pidViewComment.addItemDecoration(RecyclerDecorationHeight(20))
 
         binding.writePidComment.setOnClickListener {
             val dialog = Dialog(this)
@@ -51,8 +54,11 @@ class PidView : AppCompatActivity() {
             acp.setOnClickListener {
                 if (text.text != "") {
                     model.writeComment(id, text.text.toString())
+                    dialog.dismiss()
+                    refresh()
+                } else {
+                    Toast.makeText(this, "댓글을 입력해주세요",Toast.LENGTH_SHORT).show()
                 }
-                dialog.dismiss()
             }
             cancel.setOnClickListener { dialog.dismiss() }
         }
@@ -62,5 +68,12 @@ class PidView : AppCompatActivity() {
         model.findCommentData.observe(this) {
             binding.pidViewComment.adapter = CommentAdapter(it)
         }
+    }
+
+    private fun refresh() {
+        finish()
+        overridePendingTransition(0,0)
+        startActivity(intent)
+        overridePendingTransition(0,0)
     }
 }

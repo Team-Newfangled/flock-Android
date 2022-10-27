@@ -1,21 +1,19 @@
 package com.example.kkirikkiri.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.kkirikkiri.module.RetrofitImpl
-import com.example.kkirikkiri.module.dto.ApproveRequest
-import com.example.kkirikkiri.module.dto.NameRequest
-import com.example.kkirikkiri.module.dto.team.response.*
+import com.example.kkirikkiri.module.network.RetrofitImpl
+import com.example.kkirikkiri.module.network.dto.ApproveRequest
+import com.example.kkirikkiri.module.network.dto.NameRequest
 import com.example.kkirikkiri.module.info.UserInfo
+import com.example.kkirikkiri.module.network.dto.team.response.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Path
 
 class TeamModel : ViewModel() {
 
@@ -62,7 +60,7 @@ class TeamModel : ViewModel() {
         }
     }
 
-    fun addProject(id : Int, name : NameRequest ) {
+    fun addProject(id : Int, name : NameRequest) {
         CoroutineScope(Dispatchers.IO).launch {
             service.addProject(UserInfo.access_token, id, name).enqueue(object : Callback<AddProjectResponse>{
                 override fun onResponse(

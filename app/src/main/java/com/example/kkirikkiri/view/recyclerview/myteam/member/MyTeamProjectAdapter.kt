@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -17,8 +16,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ItemProjectBinding
-import com.example.kkirikkiri.module.dto.NameRequest
-import com.example.kkirikkiri.module.info.UserInfo
+import com.example.kkirikkiri.module.network.dto.NameRequest
 import com.example.kkirikkiri.view.activity.project.Project
 import com.example.kkirikkiri.viewmodel.ProjectModel
 

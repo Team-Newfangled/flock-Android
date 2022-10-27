@@ -3,9 +3,8 @@ package com.example.kkirikkiri.view.activity.project
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityAddProgressBinding
-import com.example.kkirikkiri.module.dto.ContentRequest
+import com.example.kkirikkiri.module.network.dto.ContentRequest
 import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.viewmodel.TodoModel
 
@@ -24,5 +23,7 @@ class AddProgressActivity : AppCompatActivity() {
             Intent(this, Progress::class.java).run { startActivity(this) }
             finish()
         }
+
+        binding.addProgressBack.root.setOnClickListener { finish() }
     }
 }

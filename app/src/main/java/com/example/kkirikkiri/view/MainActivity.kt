@@ -9,11 +9,8 @@ import android.os.Bundle
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
-import androidx.appcompat.widget.Toolbar
-import androidx.databinding.DataBindingUtil
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityMainBinding
-import com.example.kkirikkiri.module.dto.NameRequest
 import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.view.activity.team.SelectTeamActivity
 import com.example.kkirikkiri.viewmodel.*

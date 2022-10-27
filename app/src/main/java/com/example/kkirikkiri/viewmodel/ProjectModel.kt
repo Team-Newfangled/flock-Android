@@ -2,15 +2,14 @@ package com.example.kkirikkiri.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.kkirikkiri.module.RetrofitImpl
-import com.example.kkirikkiri.module.dto.ContentRequest
-import com.example.kkirikkiri.module.dto.MessageResponse
-import com.example.kkirikkiri.module.dto.NameRequest
-import com.example.kkirikkiri.module.dto.project.response.FindProjectResponse
+import com.example.kkirikkiri.module.network.RetrofitImpl
+import com.example.kkirikkiri.module.network.dto.ContentRequest
+import com.example.kkirikkiri.module.network.dto.MessageResponse
+import com.example.kkirikkiri.module.network.dto.NameRequest
+import com.example.kkirikkiri.module.network.dto.project.response.FindProjectResponse
 import com.example.kkirikkiri.module.info.UserInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback

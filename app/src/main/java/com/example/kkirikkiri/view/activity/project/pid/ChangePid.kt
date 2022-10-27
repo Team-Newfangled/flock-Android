@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityWritePidBinding
-import com.example.kkirikkiri.module.dto.ContentRequest
+import com.example.kkirikkiri.module.network.dto.ContentRequest
 import com.example.kkirikkiri.viewmodel.BoardModel
 
 class ChangePid : AppCompatActivity() {

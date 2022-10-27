@@ -1,16 +1,15 @@
 package com.example.kkirikkiri.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.kkirikkiri.module.RetrofitImpl
-import com.example.kkirikkiri.module.dto.ContentRequest
-import com.example.kkirikkiri.module.dto.MessageResponse
-import com.example.kkirikkiri.module.dto.board.BoardResponse
-import com.example.kkirikkiri.module.dto.board.CommentResponse
-import com.example.kkirikkiri.module.dto.board.response.FindBoardPageResponse
-import com.example.kkirikkiri.module.dto.board.response.FindCommentsResponse
+import com.example.kkirikkiri.module.network.RetrofitImpl
+import com.example.kkirikkiri.module.network.dto.ContentRequest
+import com.example.kkirikkiri.module.network.dto.MessageResponse
+import com.example.kkirikkiri.module.network.dto.board.BoardResponse
+import com.example.kkirikkiri.module.network.dto.board.CommentResponse
+import com.example.kkirikkiri.module.network.dto.board.response.FindBoardPageResponse
+import com.example.kkirikkiri.module.network.dto.board.response.FindCommentsResponse
 import com.example.kkirikkiri.module.info.UserInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,7 +35,7 @@ class BoardModel : ViewModel() {
                         Log.e("성공", response.body().toString())
                         findCommentData.value = response.body()?.results
                     }
-                    else Log.e("실패", "접속은 했음")
+                    else Log.e("실패", "접속은 했음, ${response.raw()}")
                 }
 
                 override fun onFailure(call: Call<FindCommentsResponse>, t: Throwable) {
@@ -73,8 +72,10 @@ class BoardModel : ViewModel() {
                     call: Call<CommentResponse>,
                     response: Response<CommentResponse>
                 ) {
-                    if (response.isSuccessful) Log.e("성공", response.body().toString())
-                    else Log.e("실패", "접속은 했음")
+                    if (response.isSuccessful) {
+                        Log.e("성공", response.body().toString())
+                    }
+                    else Log.e("실패", "접속은 했음, ${response.raw()}")
                 }
 
                 override fun onFailure(call: Call<CommentResponse>, t: Throwable) {

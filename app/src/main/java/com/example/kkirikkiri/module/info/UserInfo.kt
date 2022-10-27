@@ -1,6 +1,7 @@
 package com.example.kkirikkiri.module.info
 
 object UserInfo {
+        var UserName : String = ""
         var userId : Int? = null
         var teamId : Int? = null
         var projectId : Int? = null

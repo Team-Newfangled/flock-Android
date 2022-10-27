@@ -2,20 +2,11 @@ package com.example.kkirikkiri.view.recyclerview.project.projectpid
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.Window
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ItemPidBinding
-import com.example.kkirikkiri.module.dto.NameRequest
 import com.example.kkirikkiri.view.activity.project.pid.ChangePid
 import com.example.kkirikkiri.view.activity.project.pid.PidView
 import com.example.kkirikkiri.view.recyclerview.pid.PidItem

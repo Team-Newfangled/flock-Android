@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivitySelectTeamBinding
-import com.example.kkirikkiri.module.dto.account.response.ResultResponse
 import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.myteam.select.SelectTeamRecyclerView
