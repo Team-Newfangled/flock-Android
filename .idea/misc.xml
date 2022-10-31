@@ -37,11 +37,13 @@
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/activity_write_pid.xml" value="0.33" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/backbutton.xml" value="0.29635416666666664" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/change_todo_activity.xml" value="0.16" />
+        <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/control_todo_item.xml" value="0.13697916666666668" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/dialog.xml" value="0.33" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/dialog_addmember.xml" value="0.29739583333333336" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/dialog_addteam.xml" value="0.25" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/dialog_comment.xml" value="0.2921875" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/item_comment.xml" value="0.2921875" />
+        <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/item_control_todo.xml" value="0.5" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/item_deadline.xml" value="0.5" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/item_member.xml" value="0.25" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/item_pid.xml" value="0.25" />

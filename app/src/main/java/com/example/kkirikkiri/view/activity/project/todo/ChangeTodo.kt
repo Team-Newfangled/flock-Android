@@ -8,7 +8,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kkirikkiri.R
+import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.module.network.dto.todo.request.ModifyTodoRequest
+import com.example.kkirikkiri.module.network.room.RoomImpl
+import com.example.kkirikkiri.module.network.room.entity.TodoPercent
 import com.example.kkirikkiri.viewmodel.TodoModel
 import java.util.*
 
@@ -22,13 +25,15 @@ class ChangeTodo : AppCompatActivity() {
         setContentView(R.layout.change_todo_activity)
 
         val id = intent.getIntExtra("id", 0)
+        val percent = intent.getIntExtra("percent", 0)
+        val roomId = intent.getLongExtra("roomId",0)
+
+        val helper = RoomImpl.getHelper(this)
 
         val startDate = findViewById<TextView>(R.id.edit_start_date)
         val endDate = findViewById<TextView>(R.id.edit_end_date)
         val todoName = findViewById<EditText>(R.id.edit_todo_name)
         val write = findViewById<TextView>(R.id.edit_todo)
-
-
 
         startDate.setOnClickListener {
             val cal = Calendar.getInstance()
@@ -58,6 +63,16 @@ class ChangeTodo : AppCompatActivity() {
             if (startDate.text.isEmpty() || endDate.text.isEmpty() || todoName.text.isEmpty()) Toast.makeText(this, "내용을 빠짐없이 다 채워주세요!", Toast.LENGTH_SHORT).show()
 
             model.modifyTodo(id, ModifyTodoRequest(todoName.text.toString(), endDate.text.toString(), startDate.text.toString()))
+
+            val todo = TodoPercent(
+                UserInfo.teamId!!,
+                UserInfo.projectId!!,
+                todoName.text.toString(),
+                UserInfo.UserName,
+                percent)
+
+            todo.id = roomId
+            helper.todoPercentDao().insert(todo)
             finish()
         }
     }

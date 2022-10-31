@@ -72,7 +72,7 @@ class MyTeam : AppCompatActivity() {
 
         model.projects.observe(this) {
             for (i in it) {
-                val entity = TeamMemberProjectItem(i.name,1,i.id)
+                val entity = TeamMemberProjectItem(i.name,1,i.id, 0)
                 list1.add(entity)
                 binding.project.adapter = MyTeamProjectAdapter(list1, intent, this)
             }

@@ -7,8 +7,6 @@ import com.example.kkirikkiri.module.network.RetrofitImpl
 import com.example.kkirikkiri.module.network.dto.account.response.FindUserPictureResponse
 import com.example.kkirikkiri.module.network.dto.account.response.GoogleLoginResponse
 import com.example.kkirikkiri.module.network.dto.account.response.ResultResponse
-import com.example.kkirikkiri.module.google.GoogleResponse
-import com.example.kkirikkiri.module.google.GoogleRetrofitImpl
 import com.example.kkirikkiri.module.info.UserInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,11 +17,7 @@ import retrofit2.Response
 
 class LoginModel : ViewModel(){
     private val service = RetrofitImpl.accountService
-    private val google = GoogleRetrofitImpl.service
-
-
     var userid = MutableLiveData<GoogleLoginResponse?>()
-
      // code의 %2F는 /로 치완해줘야함
     fun signInResult(code : String) {
 //        val account = task.getResult(ApiException::class.java)
@@ -56,23 +50,6 @@ class LoginModel : ViewModel(){
 
     }
 
-
-    fun googleGetToken(state: String, redirectUri:String, clintId:String) {
-        google.getCode(state, redirectUri, clintId).enqueue(object : Callback<GoogleResponse>{
-            override fun onResponse(
-                call: Call<GoogleResponse>,
-                response: Response<GoogleResponse>
-            ) {
-                if (response.isSuccessful) Log.e("token",response.body()!!.access_token.path.toString())
-                else Log.e("실패", "onResponse는 성공")
-            }
-
-            override fun onFailure(call: Call<GoogleResponse>, t: Throwable) {
-                Log.e("실패", "그냥 연결 실패함 ㅇㅇ" + t.message)
-            }
-
-        })
-    }
 
 
     val teams = MutableLiveData<ResultResponse>()

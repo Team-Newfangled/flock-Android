@@ -6,4 +6,72 @@
     android:layout_height="match_parent"
     tools:context=".view.activity.project.todo.ControlTodo">
 
+    <include
+        android:id="@+id/include4"
+        layout="@layout/tool_bar" />
+
+    <include
+        android:id="@+id/todo_back_button"
+        layout="@layout/backbutton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/include4"
+        app:layout_constraintStart_toStartOf="@+id/include4"
+        app:layout_constraintTop_toTopOf="@+id/include4" />
+
+    <TextView
+        android:id="@+id/control_todo_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        android:text="저장"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.726"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/item_todo_name"
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:background="@drawable/select_team_rectangle"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="10dp"
+        android:layout_marginTop="20dp"
+        android:text="대충 할일"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include4" />
+
+    <SeekBar
+        android:id="@+id/item_percent"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:max="100"
+        app:layout_constraintBottom_toBottomOf="@+id/item_todo_name"
+        app:layout_constraintEnd_toEndOf="@+id/item_todo_name"
+        app:layout_constraintStart_toStartOf="@+id/item_todo_name"
+        app:layout_constraintTop_toTopOf="@+id/item_todo_name" />
+
+    <TextView
+        android:id="@+id/item_control_percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/item_percent"
+        app:layout_constraintStart_toStartOf="@+id/item_percent"
+        app:layout_constraintTop_toBottomOf="@+id/item_percent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kkirikkiri.databinding.ActivityProjectBinding
 import com.example.kkirikkiri.module.info.UserInfo
+import com.example.kkirikkiri.module.network.room.RoomImpl
 import com.example.kkirikkiri.view.activity.project.pid.Pid
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationWidth
@@ -54,6 +55,19 @@ class Project : AppCompatActivity() {
         binding.pidRecyclerview.layoutManager = LinearLayoutManager(this)
         binding.pidRecyclerview.addItemDecoration(RecyclerDecorationHeight(15))
         binding.pidRecyclerview.setOnClickListener { startActivity(Intent(applicationContext, Progress::class.java)) }
+
+        val helper = RoomImpl.getHelper(this)
+        val roomTodo = helper.todoPercentDao().getAllByProject(UserInfo.projectId!!)
+
+        if (roomTodo.isNotEmpty()) {
+            var sum = 0
+            for (i in roomTodo) {
+                sum += i.percent
+            }
+            sum /= roomTodo.size
+            binding.progressBarAll.progress = sum
+            binding.progressPercent.text = "$sum%"
+        }
     }
 
     override fun onRestart() {

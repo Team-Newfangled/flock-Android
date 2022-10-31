@@ -10,12 +10,15 @@ import com.example.kkirikkiri.module.network.room.entity.TodoPercent
 
 @Dao
 interface TodoDao {
-    @Query("select * from percent")
-    fun getAll() : List<TodoPercent>
+    @Query("select * from percent where projectId = :project")
+    fun getAllByProject(project : Int) : List<TodoPercent>
+
+    @Query("select * from percent where id = :id")
+    fun getTodoById(id : Long) : TodoPercent
 
     @Insert(onConflict = REPLACE)
     fun insert(memo: TodoPercent)
 
-    @Delete
-    fun delete(memo: TodoPercent)
+    @Query("delete from percent where id = :id")
+    fun delete(id : Long)
 }
