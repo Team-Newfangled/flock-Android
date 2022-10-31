@@ -5,7 +5,7 @@ object UserInfo {
         var userId : Int? = null
         var teamId : Int? = null
         var projectId : Int? = null
-        var rule : String = "Leader"
+        var rule : String = "Member"
 
         var access_token : String = ""
         var refresh_token : String = ""

@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kkirikkiri.calculater.Calculater
 import com.example.kkirikkiri.databinding.ActivityProgressBinding
 import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.module.network.room.RoomImpl
@@ -48,12 +49,8 @@ class Progress : AppCompatActivity() {
         }
 
         if (roomTodo.isNotEmpty()) {
-            var sum = 0
-            for (i in roomTodo) {
-                sum += i.percent
-            }
+            val sum = Calculater.calculate(roomTodo)
 
-            sum /= roomTodo.size
             binding.progressProjectCircle.progress = sum
             binding.progressProjectPercent.text = "$sum%"
         }

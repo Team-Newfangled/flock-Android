@@ -51,11 +51,7 @@ class LoginActivity: AppCompatActivity() {
         binding.googleLogin.setOnClickListener {
             val signInIntent: Intent = mGoogleSignInClient!!.signInIntent
             launcher.launch(signInIntent)
-//            mGoogleSignInClient!!.silentSignIn().addOnCompleteListener {
-//                handleSignInResult(it)
-//            }
         }
-
     }
 
     override fun onRestart() {

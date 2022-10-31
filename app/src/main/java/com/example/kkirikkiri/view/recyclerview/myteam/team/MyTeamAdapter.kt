@@ -6,10 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kkirikkiri.Category
+import com.example.kkirikkiri.category.Category
 import com.example.kkirikkiri.databinding.ItemMemberBinding
 import com.example.kkirikkiri.module.info.UserInfo
-import com.example.kkirikkiri.viewmodel.TeamJoinModel
 import com.example.kkirikkiri.viewmodel.TeamModel
 
 class MyTeamAdapter(var listData : List<TeamMemberItem>, private val intent: Intent, private val activity: Activity) : RecyclerView.Adapter<MyTeamAdapter.TeamViewHolder>() {

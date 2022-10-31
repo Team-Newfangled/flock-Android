@@ -1,4 +1,4 @@
-package com.example.kkirikkiri
+package com.example.kkirikkiri.category
 
 class Category {
     companion object {
