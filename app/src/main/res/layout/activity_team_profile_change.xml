@@ -11,44 +11,57 @@
         android:id="@+id/team_profile_change_toolbar"
         />
 
-    <TextView
-        android:id="@+id/toolbar_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="팀 프로필"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+    <include
+        android:id="@+id/add_project_back"
+        layout="@layout/backbutton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/team_profile_change_toolbar"
+        app:layout_constraintStart_toStartOf="@+id/team_profile_change_toolbar"
+        app:layout_constraintTop_toTopOf="@+id/team_profile_change_toolbar" />
 
     <ImageView
-        android:id="@+id/team_profile_image_change"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/back"
+        android:id="@+id/team_profile_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/select_team_rectangle"
+        android:elevation="5dp"
         app:layout_constraintBottom_toTopOf="@+id/team_profile_text_change"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.858"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.576" />
+        app:layout_constraintTop_toBottomOf="@+id/team_profile_change_toolbar"
+        android:layout_marginStart="30dp"
+        />
 
 
     <EditText
         android:id="@+id/team_profile_text_change"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/back"
+        android:layout_width="350dp"
+        android:layout_height="400dp"
+        android:hint="내용 입력"
+        android:paddingHorizontal="20dp"
+        android:gravity="top"
+        android:paddingTop="20dp"
+        android:background="@drawable/select_team_rectangle"
+        android:elevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/team_profile_change_toolbar"
         app:layout_constraintVertical_bias="0.735" />
+
+    <TextView
+        android:id="@+id/edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="작성"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/team_profile_change_toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/team_profile_change_toolbar"
+        app:layout_constraintTop_toTopOf="@+id/team_profile_change_toolbar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

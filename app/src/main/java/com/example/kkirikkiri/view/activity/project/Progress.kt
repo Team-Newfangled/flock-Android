@@ -36,7 +36,7 @@ class Progress : AppCompatActivity() {
         helper = RoomImpl.getHelper(this)
         val roomTodo = helper?.todoPercentDao()?.getAllByProject(UserInfo.projectId!!)
 
-        model.findAllTodos(UserInfo.projectId!!, UserInfo.userId!!, 0)
+        model.findAllTodos(UserInfo.projectId!!, 0)
 
         observe(roomTodo!!)
 

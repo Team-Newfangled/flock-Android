@@ -20,7 +20,10 @@ interface TodoService {
     fun modifyColor(@Header("authorization") token : String, @Path("project-id") projectId : Int, @Path("todo-id") todoId : Int,@Body request: ContentRequest) : Call<MessageResponse>
 
     @GET("/projects/{project-id}/team-member/{user-id}/todo?")
-    fun findAllTodos(@Header("authorization") token : String, @Path("project-id") projectId: Int, @Path("user-id") userId: Int, @Query("page") page: Int) : Call<FindAllTodosResponse>
+    fun findAllTodosByMember(@Header("authorization") token : String, @Path("project-id") projectId: Int, @Path("user-id") userId: Int, @Query("page") page: Int) : Call<FindAllTodosResponse>
+
+    @GET("/projects/{id}/todos")
+    fun findAllTodos(@Header("authorization") token : String, @Path("project-id") projectId: Int, @Query("page") page: Int) : Call<FindAllTodosResponse>
 
     @GET("/todo/{id}")
     fun findTodo(@Header("authorization") token : String, @Path("id") id : Int) : Call<TodoResponse>

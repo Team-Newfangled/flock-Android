@@ -40,9 +40,8 @@ class MyTeam : AppCompatActivity() {
 
         observe()
 
-        binding.teamTeamManage.setOnClickListener {
-            startActivity(Intent(applicationContext, TeamManage::class.java).putExtra("id", id))
-        }
+        binding.teamTeamManage.setOnClickListener { startActivity(Intent(applicationContext, TeamManage::class.java).putExtra("id", id)) }
+//        binding.teamTeamProfile.setOnClickListener { startActivity(Intent(applicationContext, TeamProfile::class.java)) }
 
         binding.teamMember.layoutManager = LinearLayoutManager(this)
         binding.teamMember.addItemDecoration(RecyclerDecorationHeight(30))

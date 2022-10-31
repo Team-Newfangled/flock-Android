@@ -88,9 +88,9 @@ class TodoModel : ViewModel() {
 
     val allTodos = MutableLiveData<FindAllTodosResponse>()
 
-    fun findAllTodos(projectId: Int, userId : Int, page : Int) {
+    fun findAllTodos(projectId: Int, page : Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.findAllTodos(UserInfo.access_token, projectId, userId, page).enqueue(object : Callback<FindAllTodosResponse>{
+            service.findAllTodos(UserInfo.access_token, projectId, page).enqueue(object : Callback<FindAllTodosResponse>{
                 override fun onResponse(
                     call: Call<FindAllTodosResponse>,
                     response: Response<FindAllTodosResponse>
