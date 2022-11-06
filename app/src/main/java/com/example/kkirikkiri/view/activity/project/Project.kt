@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kkirikkiri.calculater.Calculater
 import com.example.kkirikkiri.databinding.ActivityProjectBinding
 import com.example.kkirikkiri.module.info.UserInfo
-import com.example.kkirikkiri.module.network.room.RoomImpl
 import com.example.kkirikkiri.view.activity.project.pid.Pid
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationWidth
@@ -36,6 +34,7 @@ class Project : AppCompatActivity() {
         setContentView(binding.root)
         deadLineList.clear()
         pidList.clear()
+        todoModel.findAllTodos(intent.getIntExtra("id",0), 0)
 
         UserInfo.projectId = intent.getIntExtra("id", 0)
 
@@ -44,6 +43,8 @@ class Project : AppCompatActivity() {
         model.findBoardPage(intent.getIntExtra("id",0), 0)
 
         observe()
+        binding.toolbarTitle.text = intent.getStringExtra("name")
+
         binding.pid.setOnClickListener{ startActivity(Intent(applicationContext, Pid::class.java)) }
         binding.textView10.setOnClickListener{ startActivity(Intent(applicationContext, Progress::class.java)) }
         binding.textView4.setOnClickListener{ startActivity(Intent(applicationContext, Progress::class.java)) }
@@ -57,20 +58,19 @@ class Project : AppCompatActivity() {
         binding.pidRecyclerview.addItemDecoration(RecyclerDecorationHeight(15))
         binding.pidRecyclerview.setOnClickListener { startActivity(Intent(applicationContext, Progress::class.java)) }
 
-        val helper = RoomImpl.getHelper(this)
-        val roomTodo = helper.todoPercentDao().getAllByProject(UserInfo.projectId!!)
 
-        if (roomTodo.isNotEmpty()) {
-            val sum = Calculater.calculate(roomTodo)
 
-            binding.progressBarAll.progress = sum
-            binding.progressPercent.text = "$sum%"
-        }
     }
 
     override fun onRestart() {
         super.onRestart()
         Log.e("restart", "restart")
+        deadLineList.clear()
+        pidList.clear()
+        todoModel.findDeadLines(intent.getIntExtra("id",0))
+        model.findBoardPage(intent.getIntExtra("id",0), 0)
+        todoModel.findAllTodos(intent.getIntExtra("id",0), 0)
+        observe()
         refresh()
     }
 
@@ -99,6 +99,16 @@ class Project : AppCompatActivity() {
                 deadLineList.add(DeadLineItem(((end?.minus(today))?.div((24 * 60 * 60 * 1000))).toString(), i.content, i.id ))
                 binding.deadline.adapter = DeadLineAdapter(deadLineList, this)
             }
+        }
+
+        todoModel.allTodos.observe(this) {
+            var sum = 0;
+            for (i in it.results) {
+                sum += i.percent
+            }
+            sum /= it.results.size
+            binding.progressPercent.text = "${sum}%"
+            binding.progressBarAll.progress = sum
         }
     }
 

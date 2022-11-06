@@ -19,18 +19,17 @@ class PartProgressAdapter(val list : List<TeamMemberProjectItem>, val intent: In
     inner class Holder(val binding : ItemProjectBinding, val intent: Intent, val activity: Activity) : RecyclerView.ViewHolder(binding.root) {
         private val arrayItem = arrayOf("수정", "삭제")
         private val model =  TodoModel()
-        private val helper = RoomImpl.getHelper(activity.applicationContext)
 
         @SuppressLint("SetTextI18n")
         fun setPartProgress(item : TeamMemberProjectItem) {
             binding.projectId.text = item.id.toString()
             binding.itemProjectPercent.text = "${item.percent}%"
             binding.itemProjectName.text = item.name
-            binding.roomId.text = item.roomId.toString()
 
             itemView.setOnClickListener {
                 Intent(itemView.context, ControlTodo::class.java)
-                    .putExtra("id", item.roomId)
+                    .putExtra("id", item.id)
+                    .putExtra("name", item.name)
                     .putExtra("percent", item.percent)
                     .run { itemView.context.startActivity(this) }
             }
@@ -43,13 +42,11 @@ class PartProgressAdapter(val list : List<TeamMemberProjectItem>, val intent: In
                             Intent(itemView.context, ChangeTodo::class.java)
                                 .putExtra("id", item.id)
                                 .putExtra("percent", item.percent)
-                                .putExtra("roomId", item.roomId)
                                 .run { itemView.context.startActivity(this) }
                             dialog.dismiss()
                         }
                         1 -> {
                             model.deleteTodo(item.id)
-                            helper.todoPercentDao().delete(item.roomId!!)
                             refresh()
                             dialog.dismiss()
                         }

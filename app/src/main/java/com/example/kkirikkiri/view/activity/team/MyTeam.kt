@@ -34,14 +34,16 @@ class MyTeam : AppCompatActivity() {
 
         val intent = intent
         val id = intent.getIntExtra("id", 0)
+        val name = intent.getStringExtra("name")
         model.getRole(id)
         model.getTeamMember(id, 0)
-        model.getProject(id, 0)
+        model.getProjectDefault(id, 0)
 
         observe()
 
         binding.teamTeamManage.setOnClickListener { startActivity(Intent(applicationContext, TeamManage::class.java).putExtra("id", id)) }
 //        binding.teamTeamProfile.setOnClickListener { startActivity(Intent(applicationContext, TeamProfile::class.java)) }
+        binding.toolbarTitle.text = name
 
         binding.teamMember.layoutManager = LinearLayoutManager(this)
         binding.teamMember.addItemDecoration(RecyclerDecorationHeight(30))
@@ -69,9 +71,9 @@ class MyTeam : AppCompatActivity() {
             }
         }
 
-        model.projects.observe(this) {
+        model.projectDefault.observe(this) {
             for (i in it) {
-                val entity = TeamMemberProjectItem(i.name,1,i.id, 0)
+                val entity = TeamMemberProjectItem(i.name,0,i.id)
                 list1.add(entity)
                 binding.project.adapter = MyTeamProjectAdapter(list1, intent, this)
             }

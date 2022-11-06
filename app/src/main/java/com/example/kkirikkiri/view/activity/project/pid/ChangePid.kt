@@ -14,13 +14,18 @@ class ChangePid : AppCompatActivity() {
     private val model = BoardModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_write_pid)
+        setContentView(binding.root)
 
         val id = intent.getIntExtra("id", 0)
+        val name = intent.getStringExtra("name")
 
         binding.writePid.setOnClickListener {
-            model.modifyBoard(id, ContentRequest(binding.pidWriteContent.text.toString()))
+            if (binding.pidWriteContent.text.isEmpty()) {
+                model.modifyBoard(id, ContentRequest(name.toString()))
+            }else model.modifyBoard(id, ContentRequest(binding.pidWriteContent.text.toString()))
             finish()
         }
+
+        binding.addProjectBack.root.setOnClickListener { finish() }
     }
 }

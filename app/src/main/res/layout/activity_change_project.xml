@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.project.ChangeProjectActivity">
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/tool_bar" />
+
+    <include
+        android:id="@+id/add_project_back"
+        layout="@layout/backbutton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/include2"
+        app:layout_constraintStart_toStartOf="@+id/include2"
+        app:layout_constraintTop_toTopOf="@+id/include2" />
+
+    <TextView
+        android:id="@+id/complete_project_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="완료"
+        android:layout_marginEnd="12dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/include2"
+        app:layout_constraintEnd_toEndOf="@+id/include2"
+        app:layout_constraintTop_toTopOf="@+id/include2" />
+
+    <EditText
+        android:id="@+id/edit_project_name"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/select_team_rectangle"
+        android:elevation="5dp"
+        android:hint="수정할 이름을 입력하세요"
+        android:padding="10dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include2" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/select_team_rectangle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_project_name" />
+
+    <ImageView
+        android:id="@+id/project_image"
+        android:layout_width="280dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/image_background"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2" />
+
+
+    <Button
+        android:id="@+id/get_project_image"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:background="@drawable/button_rectangle"
+        android:backgroundTint="@color/kkirikkiri"
+        android:text="사진 불러오기"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/project_image" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

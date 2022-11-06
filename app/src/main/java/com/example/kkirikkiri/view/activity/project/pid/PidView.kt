@@ -52,13 +52,11 @@ class PidView : AppCompatActivity() {
             val text = dialog.findViewById<TextView>(R.id.comment_content)
 
             acp.setOnClickListener {
-                if (text.text != "") {
+                if (text.text.isNotEmpty()) {
                     model.writeComment(id, text.text.toString())
                     dialog.dismiss()
-                    refresh()
-                } else {
-                    Toast.makeText(this, "댓글을 입력해주세요",Toast.LENGTH_SHORT).show()
-                }
+                } else { Toast.makeText(this, "댓글을 입력해주세요",Toast.LENGTH_SHORT).show() }
+                refresh()
             }
             cancel.setOnClickListener { dialog.dismiss() }
         }

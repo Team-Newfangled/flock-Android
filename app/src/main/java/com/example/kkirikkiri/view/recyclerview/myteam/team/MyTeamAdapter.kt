@@ -37,7 +37,9 @@ class MyTeamAdapter(var listData : List<TeamMemberItem>, private val intent: Int
                     binding.isNotAccept.visibility = View.VISIBLE
                     itemView.setOnClickListener { model.approveMember(UserInfo.teamId!!, member.id) }
                     binding.itemMemberName.setOnClickListener { model.approveMember(UserInfo.teamId!!, member.id) }
-                    binding.isNotAccept.setOnClickListener { model.approveMember(UserInfo.teamId!!, member.id) }
+                    binding.isNotAccept.setOnClickListener {
+                        model.approveMember(UserInfo.teamId!!, member.id)
+                    }
                 } else {
                     itemSetting(binding, member)
                     binding.itemMemberDelete.setOnClickListener { model.deleteMember(UserInfo.teamId!!, member.id) }

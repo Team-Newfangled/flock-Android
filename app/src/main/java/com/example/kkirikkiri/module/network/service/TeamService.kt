@@ -32,4 +32,7 @@ interface TeamService {
     @GET("/teams/{id}")
     fun findRoleById(@Header("authorization") token : String, @Path("id") id : Int) : Call<RoleResponse>
 
+    @DELETE("/teams/{id}")
+    fun deleteTeam(@Header("authorization") token : String, @Path("id") id: Int) : Call<Void>
+
 }

@@ -23,30 +23,90 @@
         app:layout_constraintStart_toStartOf="@+id/include"
         app:layout_constraintTop_toTopOf="@+id/include" />
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="300dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/select_team_rectangle"
+        app:layout_constraintBottom_toTopOf="@+id/select_team"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/main_year"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/dialog_background"
+        android:gravity="center_horizontal"
+        android:text="2022"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toStartOf="@+id/today_todos"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/day"
+        android:layout_width="11dp"
+        android:layout_height="34dp"
+        android:text="4"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/main_year"
+        app:layout_constraintStart_toStartOf="@+id/main_year"
+        app:layout_constraintTop_toBottomOf="@+id/month" />
+
+    <TextView
+        android:id="@+id/month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:text="팀 목록"
-        android:textColor="@color/black"
-        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        android:text="11"
+        android:textColor="@color/red"
+        android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
-        app:layout_constraintVertical_bias="0.043" />
+        app:layout_constraintEnd_toEndOf="@+id/main_year"
+        app:layout_constraintStart_toStartOf="@+id/main_year"
+        app:layout_constraintTop_toTopOf="@+id/main_year" />
+
+    <TextView
+        android:id="@+id/day_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="FRIDAY"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/main_year"
+        app:layout_constraintEnd_toEndOf="@+id/main_year"
+        app:layout_constraintStart_toStartOf="@+id/main_year"
+        app:layout_constraintTop_toBottomOf="@+id/day" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/today_todos"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:paddingHorizontal="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/select_team"
-        android:layout_width="341dp"
-        android:layout_height="640dp"
+        android:layout_width="300dp"
+        android:layout_height="430dp"
+        android:layout_marginBottom="16dp"
         android:paddingHorizontal="10dp"
         android:paddingVertical="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/include"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

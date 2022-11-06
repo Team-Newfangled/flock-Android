@@ -12,9 +12,6 @@ class RecyclerDecorationWidth(private val divWidth: Int) : RecyclerView.ItemDeco
         state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
-        if(parent.getChildAdapterPosition(view) != parent.adapter!!.itemCount - 1){
             outRect.left = divWidth
-        }
-
     }
 }

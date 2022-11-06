@@ -11,6 +11,8 @@ import com.example.kkirikkiri.module.network.dto.todo.request.ModifyTodoRequest
 import com.example.kkirikkiri.module.network.dto.todo.response.FindAllTodosResponse
 import com.example.kkirikkiri.module.network.dto.todo.response.FindDeadLineResponse
 import com.example.kkirikkiri.module.info.UserInfo
+import com.example.kkirikkiri.module.network.dto.todo.Manager
+import com.example.kkirikkiri.module.network.dto.todo.Percent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -175,6 +177,41 @@ class TodoModel : ViewModel() {
 
                 override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
                     Log.e("실패", t.message.toString())
+                }
+
+            })
+        }
+    }
+
+    fun modifyPercent(todoId: Int, percent : Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            service.modifyPercent(UserInfo.access_token, todoId, Percent(percent)).enqueue(object : Callback<MessageResponse>{
+                override fun onResponse(
+                    call: Call<MessageResponse>,
+                    response: Response<MessageResponse>
+                ) {
+                    if (!response.isSuccessful) Log.e("Fail", response.raw().toString())
+                }
+
+                override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+        }
+    }
+
+    fun modifyManager(todoId: Int, manager : Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            service.modifyManager(UserInfo.access_token, todoId, Manager(manager)).enqueue(object : Callback<MessageResponse>{
+                override fun onResponse(
+                    call: Call<MessageResponse>,
+                    response: Response<MessageResponse>
+                ) {
+                    if (!response.isSuccessful) Log.e("Fail", response.raw().toString())
+                }
+
+                override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
                 }
 
             })

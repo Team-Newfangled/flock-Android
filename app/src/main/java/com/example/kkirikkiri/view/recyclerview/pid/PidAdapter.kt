@@ -35,6 +35,7 @@ class PidAdapter(val list : List<PidItem>, val activity: Activity, val intent: I
                         0 -> {
                             Intent(itemView.context, ChangePid::class.java)
                                 .putExtra("id", item.id)
+                                .putExtra("name", item.title)
                                 .run { itemView.context.startActivity(this) }
                             dialog.dismiss()
                         }

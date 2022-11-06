@@ -2,6 +2,8 @@ package com.example.kkirikkiri.module.network.service
 
 import com.example.kkirikkiri.module.network.dto.ContentRequest
 import com.example.kkirikkiri.module.network.dto.MessageResponse
+import com.example.kkirikkiri.module.network.dto.todo.Manager
+import com.example.kkirikkiri.module.network.dto.todo.Percent
 import com.example.kkirikkiri.module.network.dto.todo.TodoResponse
 import com.example.kkirikkiri.module.network.dto.todo.request.ModifyTodoRequest
 import com.example.kkirikkiri.module.network.dto.todo.response.FindAllTodosResponse
@@ -23,7 +25,7 @@ interface TodoService {
     fun findAllTodosByMember(@Header("authorization") token : String, @Path("project-id") projectId: Int, @Path("user-id") userId: Int, @Query("page") page: Int) : Call<FindAllTodosResponse>
 
     @GET("/projects/{id}/todos")
-    fun findAllTodos(@Header("authorization") token : String, @Path("project-id") projectId: Int, @Query("page") page: Int) : Call<FindAllTodosResponse>
+    fun findAllTodos(@Header("authorization") token : String, @Path("id") projectId: Int, @Query("page") page: Int) : Call<FindAllTodosResponse>
 
     @GET("/todo/{id}")
     fun findTodo(@Header("authorization") token : String, @Path("id") id : Int) : Call<TodoResponse>
@@ -37,5 +39,9 @@ interface TodoService {
     @PATCH("/todo/{id}")
     fun completeTodo(@Header("authorization") token : String, @Path("id") id : Int) : Call<MessageResponse>
 
+    @PATCH("/todo/{todo-id}/percent")
+    fun modifyPercent(@Header("authorization") token : String, @Path("todo-id") todoId: Int, @Body percent : Percent) : Call<MessageResponse>
 
+    @PATCH("/todo/{todo-id}/manager")
+    fun modifyManager(@Header("authorization") token: String, @Path("todo-id") todoId: Int, @Body manager : Manager) : Call<MessageResponse>
 }

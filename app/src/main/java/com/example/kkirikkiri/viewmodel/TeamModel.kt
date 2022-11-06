@@ -7,6 +7,7 @@ import com.example.kkirikkiri.module.network.RetrofitImpl
 import com.example.kkirikkiri.module.network.dto.ApproveRequest
 import com.example.kkirikkiri.module.network.dto.NameRequest
 import com.example.kkirikkiri.module.info.UserInfo
+import com.example.kkirikkiri.module.network.dto.TeamToProjectData
 import com.example.kkirikkiri.module.network.dto.team.response.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +21,8 @@ class TeamModel : ViewModel() {
     private val service = RetrofitImpl.teamService
 
     val teamMembers = MutableLiveData<List<FindMembersResponse.Results>>()
-    val projects = MutableLiveData<List<FindProjectResponse.Results>>()
+    val projects = MutableLiveData<TeamToProjectData>()
+    val projectDefault = MutableLiveData<List<FindProjectResponse.Results>>()
 
     fun getTeamMember(team_id : Int, page : Int) {
         CoroutineScope(Dispatchers.IO).launch {
@@ -49,7 +51,29 @@ class TeamModel : ViewModel() {
                     call: Call<FindProjectResponse>,
                     response: Response<FindProjectResponse>
                 ) {
-                    if (response.isSuccessful) projects.value = response.body()!!.results
+                    if (response.isSuccessful) {
+                        projects.value = TeamToProjectData(id, response.body()!!.results)
+                        Log.e("project data", id.toString() + " , " + response.body().toString())
+                    }
+                }
+
+                override fun onFailure(call: Call<FindProjectResponse>, t: Throwable) {
+                    Log.e("getProject Fail",t.message.toString())
+                }
+            })
+        }
+    }
+
+    fun getProjectDefault(id : Int, page : Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            service.findProjects(UserInfo.access_token, id, page).enqueue(object : Callback<FindProjectResponse>{
+                override fun onResponse(
+                    call: Call<FindProjectResponse>,
+                    response: Response<FindProjectResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        projectDefault.value = response.body()!!.results
+                    }
                 }
 
                 override fun onFailure(call: Call<FindProjectResponse>, t: Throwable) {
@@ -161,6 +185,21 @@ class TeamModel : ViewModel() {
                 }
 
                 override fun onFailure(call: Call<RoleResponse>, t: Throwable) {
+
+                }
+
+            })
+        }
+    }
+
+    fun deleteTeam(teamId: Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            service.deleteTeam(UserInfo.access_token, teamId).enqueue(object : Callback<Void>{
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    if (response.isSuccessful) Log.e("팀 삭제", "성공")
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
 
                 }
 

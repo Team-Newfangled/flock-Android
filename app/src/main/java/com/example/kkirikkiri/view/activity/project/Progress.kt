@@ -4,12 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kkirikkiri.calculater.Calculater
 import com.example.kkirikkiri.databinding.ActivityProgressBinding
 import com.example.kkirikkiri.module.info.UserInfo
-import com.example.kkirikkiri.module.network.room.RoomImpl
-import com.example.kkirikkiri.module.network.room.entity.TodoPercent
 import com.example.kkirikkiri.module.network.room.helper.TodoHelper
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.myteam.member.TeamMemberProjectItem
@@ -20,11 +18,8 @@ import java.util.ArrayList
 class Progress : AppCompatActivity() {
 
     private val binding by lazy { ActivityProgressBinding.inflate(layoutInflater) }
-
     private val model = TodoModel()
-
     private var list = ArrayList<TeamMemberProjectItem>()
-
     private var helper : TodoHelper? = null
 
     @SuppressLint("SetTextI18n")
@@ -33,12 +28,11 @@ class Progress : AppCompatActivity() {
         setContentView(binding.root)
         list.clear()
 
-        helper = RoomImpl.getHelper(this)
-        val roomTodo = helper?.todoPercentDao()?.getAllByProject(UserInfo.projectId!!)
-
         model.findAllTodos(UserInfo.projectId!!, 0)
 
-        observe(roomTodo!!)
+
+
+        observe()
 
         binding.progressPartRecyclerview.layoutManager = LinearLayoutManager(this)
         binding.progressPartRecyclerview.addItemDecoration(RecyclerDecorationHeight(30))
@@ -47,17 +41,13 @@ class Progress : AppCompatActivity() {
             Intent(this, AddProgressActivity::class.java).run { startActivity(this) }
             finish()
         }
-
-        if (roomTodo.isNotEmpty()) {
-            val sum = Calculater.calculate(roomTodo)
-
-            binding.progressProjectCircle.progress = sum
-            binding.progressProjectPercent.text = "$sum%"
-        }
     }
 
     override fun onRestart() {
         super.onRestart()
+        list.clear()
+        model.findAllTodos(UserInfo.projectId!!, 0)
+        observe()
         refresh()
     }
 
@@ -68,19 +58,18 @@ class Progress : AppCompatActivity() {
         overridePendingTransition(0,0)
     }
 
-    private fun observe(roomTodo : List<TodoPercent>) {
+    private fun observe() {
         model.allTodos.observe(this) {
-
+            var sum = 0
             if (it.results.isNotEmpty()){
                 for (i in 0 until it.results.size) {
-                    list.add(TeamMemberProjectItem(
-                        it.results[i].content,
-                        roomTodo[i].percent,
-                        it.results[i].id,
-                        roomTodo[i].id))
-
+                    sum += it.results[i].percent
+                    list.add(TeamMemberProjectItem(it.results[i].content, it.results[i].percent, it.results[i].id))
+                    Log.e("list", "${list}  ${it.results[i].content}")
                     binding.progressPartRecyclerview.adapter = PartProgressAdapter(list, intent, this)
                 }
+                binding.progressProjectPercent.text = (sum / it.results.size).toString()
+                binding.progressProjectCircle.progress = (sum / it.results.size)
             }
         }
     }

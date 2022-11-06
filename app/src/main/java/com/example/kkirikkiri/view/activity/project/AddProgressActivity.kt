@@ -3,6 +3,7 @@ package com.example.kkirikkiri.view.activity.project
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.kkirikkiri.databinding.ActivityAddProgressBinding
 import com.example.kkirikkiri.module.network.dto.ContentRequest
 import com.example.kkirikkiri.module.info.UserInfo
@@ -21,19 +22,12 @@ class AddProgressActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val helper : TodoHelper = RoomImpl.getHelper(this)
-
         binding.saveTodo.setOnClickListener {
+            if (binding.todoName.text.isNotEmpty()){
             model.createTodo(UserInfo.projectId!!, ContentRequest(binding.todoName.text.toString()))
-
-            helper.todoPercentDao().insert(TodoPercent(UserInfo.teamId!!,
-                UserInfo.projectId!!,
-                binding.todoName.text.toString(),
-                UserInfo.UserName,
-                0))
-
             Intent(this, Progress::class.java).run { startActivity(this) }
             finish()
+            }else Toast.makeText(this, "Todo이름을 입력해주세요", Toast.LENGTH_SHORT).show()
         }
 
         binding.addProgressBack.root.setOnClickListener { finish() }

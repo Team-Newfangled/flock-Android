@@ -8,5 +8,7 @@ data class TodoResponse(var color : String,
                         var content : String,
                         @SerializedName("end-date") var endDate: String,
                         var id : Int,
+                        var manager : Int,
+                        var percent : Int,
                         @SerializedName("start-date") var startDate: String,
                         @SerializedName("writer_id") var writerId : Int)

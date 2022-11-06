@@ -52,10 +52,9 @@
         android:textColor="@color/white"
         android:textSize="12sp"
         android:textStyle="bold"
-        android:layout_marginRight="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/team_TeamProfile"
-        app:layout_constraintEnd_toStartOf="@+id/team_TeamProfile"
-        app:layout_constraintTop_toTopOf="@+id/team_TeamProfile" />
+        app:layout_constraintBottom_toTopOf="@+id/team_member"
+        app:layout_constraintEnd_toEndOf="@+id/team_member"
+        app:layout_constraintTop_toBottomOf="@+id/my_team_toolbar" />
 
     <TextView
         android:id="@+id/team_TeamProfile"
@@ -66,6 +65,7 @@
         android:elevation="5dp"
         android:gravity="center_vertical|center_horizontal"
         android:text="팀프로필"
+        android:visibility="gone"
         android:textColor="@color/white"
         android:textSize="12sp"
         android:textStyle="bold"

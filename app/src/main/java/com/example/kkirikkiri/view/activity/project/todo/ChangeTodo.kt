@@ -25,10 +25,6 @@ class ChangeTodo : AppCompatActivity() {
         setContentView(R.layout.change_todo_activity)
 
         val id = intent.getIntExtra("id", 0)
-        val percent = intent.getIntExtra("percent", 0)
-        val roomId = intent.getLongExtra("roomId",0)
-
-        val helper = RoomImpl.getHelper(this)
 
         val startDate = findViewById<TextView>(R.id.edit_start_date)
         val endDate = findViewById<TextView>(R.id.edit_end_date)
@@ -37,14 +33,21 @@ class ChangeTodo : AppCompatActivity() {
 
         startDate.setOnClickListener {
             val cal = Calendar.getInstance()
-            val startDateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, day ->
-                if (day < 10 && month + 1 < 10) startDate.text = "${year}-0${month + 1}-0${day}"
-                else if (month + 1 < 10) startDate.text = "${year}-0${month + 1}-${day}"
-                else if (day < 10) startDate.text = "${year}-${month + 1}-0${day}"
-                else startDate.text = "${year}-${month + 1}-${day}"
-            }
+            val startDateSetListener =
+                DatePickerDialog.OnDateSetListener { view, year, month, day ->
+                    if (day < 10 && month + 1 < 10) startDate.text = "${year}-0${month + 1}-0${day}"
+                    else if (month + 1 < 10) startDate.text = "${year}-0${month + 1}-${day}"
+                    else if (day < 10) startDate.text = "${year}-${month + 1}-0${day}"
+                    else startDate.text = "${year}-${month + 1}-${day}"
+                }
 
-            DatePickerDialog(this, startDateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
+            DatePickerDialog(
+                this,
+                startDateSetListener,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
 
         endDate.setOnClickListener {
@@ -56,23 +59,32 @@ class ChangeTodo : AppCompatActivity() {
                 else endDate.text = "${year}-${month + 1}-${day}"
             }
 
-            DatePickerDialog(this, endDateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
+            DatePickerDialog(
+                this,
+                endDateSetListener,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
 
         write.setOnClickListener {
-            if (startDate.text.isEmpty() || endDate.text.isEmpty() || todoName.text.isEmpty()) Toast.makeText(this, "내용을 빠짐없이 다 채워주세요!", Toast.LENGTH_SHORT).show()
+            if (startDate.text.isEmpty() || endDate.text.isEmpty() || todoName.text.isEmpty()) Toast.makeText(
+                this,
+                "",
+                Toast.LENGTH_SHORT
+            ).show()
+            else {
+                model.modifyTodo(
+                    id,
+                    ModifyTodoRequest(
+                        todoName.text.toString(),
+                        endDate.text.toString(),
+                        startDate.text.toString()
+                    )
+                )
 
-            model.modifyTodo(id, ModifyTodoRequest(todoName.text.toString(), endDate.text.toString(), startDate.text.toString()))
-
-            val todo = TodoPercent(
-                UserInfo.teamId!!,
-                UserInfo.projectId!!,
-                todoName.text.toString(),
-                UserInfo.UserName,
-                percent)
-
-            todo.id = roomId
-            helper.todoPercentDao().insert(todo)
+            }
             finish()
         }
     }

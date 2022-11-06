@@ -1,7 +1,9 @@
 package com.example.kkirikkiri.view
 
+import android.Manifest
 import android.app.Dialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +11,9 @@ import android.os.Bundle
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityMainBinding
 import com.example.kkirikkiri.module.info.UserInfo
@@ -26,8 +31,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         observe()
+        selectGallery()
 
-        binding.mainMyTeam.setOnClickListener{ startActivity(Intent(applicationContext, SelectTeamActivity::class.java)) }
+        binding.mainMyTeam.setOnClickListener{
+            startActivity(Intent(applicationContext, SelectTeamActivity::class.java))
+        }
         binding.mainMakeTeam.setOnClickListener {
             val dialog = Dialog(this)
 
@@ -42,7 +50,8 @@ class MainActivity : AppCompatActivity() {
             val cancel = dialog.findViewById<Button>(R.id.button2)
 
             acp.setOnClickListener {
-                model.createTeam(text.text.toString())
+                if (text.text.isNotEmpty()) model.createTeam(text.text.toString())
+                else Toast.makeText(this, "팀 이름을 지정해주세요",Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             }
 
@@ -65,6 +74,17 @@ class MainActivity : AppCompatActivity() {
 
         model.teamId.observe(this) {
             UserInfo.teamId = it?.teamId
+        }
+    }
+
+    private fun selectGallery() {
+        val write = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        val read = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+
+        if (write == PackageManager.PERMISSION_DENIED ||
+            read == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE), 1)
         }
     }
 }

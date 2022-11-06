@@ -8,38 +8,36 @@ import com.example.kkirikkiri.databinding.ActivityControlTodoBinding
 import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.module.network.room.RoomImpl
 import com.example.kkirikkiri.module.network.room.entity.TodoPercent
+import com.example.kkirikkiri.viewmodel.TodoModel
 
 class ControlTodo : AppCompatActivity() {
 
     private val binding by lazy { ActivityControlTodoBinding.inflate(layoutInflater) }
 
+    private val model = TodoModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val id = intent.getLongExtra("id",0)
+        val id = intent.getIntExtra("id",0)
+        val name = intent.getStringExtra("name")
         val percent = intent.getIntExtra("percent", 0)
 
-        val helper = RoomImpl.getHelper(this)
-
-        val todo = helper.todoPercentDao().getTodoById(id)
-
-        binding.itemTodoName.text = todo.todoName
-        binding.itemControlPercent.text = todo.percent.toString()
-        binding.itemPercent.progress = todo.percent
+        binding.itemTodoName.text = name
+        binding.itemControlPercent.text = percent.toString()
+        binding.itemPercent.progress = percent
         binding.itemPercent.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
-            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-             binding.itemControlPercent.text = "$p1"
+            override fun onProgressChanged(seekBar: SeekBar?, percent: Int, boolean: Boolean) {
+             binding.itemControlPercent.text = "$percent"
             }
-            override fun onStartTrackingTouch(p0: SeekBar?) {}
-            override fun onStopTrackingTouch(p0: SeekBar?) {}
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
 
         binding.todoBackButton.root.setOnClickListener { finish() }
         binding.controlTodoSave.setOnClickListener {
-            val data = TodoPercent(UserInfo.teamId!!, UserInfo.projectId!!, todo.todoName, todo.writerName, binding.itemPercent.progress)
-            data.id = id
-            helper.todoPercentDao().insert(data)
+            model.modifyPercent(id, binding.itemControlPercent.text.toString().toInt())
             finish()
         }
 

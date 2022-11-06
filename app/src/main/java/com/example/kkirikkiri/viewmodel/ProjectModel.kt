@@ -79,7 +79,7 @@ class ProjectModel : ViewModel() {
                 response: Response<MessageResponse>
             ) {
                 if (response.isSuccessful) Log.e("성공", response.body().toString())
-                else Log.e("실패", "접속은 했음")
+                else Log.e("실패", response.raw().toString())
             }
 
             override fun onFailure(call: Call<MessageResponse>, t: Throwable) {

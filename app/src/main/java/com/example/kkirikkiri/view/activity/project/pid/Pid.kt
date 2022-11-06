@@ -24,6 +24,7 @@ class Pid : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        list.clear()
         model.findBoardPage(UserInfo.projectId!!,0)
 
         observe()
@@ -37,6 +38,14 @@ class Pid : AppCompatActivity() {
         }
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        list.clear()
+        model.findBoardPage(UserInfo.projectId!!,0)
+        observe()
+        refresh()
+    }
+
     private fun observe() {
         model.boardList.observe(this) {
             for (i in it) {
@@ -46,4 +55,10 @@ class Pid : AppCompatActivity() {
         }
     }
 
+    private fun refresh() {
+        finish()
+        overridePendingTransition(0,0)
+        startActivity(intent)
+        overridePendingTransition(0,0)
+    }
 }

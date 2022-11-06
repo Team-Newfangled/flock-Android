@@ -13,6 +13,7 @@ import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ItemProjectBinding
@@ -71,8 +72,10 @@ class MyTeamProjectAdapter(private val list: List<TeamMemberProjectItem>, privat
                             title.text = "프로젝트 이름을 입력 해주세요"
                             text.hint = "프로젝트 이름"
                             acp.setOnClickListener {
-                                model.modifyProjectName(project.id, NameRequest(text.text.toString()))
-                                refresh()
+                                if (text.text.isNotEmpty()){
+                                    model.modifyProjectName(project.id, NameRequest(text.text.toString()))
+                                    refresh()
+                                } else Toast.makeText(itemView.context, "프로젝트 이름을 작성해주세요", Toast.LENGTH_SHORT).show()
                                 d.dismiss()
                             }
                             cancel.setOnClickListener { d.dismiss() }
@@ -88,7 +91,7 @@ class MyTeamProjectAdapter(private val list: List<TeamMemberProjectItem>, privat
             }
 
             itemView.setOnClickListener {
-                Intent(itemView.context, Project::class.java).putExtra("id", project.id).run { itemView.context.startActivity(this) }
+                Intent(itemView.context, Project::class.java).putExtra("id", project.id).putExtra("name", project.name).run { itemView.context.startActivity(this) }
             }
 
         }
