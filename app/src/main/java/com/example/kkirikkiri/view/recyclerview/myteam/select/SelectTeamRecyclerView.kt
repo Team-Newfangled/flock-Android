@@ -65,18 +65,11 @@ class SelectTeamRecyclerView(var teams : List<ResultResponse.Result>, var activi
         }
     }
 
-    /**
-     * <전제 조건> 프로젝트의 teamId와 가지고 온 Team의 teamId가 같아
-     * 1. 가끔가다가 프로젝트를 안가지고 있거나 다른 팀의 프로젝트를 가지는 경우가 있음
-     * 2. 객체로 teamId를 지정했잖슴. 근데 이 teamId값이 다른줄알고 비교해 봤더니 같음 (즉 teamId는 문제가 없음)
-     * 3. 프로젝트를 가지고 있는 list가 잘못된것! 근데 이 리스트를 지정해 주는건? 서버와 연결하는 애
-     *
-     */
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         teams.sortedBy { it.teamId }
         projects.sortBy { it.id }
 
+        teamToProject.clear()
         for (i in projects.indices) {
             teamToProject[teams[i].teamId] = projects[i].projects
         }

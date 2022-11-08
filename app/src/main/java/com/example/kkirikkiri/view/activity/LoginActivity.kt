@@ -1,4 +1,4 @@
-package com.example.kkirikkiri.view
+package com.example.kkirikkiri.view.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityLoginBinding
 import com.example.kkirikkiri.viewmodel.LoginModel
@@ -21,9 +20,14 @@ class LoginActivity: AppCompatActivity() {
     private var mGoogleSignInClient : GoogleSignInClient? = null
     private val model = LoginModel()
 
+    private val loading = LoadingApplication.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        model.loading = loading
+        observe()
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestServerAuthCode(getString(R.string.test))
@@ -39,11 +43,8 @@ class LoginActivity: AppCompatActivity() {
                 val code = task.result?.serverAuthCode
                 code!!.replace("%2F", "/")
                 model.signInResult(code)
-                Intent(this, MainActivity::class.java).run { startActivity(this) }
+                loading.progressOn(this)
             }else {
-                mGoogleSignInClient!!.silentSignIn().addOnCompleteListener {
-                    handleSignInResult(it)
-                }
                 Log.e("asd", result.data!!.data.toString() + " " + result.resultCode + " " + result.toString())
             }
         }
@@ -54,16 +55,15 @@ class LoginActivity: AppCompatActivity() {
         }
     }
 
+    private fun observe() {
+        model.userid.observe(this) {
+            Intent(this, MainActivity::class.java).run { startActivity(this) }
+        }
+    }
+
     override fun onRestart() {
         super.onRestart()
         mGoogleSignInClient?.signOut()
     }
 
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        try {
-            val account = completedTask.getResult(ApiException::class.java)
-            val idToken = account?.serverAuthCode
-            Log.e("id", idToken.toString())
-        } catch (e: ApiException) { Log.w("exception", "handleSignInResult:error, " + e.printStackTrace()); }
-    }
 }

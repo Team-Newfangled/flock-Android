@@ -25,6 +25,7 @@ class ChangeTodo : AppCompatActivity() {
         setContentView(R.layout.change_todo_activity)
 
         val id = intent.getIntExtra("id", 0)
+        val name = intent.getStringExtra("name")
 
         val startDate = findViewById<TextView>(R.id.edit_start_date)
         val endDate = findViewById<TextView>(R.id.edit_end_date)
@@ -69,12 +70,22 @@ class ChangeTodo : AppCompatActivity() {
         }
 
         write.setOnClickListener {
-            if (startDate.text.isEmpty() || endDate.text.isEmpty() || todoName.text.isEmpty()) Toast.makeText(
+            if (startDate.text.isEmpty() || endDate.text.isEmpty()) Toast.makeText(
                 this,
-                "",
+                "날짜를 입력해주세요.",
                 Toast.LENGTH_SHORT
             ).show()
             else {
+                if (todoName.text.isEmpty()){
+                    model.modifyTodo(
+                        id,
+                        ModifyTodoRequest(
+                            name.toString(),
+                            endDate.text.toString(),
+                            startDate.text.toString()
+                        )
+                    )
+                }else {
                 model.modifyTodo(
                     id,
                     ModifyTodoRequest(
@@ -83,6 +94,7 @@ class ChangeTodo : AppCompatActivity() {
                         startDate.text.toString()
                     )
                 )
+                }
 
             }
             finish()

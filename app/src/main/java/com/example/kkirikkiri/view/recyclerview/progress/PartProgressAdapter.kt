@@ -41,6 +41,7 @@ class PartProgressAdapter(val list : List<TeamMemberProjectItem>, val intent: In
                         0 -> {
                             Intent(itemView.context, ChangeTodo::class.java)
                                 .putExtra("id", item.id)
+                                .putExtra("name", item.name)
                                 .putExtra("percent", item.percent)
                                 .run { itemView.context.startActivity(this) }
                             dialog.dismiss()

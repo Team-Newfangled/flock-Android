@@ -106,7 +106,9 @@ class Project : AppCompatActivity() {
             for (i in it.results) {
                 sum += i.percent
             }
-            sum /= it.results.size
+            if (it.results.isEmpty()){
+                sum = 0
+            }else sum /= it.results.size
             binding.progressPercent.text = "${sum}%"
             binding.progressBarAll.progress = sum
         }

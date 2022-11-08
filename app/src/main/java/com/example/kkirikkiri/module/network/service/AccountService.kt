@@ -6,6 +6,7 @@ import com.example.kkirikkiri.module.network.dto.account.response.FindUserPictur
 import com.example.kkirikkiri.module.network.dto.account.response.GoogleLoginResponse
 import com.example.kkirikkiri.module.network.dto.account.response.ResultResponse
 import com.example.kkirikkiri.module.network.dto.account.response.TokenResponse
+import com.example.kkirikkiri.module.network.dto.todo.TodayTodoResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -37,4 +38,6 @@ interface AccountService {
     @PATCH("/users/{user-id}/name")
     fun changeName(@Header("authorization") token : String, @Path("user-id") userId: Int,@Body name : String) : Call<NameResponse>
 
+    @GET("/users/{user-id}/todo?")
+    fun getUserTodo(@Header("authorization") token : String, @Path("user-id") userId: Int, @Query("year") year:Int, @Query("month") month : Int, @Query("day") day : Int) : Call<TodayTodoResponse>
 }

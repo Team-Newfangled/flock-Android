@@ -28,7 +28,7 @@
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/activity_change_project.xml" value="0.29739583333333336" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/activity_control_todo.xml" value="0.29322916666666665" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/activity_main.xml" value="0.29030797101449274" />
+        <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/activity_main.xml" value="0.12" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/activity_my_team.xml" value="0.33" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/activity_pid.xml" value="0.22" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/activity_pid_view.xml" value="0.24569707401032703" />
@@ -56,6 +56,8 @@
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/item_project.xml" value="0.33" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/item_select_team.xml" value="0.31979166666666664" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/item_select_team_project.xml" value="0.29635416666666664" />
+        <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/item_today_todos.xml" value="0.5" />
+        <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/loding.xml" value="0.12916666666666668" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/layout/tool_bar.xml" value="0.21" />
         <entry key="..\:/Users/DGSW/AndroidStudioProjects/kkirikkiri/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1335" />
       </map>

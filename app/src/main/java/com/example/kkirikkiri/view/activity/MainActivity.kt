@@ -1,4 +1,4 @@
-package com.example.kkirikkiri.view
+package com.example.kkirikkiri.view.activity
 
 import android.Manifest
 import android.app.Dialog
@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         observe()
         selectGallery()
+
+
 
         binding.mainMyTeam.setOnClickListener{
             startActivity(Intent(applicationContext, SelectTeamActivity::class.java))
