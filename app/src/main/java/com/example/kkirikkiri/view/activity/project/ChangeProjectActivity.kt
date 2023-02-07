@@ -17,16 +17,15 @@ import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityChangeProjectBinding
 import com.example.kkirikkiri.module.network.dto.ContentRequest
 import com.example.kkirikkiri.module.network.dto.NameRequest
+import com.example.kkirikkiri.view.activity.BaseActivity
 import com.example.kkirikkiri.viewmodel.ProjectModel
 
-class ChangeProjectActivity : AppCompatActivity() {
+class ChangeProjectActivity : BaseActivity<ActivityChangeProjectBinding>({ ActivityChangeProjectBinding.inflate(it) }) {
 
-    private val binding by lazy { ActivityChangeProjectBinding.inflate(layoutInflater) }
     private val model = ProjectModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
 
         val id = intent.getIntExtra("id", 0)
         val name = intent.getStringExtra("name")

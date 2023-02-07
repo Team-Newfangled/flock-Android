@@ -5,16 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityWritePidBinding
 import com.example.kkirikkiri.module.network.dto.ContentRequest
+import com.example.kkirikkiri.view.activity.BaseActivity
 import com.example.kkirikkiri.viewmodel.BoardModel
 
-class ChangePid : AppCompatActivity() {
+class ChangePid : BaseActivity<ActivityWritePidBinding>({ ActivityWritePidBinding.inflate(it) }) {
 
-    private val binding by lazy { ActivityWritePidBinding.inflate(layoutInflater) }
 
     private val model = BoardModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
 
         val id = intent.getIntExtra("id", 0)
         val name = intent.getStringExtra("name")

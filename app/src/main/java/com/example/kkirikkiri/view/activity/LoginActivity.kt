@@ -5,18 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityLoginBinding
+import com.example.kkirikkiri.view.loading.LoadingApplication
 import com.example.kkirikkiri.viewmodel.LoginModel
 import com.google.android.gms.auth.api.signin.*
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
 
 
-class LoginActivity: AppCompatActivity() {
+class LoginActivity: BaseActivity<ActivityLoginBinding>({ ActivityLoginBinding.inflate(it) }) {
 
-    private val binding by lazy{ ActivityLoginBinding.inflate(layoutInflater) }
     private var mGoogleSignInClient : GoogleSignInClient? = null
     private val model = LoginModel()
 
@@ -24,7 +21,6 @@ class LoginActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
 
         model.loading = loading
         observe()

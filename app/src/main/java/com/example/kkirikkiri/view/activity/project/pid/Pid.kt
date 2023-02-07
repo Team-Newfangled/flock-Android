@@ -8,22 +8,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityPidBinding
 import com.example.kkirikkiri.module.info.UserInfo
+import com.example.kkirikkiri.view.activity.BaseActivity
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.pid.PidAdapter
 import com.example.kkirikkiri.view.recyclerview.pid.PidItem
 import com.example.kkirikkiri.viewmodel.BoardModel
 import java.util.ArrayList
 
-class Pid : AppCompatActivity() {
-
-    private val binding by lazy { ActivityPidBinding.inflate(layoutInflater) }
+class Pid : BaseActivity<ActivityPidBinding>({ ActivityPidBinding.inflate(it) }) {
 
     private val model = BoardModel()
 
     private var list = ArrayList<PidItem>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
         list.clear()
         model.findBoardPage(UserInfo.projectId!!,0)
 

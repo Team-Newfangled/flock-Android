@@ -1,28 +1,22 @@
 package com.example.kkirikkiri.view.activity.team
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kkirikkiri.databinding.ActivitySelectTeamBinding
 import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.module.network.dto.TeamToProjectData
 import com.example.kkirikkiri.module.network.dto.account.response.ResultResponse
-import com.example.kkirikkiri.module.network.dto.team.response.FindProjectResponse
+import com.example.kkirikkiri.view.activity.BaseActivity
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.myteam.select.SelectTeamRecyclerView
 import com.example.kkirikkiri.view.recyclerview.myteam.select.TodayTodoAdapter
 import com.example.kkirikkiri.viewmodel.LoginModel
-import com.example.kkirikkiri.viewmodel.ProjectModel
 import com.example.kkirikkiri.viewmodel.TeamModel
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
-class SelectTeamActivity : AppCompatActivity() {
-
-    private val binding by lazy { ActivitySelectTeamBinding.inflate(layoutInflater) }
+class SelectTeamActivity : BaseActivity<ActivitySelectTeamBinding>({ ActivitySelectTeamBinding.inflate(it) }) {
 
     private val model = LoginModel()
     private val projectModel = TeamModel()
@@ -32,7 +26,6 @@ class SelectTeamActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
 
         val calendar = Calendar.getInstance()
         var day = "1"

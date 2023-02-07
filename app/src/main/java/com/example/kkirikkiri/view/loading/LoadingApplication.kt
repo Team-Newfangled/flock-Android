@@ -1,4 +1,4 @@
-package com.example.kkirikkiri.view.activity
+package com.example.kkirikkiri.view.loading
 
 import android.app.Activity
 import android.app.Application
@@ -22,7 +22,7 @@ class LoadingApplication : Application() {
         }
     }
 
-    private fun getLoading() : LoadingApplication{
+    private fun getLoading() : LoadingApplication {
         return this
     }
 

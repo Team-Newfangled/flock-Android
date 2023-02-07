@@ -13,21 +13,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityPidViewBinding
+import com.example.kkirikkiri.view.activity.BaseActivity
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.pid.comment.CommentAdapter
 import com.example.kkirikkiri.viewmodel.BoardModel
 import com.example.kkirikkiri.viewmodel.TodoModel
 
-class PidView : AppCompatActivity() {
-
-    private val binding by lazy { ActivityPidViewBinding.inflate(layoutInflater) }
+class PidView : BaseActivity<ActivityPidViewBinding>({ ActivityPidViewBinding.inflate(it) }) {
 
     private val model = BoardModel()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
 
         val intent = intent
         val id = intent.getIntExtra("id", 0)

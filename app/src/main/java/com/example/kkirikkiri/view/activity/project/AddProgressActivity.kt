@@ -7,20 +7,15 @@ import android.widget.Toast
 import com.example.kkirikkiri.databinding.ActivityAddProgressBinding
 import com.example.kkirikkiri.module.network.dto.ContentRequest
 import com.example.kkirikkiri.module.info.UserInfo
-import com.example.kkirikkiri.module.network.room.RoomImpl
-import com.example.kkirikkiri.module.network.room.entity.TodoPercent
-import com.example.kkirikkiri.module.network.room.helper.TodoHelper
+import com.example.kkirikkiri.view.activity.BaseActivity
 import com.example.kkirikkiri.viewmodel.TodoModel
 
-class AddProgressActivity : AppCompatActivity() {
-
-    private val binding by lazy { ActivityAddProgressBinding.inflate(layoutInflater)}
+class AddProgressActivity : BaseActivity<ActivityAddProgressBinding>({ ActivityAddProgressBinding.inflate(it) }) {
 
     private val model = TodoModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
 
         binding.saveTodo.setOnClickListener {
             if (binding.todoName.text.isNotEmpty()){

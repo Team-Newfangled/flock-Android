@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityTeamManageBinding
 import com.example.kkirikkiri.module.info.UserInfo
+import com.example.kkirikkiri.view.activity.BaseActivity
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.myteam.team.MyTeamAdapter
 import com.example.kkirikkiri.view.recyclerview.myteam.team.TeamMemberItem
@@ -24,9 +25,8 @@ import com.example.kkirikkiri.viewmodel.TeamJoinModel
 import com.example.kkirikkiri.viewmodel.TeamModel
 import java.util.ArrayList
 
-class TeamManage : AppCompatActivity() {
+class TeamManage : BaseActivity<ActivityTeamManageBinding>({ActivityTeamManageBinding.inflate(it)}) {
 
-    private val binding by lazy { ActivityTeamManageBinding.inflate(layoutInflater) }
 
     private val model = TeamModel()
 
@@ -34,9 +34,8 @@ class TeamManage : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-        list.clear()
 
+        list.clear()
         val intent = intent
         val id = intent.getIntExtra("id", 0)
 

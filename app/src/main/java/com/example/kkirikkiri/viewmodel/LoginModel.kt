@@ -9,7 +9,7 @@ import com.example.kkirikkiri.module.network.dto.account.response.GoogleLoginRes
 import com.example.kkirikkiri.module.network.dto.account.response.ResultResponse
 import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.module.network.dto.todo.TodayTodoResponse
-import com.example.kkirikkiri.view.activity.LoadingApplication
+import com.example.kkirikkiri.view.loading.LoadingApplication
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
