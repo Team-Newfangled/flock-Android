@@ -20,20 +20,15 @@ import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.view.activity.team.SelectTeamActivity
 import com.example.kkirikkiri.viewmodel.*
 
-class MainActivity : AppCompatActivity() {
-
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+class MainActivity : BaseActivity<ActivityMainBinding> ({ ActivityMainBinding.inflate(it) }) {
 
     private val model = TeamModel()
     private val userIdModel = LoginModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
         observe()
         selectGallery()
-
-
 
         binding.mainMyTeam.setOnClickListener{
             startActivity(Intent(applicationContext, SelectTeamActivity::class.java))
@@ -62,12 +57,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-
-//    fun setToolBar(layout:Int) {
-//        val toolbar = findViewById<Toolbar>(layout)
-//        setSupportActionBar(toolbar)
-//    }
 
     private fun observe() {
         userIdModel.userid.observe(this) {

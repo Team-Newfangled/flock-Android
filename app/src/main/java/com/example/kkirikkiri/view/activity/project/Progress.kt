@@ -8,24 +8,22 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kkirikkiri.databinding.ActivityProgressBinding
 import com.example.kkirikkiri.module.info.UserInfo
-import com.example.kkirikkiri.module.network.room.helper.TodoHelper
+import com.example.kkirikkiri.view.activity.BaseActivity
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.myteam.member.TeamMemberProjectItem
 import com.example.kkirikkiri.view.recyclerview.progress.PartProgressAdapter
 import com.example.kkirikkiri.viewmodel.TodoModel
 import java.util.ArrayList
 
-class Progress : AppCompatActivity() {
+class Progress : BaseActivity<ActivityProgressBinding>({ ActivityProgressBinding.inflate(it) }) {
 
-    private val binding by lazy { ActivityProgressBinding.inflate(layoutInflater) }
     private val model = TodoModel()
     private var list = ArrayList<TeamMemberProjectItem>()
-    private var helper : TodoHelper? = null
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+
         list.clear()
 
         model.findAllTodos(UserInfo.projectId!!, 0)

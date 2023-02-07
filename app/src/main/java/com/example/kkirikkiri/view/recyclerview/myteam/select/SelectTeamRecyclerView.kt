@@ -33,6 +33,12 @@ class SelectTeamRecyclerView(var teams : List<ResultResponse.Result>, var activi
             binding.projects.layoutManager = LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
            if (!teamToProject[item.teamId].isNullOrEmpty()) binding.projects.adapter = SelectTeamItemRecyclerAdapter(teamToProject[item.teamId]!!, activity)
             binding.projects.addItemDecoration(RecyclerDecorationWidth(20))
+            binding.projects.setOnClickListener {
+                val intent = Intent(itemView.context, MyTeam::class.java)
+                intent.putExtra("id", item.teamId)
+                intent.putExtra("name", item.teamName)
+                intent.run { itemView.context.startActivity(intent) } }
+
 
             itemView.setOnClickListener {
                 UserInfo.teamId = item.teamId

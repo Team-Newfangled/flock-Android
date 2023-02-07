@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kkirikkiri.databinding.ActivityProjectBinding
 import com.example.kkirikkiri.module.info.UserInfo
+import com.example.kkirikkiri.view.activity.BaseActivity
 import com.example.kkirikkiri.view.activity.project.pid.Pid
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationWidth
@@ -19,9 +20,7 @@ import com.example.kkirikkiri.viewmodel.TodoModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Project : AppCompatActivity() {
-
-    private val binding by lazy { ActivityProjectBinding.inflate(layoutInflater) }
+class Project : BaseActivity<ActivityProjectBinding>({ ActivityProjectBinding.inflate(it) }) {
 
     private val deadLineList = ArrayList<DeadLineItem>()
     private val pidList = ArrayList<PidItem>()
@@ -31,7 +30,6 @@ class Project : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
         deadLineList.clear()
         pidList.clear()
         todoModel.findAllTodos(intent.getIntExtra("id",0), 0)
@@ -67,10 +65,6 @@ class Project : AppCompatActivity() {
         Log.e("restart", "restart")
         deadLineList.clear()
         pidList.clear()
-        todoModel.findDeadLines(intent.getIntExtra("id",0))
-        model.findBoardPage(intent.getIntExtra("id",0), 0)
-        todoModel.findAllTodos(intent.getIntExtra("id",0), 0)
-        observe()
         refresh()
     }
 

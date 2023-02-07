@@ -3,22 +3,16 @@ package com.example.kkirikkiri.view.activity.project.todo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
-import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityControlTodoBinding
-import com.example.kkirikkiri.module.info.UserInfo
-import com.example.kkirikkiri.module.network.room.RoomImpl
-import com.example.kkirikkiri.module.network.room.entity.TodoPercent
+import com.example.kkirikkiri.view.activity.BaseActivity
 import com.example.kkirikkiri.viewmodel.TodoModel
 
-class ControlTodo : AppCompatActivity() {
-
-    private val binding by lazy { ActivityControlTodoBinding.inflate(layoutInflater) }
+class ControlTodo : BaseActivity<ActivityControlTodoBinding>({ ActivityControlTodoBinding.inflate(it) }) {
 
     private val model = TodoModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
 
         val id = intent.getIntExtra("id",0)
         val name = intent.getStringExtra("name")

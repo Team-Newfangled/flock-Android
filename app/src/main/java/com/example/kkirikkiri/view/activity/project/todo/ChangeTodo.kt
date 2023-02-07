@@ -8,10 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kkirikkiri.R
-import com.example.kkirikkiri.module.info.UserInfo
 import com.example.kkirikkiri.module.network.dto.todo.request.ModifyTodoRequest
-import com.example.kkirikkiri.module.network.room.RoomImpl
-import com.example.kkirikkiri.module.network.room.entity.TodoPercent
 import com.example.kkirikkiri.viewmodel.TodoModel
 import java.util.*
 

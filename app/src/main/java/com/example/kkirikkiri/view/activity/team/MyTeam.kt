@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kkirikkiri.R
 import com.example.kkirikkiri.databinding.ActivityMyTeamBinding
 import com.example.kkirikkiri.module.info.UserInfo
+import com.example.kkirikkiri.view.activity.BaseActivity
 import com.example.kkirikkiri.view.activity.project.AddProjectActivity
 import com.example.kkirikkiri.view.recyclerview.RecyclerDecorationHeight
 import com.example.kkirikkiri.view.recyclerview.myteam.team.MyTeamAdapter
@@ -18,9 +19,7 @@ import com.example.kkirikkiri.view.recyclerview.myteam.member.TeamMemberProjectI
 import com.example.kkirikkiri.viewmodel.TeamModel
 import java.util.ArrayList
 
-class MyTeam : AppCompatActivity() {
-
-    private val binding by lazy { ActivityMyTeamBinding.inflate(layoutInflater) }
+class MyTeam : BaseActivity<ActivityMyTeamBinding> ({ ActivityMyTeamBinding.inflate(it) }) {
 
     private val model = TeamModel()
 
@@ -29,7 +28,6 @@ class MyTeam : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
         list.clear()
 
         val intent = intent
@@ -42,7 +40,6 @@ class MyTeam : AppCompatActivity() {
         observe()
 
         binding.teamTeamManage.setOnClickListener { startActivity(Intent(applicationContext, TeamManage::class.java).putExtra("id", id)) }
-//        binding.teamTeamProfile.setOnClickListener { startActivity(Intent(applicationContext, TeamProfile::class.java)) }
         binding.toolbarTitle.text = name
 
         binding.teamMember.layoutManager = LinearLayoutManager(this)
